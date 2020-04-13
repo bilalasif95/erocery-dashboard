@@ -18,6 +18,7 @@ import AuthProvider from "./auth/AuthProvider";
 import LoginLoading from "./auth/components/LoginLoading";
 import SectionRoute from "./auth/components/SectionRoute";
 import { hasPermission } from "./auth/misc";
+import { BulkSection } from "./bulkSection";
 import CategorySection from "./categories";
 import CollectionSection from "./collections";
 import { AppProgressProvider } from "./components/AppProgress";
@@ -239,6 +240,11 @@ const Routes: React.FC = () => {
                 permissions={[PermissionEnum.MANAGE_SERVICE_ACCOUNTS]}
                 path={serviceSection}
                 component={ServiceSection}
+              />
+              <SectionRoute
+                // permissions={[PermissionEnum.MANAGE_SERVICE_ACCOUNTS]}
+                path="/bulkSection"
+                component={BulkSection}
               />
               {createConfigurationMenu(intl).filter(menu =>
                 menu.menuItems.map(item => hasPermission(item.permission, user))

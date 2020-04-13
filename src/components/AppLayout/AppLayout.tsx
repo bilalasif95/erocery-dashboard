@@ -21,7 +21,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { RouteComponentProps, withRouter } from "react-router";
 
 import saleorDarkLogoSmall from "@assets/images/logo-dark-small.svg";
-import saleorDarkLogo from "@assets/images/logo-dark.svg";
+import saleorDarkLogo from "@assets/images/logo-darkk.svg";
 import menuArrowIcon from "@assets/images/menu-arrow-icon.svg";
 import AppProgressProvider from "@saleor/components/AppProgress";
 import { createConfigurationMenu } from "@saleor/configuration";
@@ -135,7 +135,7 @@ const styles = (theme: Theme) =>
         top: "50%",
         transform: "translate(-50%,-50%)"
       },
-      background: theme.palette.secondary.main,
+      // background: theme.palette.secondary.main,
       display: "block",
       height: 80,
       position: "relative"

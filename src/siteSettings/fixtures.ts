@@ -14,7 +14,7 @@ export const shop: SiteSettings_shop = {
     __typename: "Address",
     city: "Kenstad",
     cityArea: "Alabama",
-    companyName: "Saleor e-commerce",
+    companyName: "Erocery e-commerce",
     country: {
       __typename: "CountryDisplay",
       code: "UA",
@@ -38,11 +38,11 @@ export const shop: SiteSettings_shop = {
   ],
   customerSetPasswordUrl: "https://example.com/reset-password",
   defaultMailSenderAddress: "noreply@example.com",
-  defaultMailSenderName: "Saleor",
+  defaultMailSenderName: "Erocery",
   description: "Lorem ipsum dolor sit amet",
   domain: {
     __typename: "Domain",
     host: "localhost:8000"
   },
-  name: "Saleor e-commerce"
+  name: "Erocery e-commerce"
 };

@@ -97,8 +97,8 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
         {
           __typename: "AttributeValue" as "AttributeValue",
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjY=",
-          name: "Saleor",
-          slug: "saleor",
+          name: "Erocery",
+          slug: "erocery",
           sortOrder: 0,
           type: "STRING",
           value: ""
@@ -391,8 +391,8 @@ export const attributes: SearchProductTypes_search_edges_node_productAttributes[
         {
           __typename: "AttributeValue" as "AttributeValue",
           id: "UHJvZHVjdEF0dHJpYnV0ZVZhbHVlOjI3",
-          name: "Saleor Publishing",
-          slug: "saleor-publishing",
+          name: "Erocery Publishing",
+          slug: "erocery-publishing",
           sortOrder: 1,
           type: "STRING",
           value: ""

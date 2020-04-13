@@ -52,7 +52,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "Properties"
   },
   readOnly: {
-    defaultMessage: "Saleor runs in read-only mode. Changes not saved."
+    defaultMessage: "Erocery runs in read-only mode. Changes not saved."
   },
   requiredField: {
     defaultMessage: "This field is required"
@@ -61,7 +61,7 @@ export const commonMessages = defineMessages({
     defaultMessage: "Saved changes"
   },
   somethingWentWrong: {
-    defaultMessage: "Saleor ran into an unexpected problem"
+    defaultMessage: "Erocery ran into an unexpected problem"
   },
   startDate: {
     defaultMessage: "Start Date"
@@ -132,6 +132,10 @@ export const sectionNames = defineMessages({
   attributes: {
     defaultMessage: "Attributes",
     description: "attributes section name"
+  },
+  bulkSection: {
+    defaultMessage: "Bulk Section",
+    description: "bulk section name"
   },
   categories: {
     defaultMessage: "Categories",

@@ -1,3 +1,4 @@
+// import { bulkSectionUrl } from "../../bulkSection/urls";
 import { categoryListUrl } from "../../categories/urls";
 import { collectionListUrl } from "../../collections/urls";
 import { customerListUrl } from "../../customers/urls";
@@ -83,7 +84,13 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       permission: PermissionEnum.MANAGE_USERS,
       url: customerListUrl()
     },
-
+    {
+      ariaLabel: "bulkSection",
+      icon: customerIcon,
+      label: intl.formatMessage(sectionNames.bulkSection),
+      // permission: PermissionEnum.MANAGE_USERS,
+      url: "/bulkSection"
+    },
     {
       ariaLabel: "discounts",
       children: [
