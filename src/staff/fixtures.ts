@@ -145,5 +145,6 @@ export const staffMember: StaffMemberDetails_user = {
   id: "VXNlcjoyMQ==",
   isActive: true,
   lastName: "Smith",
-  permissions
+  permissions,
+  phone: "",
 };

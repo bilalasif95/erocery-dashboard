@@ -133,10 +133,6 @@ export const sectionNames = defineMessages({
     defaultMessage: "Attributes",
     description: "attributes section name"
   },
-  bulkSection: {
-    defaultMessage: "Bulk Section",
-    description: "bulk section name"
-  },
   categories: {
     defaultMessage: "Categories",
     description: "categories section name"

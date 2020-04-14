@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="123.256" height="76" viewBox="0 0 123.256 76">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#e3f0ff"/>
+    </linearGradient>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_90" data-name="Rectangle 90" width="38.008" height="52.167" rx="5" fill="url(#linear-gradient)"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_90-2" data-name="Rectangle 90" width="38.008" height="52.168" rx="5" fill="url(#linear-gradient)"/>
+    </clipPath>
+    <linearGradient id="linear-gradient-6" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset="1" stop-color="#c6e1ff"/>
+    </linearGradient>
+    <clipPath id="clip-path-3">
+      <rect id="Rectangle_90-3" data-name="Rectangle 90" width="51" height="70" rx="5" transform="translate(14967 6289)" fill="url(#linear-gradient)"/>
+    </clipPath>
+  </defs>
+  <g id="Group_76" data-name="Group 76" transform="translate(-14833 -6289)">
+    <g id="Group_75" data-name="Group 75">
+      <g id="Group_74" data-name="Group 74" transform="translate(14919.721 6304) rotate(16)">
+        <g id="Group_71" data-name="Group 71" transform="translate(0 0)">
+          <g id="Group_70" data-name="Group 70">
+            <rect id="Rectangle_87" data-name="Rectangle 87" width="38.008" height="52.167" rx="5" fill="url(#linear-gradient)"/>
+            <ellipse id="Ellipse_14" data-name="Ellipse 14" cx="5.217" cy="5.217" rx="5.217" ry="5.217" transform="translate(4.472 12.669)" fill="#adc3dc"/>
+            <g id="Mask_Group_4" data-name="Mask Group 4" clip-path="url(#clip-path)">
+              <rect id="Rectangle_89" data-name="Rectangle 89" width="38.008" height="52.167" rx="10" transform="matrix(0.809, 0.588, -0.588, 0.809, 5.547, 28.838)" fill="#cadcf0"/>
+              <rect id="Rectangle_88" data-name="Rectangle 88" width="38.008" height="52.167" rx="5" transform="matrix(0.809, 0.588, -0.588, 0.809, 19.706, 22.876)" fill="#adc3dc"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="Group_73" data-name="Group 73" transform="translate(-1318.739 4676.839) rotate(-17)">
+        <g id="Group_71-2" data-name="Group 71" transform="translate(14967 6289)">
+          <g id="Group_70-2" data-name="Group 70">
+            <rect id="Rectangle_87-2" data-name="Rectangle 87" width="38.008" height="52.168" rx="5" fill="url(#linear-gradient)"/>
+            <circle id="Ellipse_14-2" data-name="Ellipse 14" cx="5.217" cy="5.217" r="5.217" transform="translate(4.472 12.669)" fill="#adc3dc"/>
+            <g id="Mask_Group_4-2" data-name="Mask Group 4" clip-path="url(#clip-path-2)">
+              <rect id="Rectangle_89-2" data-name="Rectangle 89" width="38.008" height="52.168" rx="10" transform="matrix(0.809, 0.588, -0.588, 0.809, 5.546, 28.838)" fill="#cadcf0"/>
+              <rect id="Rectangle_88-2" data-name="Rectangle 88" width="38.008" height="52.168" rx="5" transform="matrix(0.809, 0.588, -0.588, 0.809, 19.706, 22.876)" fill="#adc3dc"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <rect id="Rectangle_91" data-name="Rectangle 91" width="51" height="70" rx="5" transform="translate(14866 6289)" fill="url(#linear-gradient-6)"/>
+      <g id="Group_70-3" data-name="Group 70" transform="translate(-101)">
+        <rect id="Rectangle_87-3" data-name="Rectangle 87" width="51" height="70" rx="5" transform="translate(14967 6289)" fill="url(#linear-gradient)"/>
+        <circle id="Ellipse_14-3" data-name="Ellipse 14" cx="7" cy="7" r="7" transform="translate(14973 6306)" fill="#268dff"/>
+        <g id="Mask_Group_4-3" data-name="Mask Group 4" clip-path="url(#clip-path-3)">
+          <rect id="Rectangle_89-3" data-name="Rectangle 89" width="51" height="70" rx="10" transform="matrix(0.809, 0.588, -0.588, 0.809, 14974.442, 6327.696)" fill="#aed4ff"/>
+          <rect id="Rectangle_88-3" data-name="Rectangle 88" width="51" height="70" rx="5" transform="matrix(0.809, 0.588, -0.588, 0.809, 14993.442, 6319.696)" fill="#248bff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

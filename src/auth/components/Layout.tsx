@@ -4,8 +4,8 @@ import React from "react";
 import SVG from "react-inlinesvg";
 
 import backgroundArt from "@assets/images/login-background.svg";
-import saleorDarkLogo from "@assets/images/logo-dark.svg";
-import saleorLightLogo from "@assets/images/logo-light.svg";
+import saleorDarkLogo from "@assets/images/logo-darkk.svg";
+import saleorLightLogo from "@assets/images/logo-lightt.svg";
 import useTheme from "@saleor/hooks/useTheme";
 
 const useStyles = makeStyles(
@@ -87,7 +87,7 @@ const Layout: React.FC = props => {
         <div className={classes.mainPanelContent}>
           <SVG
             className={classes.logo}
-            src={isDark ? saleorDarkLogo : saleorLightLogo}
+            src={isDark ? saleorLightLogo : saleorDarkLogo}
           />
           {children}
         </div>
