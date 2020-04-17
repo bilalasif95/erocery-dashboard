@@ -193,6 +193,10 @@ export const sectionNames = defineMessages({
     defaultMessage: "Shipping Methods",
     description: "shipping section name"
   },
+  shop: {
+    defaultMessage: "Store/Shop",
+    description: "shop section name"
+  },
   siteSettings: {
     defaultMessage: "Site Settings",
     description: "site settings section name"

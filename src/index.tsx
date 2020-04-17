@@ -44,6 +44,7 @@ import ProductTypesSection from "./productTypes";
 import ServiceSection from "./services";
 import { serviceSection } from "./services/urls";
 import ShippingSection from "./shipping";
+import ShopSection from "./shop";
 import SiteSettingsSection from "./siteSettings";
 import StaffSection from "./staff";
 import TaxesSection from "./taxes";
@@ -219,6 +220,11 @@ const Routes: React.FC = () => {
                 permissions={[PermissionEnum.MANAGE_TRANSLATIONS]}
                 path="/translations"
                 component={TranslationsSection}
+              />
+              <SectionRoute
+                // permissions={[PermissionEnum.MANAGE_TRANSLATIONS]}
+                path="/shop"
+                component={ShopSection}
               />
               <SectionRoute
                 permissions={[PermissionEnum.MANAGE_WEBHOOKS]}

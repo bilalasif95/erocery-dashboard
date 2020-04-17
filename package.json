@@ -180,7 +180,7 @@
     "build-types": "apollo client:codegen --target=typescript types --globalTypesFile=src/types/globalTypes.ts",
     "check-types": "tsc --noEmit",
     "generate-component": "plop --plopfile .plop/plopfile.js",
-    "start": "webpack-dev-server --open -d --max_old_space_size=4096",
+    "start": "webpack-dev-server --open -d --max_old_space_size=4096 --host 0.0.0.0",
     "storybook": "start-storybook -p 3000 -c src/storybook/",
     "build-storybook": "build-storybook -c src/storybook/ -o build/storybook",
     "test": "jest src/",

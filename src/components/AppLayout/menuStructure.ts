@@ -107,7 +107,13 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       label: intl.formatMessage(sectionNames.translations),
       permission: PermissionEnum.MANAGE_TRANSLATIONS,
       url: languageListUrl
-    }
+    },
+    // {
+    //   ariaLabel: "shop",
+    //   icon: homeIcon,
+    //   label: intl.formatMessage(sectionNames.shop),
+    //   url: "/shop"
+    // }
   ];
 }
 
