@@ -56,7 +56,7 @@ const LoginCard = withStyles(styles, { name: "LoginCard" })(
     classes,
     error,
     disableLoginButton,
-    onPasswordRecovery,
+    // onPasswordRecovery,
     onSubmit
   }: LoginCardProps) => {
     const intl = useIntl();
