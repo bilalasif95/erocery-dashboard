@@ -102,8 +102,8 @@ export const BulkSection: React.StatelessComponent<{}> = props => {
     const input = anchor.current
     const files = input.files
     const bodyFormData = new FormData();
-    for(let i=0;i<files.length;i++){
-      bodyFormData.append('images', files[i]);
+    for(let file of files){
+      bodyFormData.append('images', file)
     }
     axios
     .post(endpoints.addImages, bodyFormData)
