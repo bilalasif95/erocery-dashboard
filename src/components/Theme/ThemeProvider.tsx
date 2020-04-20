@@ -39,7 +39,8 @@ const dark: IThemeColors = {
     textHover: "#616161"
   },
   paperBorder: "#252728",
-  primary: "#13BEBB",
+  // primary: "#13BEBB",
+  primary: "#5fbe43",
   secondary: "#21125E"
 };
 const light: IThemeColors = {
@@ -57,7 +58,8 @@ const light: IThemeColors = {
     button: "#FFFFFF",
     default: "#3D3D3D",
     gray: "#616161",
-    textButton: "#06847B",
+    // textButton: "#06847B",
+    textButton: "#5fbe43",
     textDisabled: "#616161"
   },
   gray: {
@@ -75,7 +77,8 @@ const light: IThemeColors = {
     textHover: "#616161"
   },
   paperBorder: "#EAEAEA",
-  primary: "#06847B",
+  // primary: "#06847B",
+  primary: "#5fbe43",
   secondary: "#21125E"
 };
 

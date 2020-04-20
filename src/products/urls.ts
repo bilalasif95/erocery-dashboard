@@ -16,6 +16,9 @@ const productSection = "/products/";
 export const productAddPath = urlJoin(productSection, "add");
 export const productAddUrl = productAddPath;
 
+export const productBulkPath = urlJoin(productSection, "uploadBulkItems");
+export const productBulkUrl = productBulkPath;
+
 export const productListPath = productSection;
 export type ProductListUrlDialog =
   | "publish"

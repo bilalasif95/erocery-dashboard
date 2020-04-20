@@ -25,6 +25,7 @@ export interface StaffMemberDetails_user {
   email: string;
   firstName: string;
   isActive: boolean;
+  phone: string;
   lastName: string;
   avatar: StaffMemberDetails_user_avatar | null;
   permissions: (StaffMemberDetails_user_permissions | null)[] | null;

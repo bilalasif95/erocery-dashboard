@@ -133,10 +133,6 @@ export const sectionNames = defineMessages({
     defaultMessage: "Attributes",
     description: "attributes section name"
   },
-  bulkSection: {
-    defaultMessage: "Bulk Section",
-    description: "bulk section name"
-  },
   categories: {
     defaultMessage: "Categories",
     description: "categories section name"
@@ -196,6 +192,10 @@ export const sectionNames = defineMessages({
   shipping: {
     defaultMessage: "Shipping Methods",
     description: "shipping section name"
+  },
+  shop: {
+    defaultMessage: "Store/Shop",
+    description: "shop section name"
   },
   siteSettings: {
     defaultMessage: "Site Settings",

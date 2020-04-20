@@ -1,4 +1,4 @@
-var API = "http://localhost:8000";
+var API = "http://208.109.10.222:8000";
 
 module.exports = {
   addImages: `${API + "/en/products/post/"}`,

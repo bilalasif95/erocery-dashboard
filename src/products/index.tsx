@@ -8,6 +8,7 @@ import { findInEnum, parseBoolean } from "@saleor/misc";
 import { WindowTitle } from "../components/WindowTitle";
 import {
   productAddPath,
+  productBulkPath,
   productImagePath,
   ProductImageUrlQueryParams,
   productListPath,
@@ -19,6 +20,7 @@ import {
   productVariantEditPath,
   ProductVariantEditUrlQueryParams
 } from "./urls";
+import ProductBulk from "./views/ProductBulk";
 import ProductCreate from "./views/ProductCreate";
 import ProductImageComponent from "./views/ProductImage";
 import ProductListComponent from "./views/ProductList";
@@ -104,6 +106,7 @@ const Component = () => {
       <Switch>
         <Route exact path={productListPath} component={ProductList} />
         <Route exact path={productAddPath} component={ProductCreate} />
+        <Route exact path={productBulkPath} component={ProductBulk} />
         <Route
           exact
           path={productVariantAddPath(":id")}

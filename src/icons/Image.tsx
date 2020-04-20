@@ -16,7 +16,8 @@ export const Image = createSvgIcon(
         y2="23.5714"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#06847B" />
+        {/* <stop stopColor="#06847B" /> */}
+        <stop stopColor="#5fbe43" />
         <stop offset="1" stopColor="#3EE7CD" />
       </linearGradient>
     </defs>

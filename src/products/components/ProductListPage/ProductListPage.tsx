@@ -11,6 +11,7 @@ import ColumnPicker, {
 import Container from "@saleor/components/Container";
 import PageHeader from "@saleor/components/PageHeader";
 import { ProductListColumns } from "@saleor/config";
+import useNavigator from "@saleor/hooks/useNavigator";
 import { sectionNames } from "@saleor/intl";
 import {
   AvailableInGridAttributes_availableInGrid_edges_node,
@@ -24,7 +25,7 @@ import {
   PageListProps,
   SortPage
 } from "@saleor/types";
-import { ProductListUrlSortField } from "../../urls";
+import { productBulkUrl,ProductListUrlSortField } from "../../urls";
 import ProductList from "../ProductList";
 import ProductListFilter, { ProductFilterKeys } from "../ProductListFilter";
 
@@ -43,6 +44,9 @@ export interface ProductListPageProps
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
+  bulkButton: {
+    marginRight: "24px"
+  },
   columnPicker: {
     marginRight: theme.spacing.unit * 3
   }
@@ -74,8 +78,8 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
     ...listProps
   } = props;
   const intl = useIntl();
+  const navigate = useNavigator();
   const classes = useStyles(props);
-
   const handleSave = (columns: ProductListColumns[]) =>
     onUpdateListSettings("columns", columns);
 
@@ -125,6 +129,18 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
           onFetchMore={onFetchMore}
           onSave={handleSave}
         />
+        <Button
+          onClick={() => navigate(productBulkUrl)}
+          color="primary"
+          className={classes.bulkButton}
+          variant="contained"
+          data-tc="add-product"
+        >
+          <FormattedMessage
+            defaultMessage="Upload Bulk Items"
+            description="button"
+          />
+        </Button>
         <Button
           onClick={onAdd}
           color="primary"

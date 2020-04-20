@@ -20,8 +20,8 @@ import SVG from "react-inlinesvg";
 import { FormattedMessage, useIntl } from "react-intl";
 import { RouteComponentProps, withRouter } from "react-router";
 
-import saleorDarkLogoSmall from "@assets/images/logo-dark-small.svg";
-import saleorDarkLogo from "@assets/images/logo-darkk.svg";
+import saleorDarkLogoSmall from "@assets/images/logo-dark-smalll.svg";
+import saleorDarkLogo from "@assets/images/logo-lightt.svg";
 import menuArrowIcon from "@assets/images/menu-arrow-icon.svg";
 import AppProgressProvider from "@saleor/components/AppProgress";
 import { createConfigurationMenu } from "@saleor/configuration";
@@ -136,6 +136,7 @@ const styles = (theme: Theme) =>
         transform: "translate(-50%,-50%)"
       },
       // background: theme.palette.secondary.main,
+      background: "#5fbe43",
       display: "block",
       height: 80,
       position: "relative"

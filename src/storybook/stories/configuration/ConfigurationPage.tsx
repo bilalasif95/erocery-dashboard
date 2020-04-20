@@ -20,7 +20,8 @@ const user = {
   isStaff: true,
   lastName: "Newton",
   note: null,
-  permissions: staffMember.permissions
+  permissions: staffMember.permissions,
+  phone: staffMember.phone
 };
 
 const Story: React.FC<{ user: User }> = ({ user }) => {
