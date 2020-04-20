@@ -109,24 +109,26 @@ const ShippingZoneCreatePage: React.StatelessComponent<
           <ShippingZoneCountriesAssignDialog
             open={isModalOpened}
             onConfirm={formData =>
-              change(
-                {
-                  target: {
-                    name: "default",
-                    value: formData.restOfTheWorld
-                  }
-                } as any,
-                () =>
-                  change(
-                    {
-                      target: {
-                        name: "countries",
-                        value: formData.restOfTheWorld ? [] : formData.countries
-                      }
-                    } as any,
-                    toggleModal
-                  )
-              )
+              {
+                return change(
+                  {
+                    target: {
+                      name: "default",
+                      value: formData.restOfTheWorld
+                    }
+                  } as any,
+                  () =>
+                    change(
+                      {
+                        target: {
+                          name: "countries",
+                          value: formData.restOfTheWorld ? [] : formData.countries
+                        }
+                      } as any,
+                      toggleModal
+                    )
+                )
+              }
             }
             confirmButtonState="default"
             countries={countries}
