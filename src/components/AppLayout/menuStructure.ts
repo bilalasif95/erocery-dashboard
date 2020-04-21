@@ -108,12 +108,12 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       permission: PermissionEnum.MANAGE_TRANSLATIONS,
       url: languageListUrl
     },
-    // {
-    //   ariaLabel: "shop",
-    //   icon: homeIcon,
-    //   label: intl.formatMessage(sectionNames.shop),
-    //   url: "/shop"
-    // }
+    {
+      ariaLabel: "shop",
+      icon: homeIcon,
+      label: intl.formatMessage(sectionNames.shop),
+      url: "/shop"
+    }
   ];
 }
 

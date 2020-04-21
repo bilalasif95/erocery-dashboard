@@ -1,3 +1,4 @@
+import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import {
@@ -8,7 +9,7 @@ import {
 } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { useIntl } from "react-intl";
+import { FormattedMessage,useIntl } from "react-intl";
 
 import { IconProps } from "@material-ui/core/Icon";
 import { sectionNames } from "@saleor/intl";
@@ -92,6 +93,7 @@ export interface ConfigurationPageProps {
   menu: MenuSection[];
   user: User;
   onSectionClick: (sectionName: string) => void;
+  onAdd: () => void;
 }
 
 export const ConfigurationPage = withStyles(styles, {
@@ -101,15 +103,23 @@ export const ConfigurationPage = withStyles(styles, {
     classes,
     menu: menus,
     user,
-    onSectionClick
+    onSectionClick,
+    onAdd
   }: ConfigurationPageProps & WithStyles<typeof styles>) => {
     const intl = useIntl();
     return (
       <Container>
         <PageHeader
           className={classes.header}
-          title={intl.formatMessage(sectionNames.configuration)}
-        />
+          title={intl.formatMessage(sectionNames.shop)}
+        >
+          <Button color="primary" variant="contained" onClick={onAdd}>
+            <FormattedMessage
+              defaultMessage="Add City"
+              description="button"
+            />
+          </Button>
+        </PageHeader>
         {menus
           .filter(menu =>
             menu.menuItems.some(menuItem =>
