@@ -110,7 +110,7 @@ const styles = (theme: Theme) =>
       height: 32,
       position: "absolute",
       right: -16,
-      top: 65,
+      top: 57,
       transition: `background ${theme.transitions.duration.shorter}ms`,
       width: 32,
       zIndex: 99
@@ -128,6 +128,9 @@ const styles = (theme: Theme) =>
         transform: "rotate(0deg)"
       }
     },
+    logoImg: {
+      width: '100px'
+    },
     logo: {
       "& svg": {
         left: "50%",
@@ -137,8 +140,11 @@ const styles = (theme: Theme) =>
       },
       // background: theme.palette.secondary.main,
       background: "#5fbe43",
-      display: "block",
-      height: 80,
+      display: "flex",
+      justifyContent: 'center',
+      alignItems: 'center',
+      // height: 100,
+      padding: '1.5rem 0.5rem',
       position: "relative"
     },
     logoDark: {
@@ -154,10 +160,18 @@ const styles = (theme: Theme) =>
         width: "80px"
       }
     },
+    halfLogo:{
+      width:30,
+    },
+    fullLogo:{
+      width:100
+    },
     menu: {
       background: theme.palette.background.paper,
-      height: "100vh",
-      padding: "25px 20px"
+      height: "100%",
+      padding: "25px 20px",
+      // minHeight:'100vh',
+      overflowY:'scroll'
     },
     menuIcon: {
       "& span": {
@@ -354,11 +368,22 @@ const AppLayout = withStyles(styles, {
                           [classes.logoDark]: isDark
                         })}
                       >
-                        <SVG
+
+                        {isMenuSmall ? <img
+
+                          className={classes.halfLogo}
+                          src={saleorDarkLogoSmall} /> : <img
+
+                            className={classes.fullLogo}
+                            src={saleorDarkLogo} />
+                        }
+                        {/* <img 
+
+                        className={classes.logoImg}
                           src={
                             isMenuSmall ? saleorDarkLogoSmall : saleorDarkLogo
                           }
-                        />
+                        /> */}
                       </div>
                       <Hidden smDown>
                         <div
@@ -395,8 +420,8 @@ const AppLayout = withStyles(styles, {
                         color="primary"
                       />
                     ) : (
-                      <div className={classes.appLoaderPlaceholder} />
-                    )}
+                        <div className={classes.appLoaderPlaceholder} />
+                      )}
                     <div className={classes.viewContainer}>
                       <div>
                         <Container>
