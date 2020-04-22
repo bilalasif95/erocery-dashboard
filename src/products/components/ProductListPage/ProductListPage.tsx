@@ -25,16 +25,17 @@ import {
   PageListProps,
   SortPage
 } from "@saleor/types";
-import { productBulkUrl,ProductListUrlSortField } from "../../urls";
+import { productBulkUrl, ProductListUrlSortField } from "../../urls";
 import ProductList from "../ProductList";
 import ProductListFilter, { ProductFilterKeys } from "../ProductListFilter";
+import Grid from '@material-ui/core/Grid';
 
 export interface ProductListPageProps
   extends PageListProps<ProductListColumns>,
-    ListActions,
-    FilterPageProps<ProductFilterKeys>,
-    FetchMoreProps,
-    SortPage<ProductListUrlSortField> {
+  ListActions,
+  FilterPageProps<ProductFilterKeys>,
+  FetchMoreProps,
+  SortPage<ProductListUrlSortField> {
   activeAttributeSortId: string;
   availableInGridAttributes: AvailableInGridAttributes_availableInGrid_edges_node[];
   currencySymbol: string;
@@ -44,11 +45,44 @@ export interface ProductListPageProps
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
+  pageHead: {
+    margin:'0 0 1rem'
+    // [theme.breakpoints.down("sm")]: {
+    //   width: "100%",
+    //   justifyContent: "center !important"
+    // }
+  },
+  pageTitle: {
+    width: '100%',
+    margin:'0'
+  },
   bulkButton: {
-    marginRight: "24px"
+    width:'100%',
+    margin: "0 24px 0 0",
+    [theme.breakpoints.down("xs")]: {
+      margin: "0 0.5rem 1rem",
+    }
+  },
+  proButton: {
+    width:'100%',
+    [theme.breakpoints.down("xs")]: {
+      margin: "0 0.5rem 1rem",
+    }
   },
   columnPicker: {
-    marginRight: theme.spacing.unit * 3
+    margin: "0 24px 0 0",
+    width:'100%',
+    display:'flex',
+    justifyContent:'flex-end',
+    [theme.breakpoints.down("xs")]: {
+      justifyContent:'center',
+      margin: "0 0 1rem",
+    }
+  },
+  textAlign: {
+    display: "flex",
+    justifyContent: 'flex-end',
+    alignItems:'center'
   }
 }));
 
@@ -113,7 +147,58 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
 
   return (
     <Container>
-      <PageHeader title={intl.formatMessage(sectionNames.products)}>
+      <Grid container className={classes.pageHead}>
+        <Grid item md={3} sm={6} xs={6}>
+          <PageHeader title={intl.formatMessage(sectionNames.products)} className={classes.pageTitle} />
+        </Grid>
+        <Grid item md={3} sm={6} xs={6} className={classes.textAlign}>
+          <ColumnPicker
+            className={classes.columnPicker}
+            columns={columns}
+            defaultColumns={defaultSettings.columns}
+            hasMore={hasMore}
+            loading={loading}
+            initialColumns={settings.columns}
+            total={
+              columns.length -
+              availableInGridAttributes.length +
+              totalGridAttributes
+            }
+            onFetchMore={onFetchMore}
+            onSave={handleSave}
+          />
+        </Grid>
+        <Grid item md={3} sm={6} xs={6} className={classes.textAlign}>
+          <Button
+            onClick={() => navigate(productBulkUrl)}
+            color="primary"
+            className={classes.bulkButton}
+            variant="contained"
+            data-tc="add-product"
+          >
+            <FormattedMessage
+              defaultMessage="Upload Bulk Items"
+              description="button"
+            />
+          </Button>
+        </Grid>
+        <Grid item md={3} sm={6} xs={6} className={classes.textAlign}>
+          <Button
+            onClick={onAdd}
+            color="primary"
+            className={classes.proButton}
+            variant="contained"
+            data-tc="add-product"
+          >
+            <FormattedMessage
+              defaultMessage="Create Product"
+              description="button"
+            />
+          </Button>
+        </Grid>
+      </Grid>
+      {/* <PageHeader title={intl.formatMessage(sectionNames.products)} className={classes.pageTitle}>
+
         <ColumnPicker
           className={classes.columnPicker}
           columns={columns}
@@ -144,6 +229,7 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
         <Button
           onClick={onAdd}
           color="primary"
+          className={classes.proButton}
           variant="contained"
           data-tc="add-product"
         >
@@ -152,7 +238,7 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
             description="button"
           />
         </Button>
-      </PageHeader>
+      </PageHeader> */}
       <Card>
         <ProductListFilter
           currencySymbol={currencySymbol}

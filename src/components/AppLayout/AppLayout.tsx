@@ -82,7 +82,8 @@ const styles = (theme: Theme) =>
       paddingLeft: drawerWidth
     },
     darkThemeSwitch: {
-      marginRight: theme.spacing.unit * 2
+      marginRight: theme.spacing.unit * 2,
+      display:'none',
     },
     header: {
       display: "flex",
@@ -227,7 +228,7 @@ const styles = (theme: Theme) =>
           transform: "rotate(-45deg)"
         }
       },
-      left: 280,
+      left: 250,
       position: "absolute",
       zIndex: 1999
     },

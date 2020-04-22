@@ -16,6 +16,7 @@ import { sectionNames } from "@saleor/intl";
 import image from "../../../assets/images/picture_icon.svg";
 import endpoints from "../../configurations.js";
 import { productListUrl } from "../urls";
+import { Theme } from "@material-ui/core/styles";
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -40,7 +41,7 @@ interface ProductUpdateProps {
   id: string;
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   browseBtn: {
     color: "#3d9afe",
     cursor: "pointer",
