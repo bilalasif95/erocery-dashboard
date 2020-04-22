@@ -149,6 +149,10 @@ export const sectionNames = defineMessages({
     defaultMessage: "Customers",
     description: "customers section name"
   },
+  rider: {
+    defaultMessage: "Rider List",
+    description: "rider list section name"
+  },
   draftOrders: {
     defaultMessage: "Draft Orders",
     description: "draft orders section name"

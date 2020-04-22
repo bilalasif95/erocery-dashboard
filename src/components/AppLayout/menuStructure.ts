@@ -84,6 +84,13 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       url: customerListUrl()
     },
     {
+      ariaLabel: "rider",
+      icon: homeIcon,
+      label: intl.formatMessage(sectionNames.rider),
+      permission: PermissionEnum.MANAGE_USERS,
+      url: "/riderlist"
+    },
+    {
       ariaLabel: "discounts",
       children: [
         {

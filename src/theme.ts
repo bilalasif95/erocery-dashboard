@@ -548,3 +548,23 @@ Card.defaultProps = {
   ...Card.defaultProps,
   elevation: 0
 };
+
+// -webkitScrollbar: {
+// 	width: '4px',
+// 	background: transparent, 
+// }
+
+
+// ::-webkit-scrollbar-track-piece:vertical {
+//     background-color: '#f2f3f7',
+// }
+
+// ::-webkit-scrollbar-thumb:vertical {
+//     background: '#2f5af7',
+//     /* min-height: 150px;
+//     min-width: 150px; */
+// }
+
+// ::-webkit-scrollbar-thumb:vertical:hover {
+//     background: '#555555',
+// }
