@@ -3,6 +3,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import {
   createStyles,
   Theme,
@@ -10,17 +13,15 @@ import {
   WithStyles
 } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 
 import ConfirmButton, {
   ConfirmButtonTransitionState
 } from "@saleor/components/ConfirmButton";
-import { ControlledCheckbox } from "@saleor/components/ControlledCheckbox";
 import Form from "@saleor/components/Form";
 import FormSpacer from "@saleor/components/FormSpacer";
-import { buttonMessages, commonMessages } from "@saleor/intl";
+import { buttonMessages } from "@saleor/intl";
 import { UserError } from "../../types";
 
 export interface FormData {
@@ -39,6 +40,17 @@ const initialForm: FormData = {
 
 const styles = (theme: Theme) =>
   createStyles({
+    buttonsCenter: {
+      justifyContent: "center"
+    },
+    form: {
+      width: "48.6%",
+    },
+    formControl: {
+      border: "1px solid #BDBDBD",
+      borderRadius: "4px",
+      margin: "0px !important"
+    },
     hr: {
       backgroundColor: "#eaeaea",
       border: "none",
@@ -76,16 +88,15 @@ const StaffAddMemberDialog = withStyles(styles, {
     onClose,
     onConfirm
   }: StaffAddMemberDialogProps) => {
-    const intl = useIntl();
 
     return (
       <Dialog onClose={onClose} open={open}>
         <Form errors={errors} initial={initialForm} onSubmit={onConfirm}>
-          {({ change, data, errors: formErrors, hasChanged }) => (
+          {({ change, data, errors: formErrors }) => (
             <>
               <DialogTitle>
                 <FormattedMessage
-                  defaultMessage="Invite Staff Member"
+                  defaultMessage="Add Rider"
                   description="dialog header"
                 />
               </DialogTitle>
@@ -94,7 +105,7 @@ const StaffAddMemberDialog = withStyles(styles, {
                   <TextField
                     error={!!formErrors.firstName}
                     helperText={formErrors.firstName}
-                    label={intl.formatMessage(commonMessages.firstName)}
+                    label="Name"
                     name="firstName"
                     type="text"
                     value={data.firstName}
@@ -103,55 +114,74 @@ const StaffAddMemberDialog = withStyles(styles, {
                   <TextField
                     error={!!formErrors.lastName}
                     helperText={formErrors.lastName}
-                    label={intl.formatMessage(commonMessages.lastName)}
+                    label="Rider ID"
                     name="lastName"
-                    type="text"
+                    type="number"
                     value={data.lastName}
                     onChange={change}
                   />
                 </div>
                 <FormSpacer />
-                <TextField
-                  error={!!formErrors.email}
-                  fullWidth
-                  helperText={formErrors.email}
-                  label={intl.formatMessage(commonMessages.email)}
-                  name="email"
-                  type="email"
-                  value={data.email}
-                  onChange={change}
-                />
+                <div className={classes.textFieldGrid}>
+                  <TextField
+                    error={!!formErrors.email}
+                    fullWidth
+                    helperText={formErrors.email}
+                    label="Phone Number"
+                    name="email"
+                    type="number"
+                    value={data.email}
+                    onChange={change}
+                  />
+                  <TextField
+                    error={!!formErrors.email}
+                    fullWidth
+                    helperText={formErrors.email}
+                    label="CNIC"
+                    name="email"
+                    type="number"
+                    value={data.email}
+                    onChange={change}
+                  />
+                </div>
+                <FormSpacer />
+                <FormControl variant="outlined" className={classes.form}>
+                  <InputLabel htmlFor="outlined-age-native-simple">City</InputLabel>
+                  <Select
+                    native
+                    value={data.email}
+                    onChange={change}
+                    inputProps={{
+                      id: 'outlined-age-native-simple',
+                      name: 'email'
+                    }}
+                    className={classes.formControl}
+                  >
+                    <option aria-label="None" value="" />
+                    <option value={10}>Sargodha</option>
+                    <option value={20}>Rawalpindi/Islamabad</option>
+                    <option value={30}>Lahore</option>
+                    <option value={30}>Karachi</option>
+                    <option value={30}>Faisalabad</option>
+                    <option value={30}>Peshawar</option>
+                    <option value={30}>Multan</option>
+                  </Select>
+                </FormControl>
+                <FormSpacer />
               </DialogContent>
               <hr className={classes.hr} />
-              <DialogContent>
-                <Typography className={classes.sectionTitle}>
-                  <FormattedMessage defaultMessage="Permissions" />
-                </Typography>
-                <Typography>
-                  <FormattedMessage defaultMessage="Expand or restrict user’s permissions to access certain part of saleor system." />
-                </Typography>
-                <ControlledCheckbox
-                  checked={data.fullAccess}
-                  label={intl.formatMessage({
-                    defaultMessage: "User has full access"
-                  })}
-                  name="fullAccess"
-                  onChange={change}
-                />
-              </DialogContent>
-              <DialogActions>
+              <DialogActions className={classes.buttonsCenter}>
                 <Button onClick={onClose}>
                   <FormattedMessage {...buttonMessages.back} />
                 </Button>
                 <ConfirmButton
                   color="primary"
-                  disabled={!hasChanged}
                   variant="contained"
                   type="submit"
                   transitionState={confirmButtonState}
                 >
                   <FormattedMessage
-                    defaultMessage="Send invite"
+                    defaultMessage="Save"
                     description="button"
                   />
                 </ConfirmButton>

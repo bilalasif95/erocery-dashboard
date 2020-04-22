@@ -12,12 +12,23 @@ import React from "react";
 import { FormattedMessage,useIntl } from "react-intl";
 
 import { IconProps } from "@material-ui/core/Icon";
+import useNavigator from "@saleor/hooks/useNavigator";
 import { sectionNames } from "@saleor/intl";
+import { maybe } from "@saleor/misc";
+
 import { hasPermission } from "../auth/misc";
 import { User } from "../auth/types/User";
 import Container from "../components/Container";
 import PageHeader from "../components/PageHeader";
+import StaffAddMemberDialog, {
+  FormData as AddStaffMemberForm
+} from "./StaffAddMemberDialog";
+
 import { PermissionEnum } from "../types/globalTypes";
+
+import {
+  staffListUrl
+} from "./urls";
 
 export interface MenuItem {
   description: string;
@@ -93,7 +104,6 @@ export interface ConfigurationPageProps {
   menu: MenuSection[];
   user: User;
   onSectionClick: (sectionName: string) => void;
-  onAdd: () => void;
 }
 
 export const ConfigurationPage = withStyles(styles, {
@@ -103,10 +113,47 @@ export const ConfigurationPage = withStyles(styles, {
     classes,
     menu: menus,
     user,
-    onSectionClick,
-    onAdd
+    onSectionClick
   }: ConfigurationPageProps & WithStyles<typeof styles>) => {
     const intl = useIntl();
+    const navigate = useNavigator();
+    const [addCity, setAddCity] = React.useState(false);
+    const toggleModal = () => {
+      setAddCity(!addCity);
+    }
+    const addStaffMember = (e) => {
+      e.preventDefault()
+    }
+
+    const handleStaffMemberAdd = (variables: AddStaffMemberForm) => {
+    addStaffMember({
+      variables: {
+        input: {
+          email: variables.email,
+          firstName: variables.firstName,
+          lastName: variables.lastName,
+          // permissions: variables.fullAccess
+          //   ? maybe(() => shop.permissions.map(perm => perm.code))
+          //   : undefined,
+          // redirectUrl: urlJoin(
+          //   window.location.origin,
+          //   APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,
+          //   newPasswordUrl().replace(/\?/, "")
+          // ),
+          sendPasswordEmail: true
+        }
+      }
+    })};
+    const onAdd = e => {
+      e.preventDefault();
+      navigate(
+        staffListUrl({
+          action: "add"
+        })
+      )
+      setAddCity(true);
+    } 
+      
     return (
       <Container>
         <PageHeader
@@ -120,6 +167,19 @@ export const ConfigurationPage = withStyles(styles, {
             />
           </Button>
         </PageHeader>
+        {addCity ?
+          <StaffAddMemberDialog
+          confirmButtonState="default"
+          errors={maybe(
+            () => [],
+            []
+          )}
+          open={window.location.search.includes("add")}
+          onClose={toggleModal}
+          onConfirm={handleStaffMemberAdd}
+        />
+        : ""
+        }
         {menus
           .filter(menu =>
             menu.menuItems.some(menuItem =>
