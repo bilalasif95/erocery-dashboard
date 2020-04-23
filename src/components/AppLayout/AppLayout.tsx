@@ -285,6 +285,12 @@ const styles = (theme: Theme) =>
       minHeight: `calc(100vh - ${theme.spacing.unit * 2 +
         appLoaderHeight +
         70}px)`
+    },
+    hideBLink:{
+      [theme.breakpoints.down("xs")]: {
+        display:'none',
+        padding:'0'
+      },
     }
   });
 
@@ -378,13 +384,6 @@ const AppLayout = withStyles(styles, {
                             className={classes.fullLogo}
                             src={saleorDarkLogo} />
                         }
-                        {/* <img 
-
-                        className={classes.logoImg}
-                          src={
-                            isMenuSmall ? saleorDarkLogoSmall : saleorDarkLogo
-                          }
-                        /> */}
                       </div>
                       <Hidden smDown>
                         <div
@@ -439,7 +438,7 @@ const AppLayout = withStyles(styles, {
                               <span />
                               <span />
                             </div>
-                            <div ref={appHeaderAnchor} />
+                            <div ref={appHeaderAnchor} className={classes.hideBLink}/>
                             <div className={classes.spacer} />
                             <div className={classes.userBar}>
                               <ThemeSwitch

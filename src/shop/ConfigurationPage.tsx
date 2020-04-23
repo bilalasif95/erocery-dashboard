@@ -20,6 +20,7 @@ import { hasPermission } from "../auth/misc";
 import { User } from "../auth/types/User";
 import Container from "../components/Container";
 import PageHeader from "../components/PageHeader";
+import Grid from '@material-ui/core/Grid';
 import StaffAddMemberDialog, {
   FormData as AddStaffMemberForm
 } from "./StaffAddMemberDialog";
@@ -50,8 +51,13 @@ const styles = (theme: Theme) =>
         boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.15);"
       },
       cursor: "pointer",
-      marginBottom: theme.spacing.unit * 3,
-      transition: theme.transitions.duration.standard + "ms"
+      margin: '0 0.5rem 1rem',
+      width:'100%',
+      transition: theme.transitions.duration.standard + "ms",
+      [theme.breakpoints.down("xs")]: {
+        margin: '0 0 1rem',
+        width:'100%'
+      },
     },
     cardContent: {
       // Overrides Material-UI default theme
@@ -60,7 +66,13 @@ const styles = (theme: Theme) =>
       },
       display: "grid",
       gridColumnGap: theme.spacing.unit * 4 + "px",
-      gridTemplateColumns: "48px 1fr"
+      gridTemplateColumns: "48px 1fr",
+      [theme.breakpoints.down("xs")]: {
+        display:'flex',
+        justifyContent:'center',
+        flexWrap:'wrap',
+        width:'100%'
+      },
     },
     cardDisabled: {
       "& $icon, & $sectionTitle, & $sectionDescription": {
@@ -73,13 +85,15 @@ const styles = (theme: Theme) =>
         gridTemplateColumns: "1fr"
       },
       borderTop: `solid 1px ${theme.palette.divider}`,
-      display: "grid",
+      // display: "flex",
       gridColumnGap: theme.spacing.unit * 4 + "px",
       gridTemplateColumns: "1fr 3fr",
       paddingTop: theme.spacing.unit * 3 + "px"
     },
     configurationItem: {
-      display: "grid",
+      display: "flex",
+      justifyContent:'flex-start',
+      flexWrap:'wrap',
       gridColumnGap: theme.spacing.unit * 4 + "px",
       gridTemplateColumns: "1fr 1fr"
     },
@@ -91,7 +105,11 @@ const styles = (theme: Theme) =>
     },
     icon: {
       color: theme.palette.primary.main,
-      fontSize: 48
+      fontSize: 48,
+      [theme.breakpoints.down("xs")]: {
+        width:'100%',
+        textAlign:'center'
+      },
     },
     sectionDescription: {},
     sectionTitle: {
@@ -180,6 +198,9 @@ export const ConfigurationPage = withStyles(styles, {
         />
         : ""
         }
+         {/* <div className={classes.configurationLabel}>
+                <Typography>{menu.label}</Typography>
+              </div> */}
         {menus
           .filter(menu =>
             menu.menuItems.some(menuItem =>
@@ -188,13 +209,13 @@ export const ConfigurationPage = withStyles(styles, {
           )
           .map((menu, menuIndex) => (
             <div className={classes.configurationCategory} key={menuIndex}>
-              <div className={classes.configurationLabel}>
-                <Typography>{menu.label}</Typography>
-              </div>
-              <div className={classes.configurationItem}>
+              <Grid container>
+              {/* <div className={classes.configurationItem}> */}
                 {menu.menuItems
                   .filter(menuItem => hasPermission(menuItem.permission, user))
                   .map((item, itemIndex) => (
+                   
+                    <Grid lg={6} sm={12}>
                     <Card
                       className={item.url ? classes.card : classes.cardDisabled}
                       onClick={() => onSectionClick(item.url)}
@@ -215,8 +236,11 @@ export const ConfigurationPage = withStyles(styles, {
                         </div>
                       </CardContent>
                     </Card>
+                    </Grid>
+                    
                   ))}
-              </div>
+              {/* </div> */}
+              </Grid>
             </div>
           ))}
       </Container>

@@ -61,6 +61,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     border: "1px solid #EAEAEA",
     borderRadius: "0 0 5px 5px",
     padding: "100px",
+    [theme.breakpoints.down("sm")]: {
+      padding:'1rem'
+    },
   },
   mainContainer: {
     background: "white"
@@ -86,6 +89,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "5px",
     padding: "50px",
     textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      padding:'2rem'
+    },
   }
 }));
 
