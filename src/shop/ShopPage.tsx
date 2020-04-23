@@ -20,9 +20,9 @@ import { hasPermission } from "../auth/misc";
 import { User } from "../auth/types/User";
 import Container from "../components/Container";
 import PageHeader from "../components/PageHeader";
-import StaffAddMemberDialog, {
+import AddCityDialog, {
   FormData as AddStaffMemberForm
-} from "./StaffAddMemberDialog";
+} from "./AddCityDialog";
 
 import { PermissionEnum } from "../types/globalTypes";
 
@@ -60,7 +60,7 @@ const styles = (theme: Theme) =>
       },
       display: "grid",
       gridColumnGap: theme.spacing.unit * 4 + "px",
-      gridTemplateColumns: "48px 1fr"
+      gridTemplateColumns: "230px 1fr"
     },
     cardDisabled: {
       "& $icon, & $sectionTitle, & $sectionDescription": {
@@ -90,8 +90,11 @@ const styles = (theme: Theme) =>
       margin: 0
     },
     icon: {
-      color: theme.palette.primary.main,
-      fontSize: 48
+      background: theme.palette.primary.main,
+      borderRadius: "50px",
+      color: "white",
+      fontSize: 40,
+      padding: "2px 0 0 6px"
     },
     sectionDescription: {},
     sectionTitle: {
@@ -100,21 +103,21 @@ const styles = (theme: Theme) =>
     }
   });
 
-export interface ConfigurationPageProps {
+export interface ShopPageProps {
   menu: MenuSection[];
   user: User;
   onSectionClick: (sectionName: string) => void;
 }
 
-export const ConfigurationPage = withStyles(styles, {
-  name: "ConfigurationPage"
+export const ShopPage = withStyles(styles, {
+  name: "ShopPage"
 })(
   ({
     classes,
     menu: menus,
     user,
     onSectionClick
-  }: ConfigurationPageProps & WithStyles<typeof styles>) => {
+  }: ShopPageProps & WithStyles<typeof styles>) => {
     const intl = useIntl();
     const navigate = useNavigator();
     const [addCity, setAddCity] = React.useState(false);
@@ -168,7 +171,7 @@ export const ConfigurationPage = withStyles(styles, {
           </Button>
         </PageHeader>
         {addCity ?
-          <StaffAddMemberDialog
+          <AddCityDialog
           confirmButtonState="default"
           errors={maybe(
             () => [],
@@ -196,12 +199,13 @@ export const ConfigurationPage = withStyles(styles, {
                   .filter(menuItem => hasPermission(menuItem.permission, user))
                   .map((item, itemIndex) => (
                     <Card
-                      className={item.url ? classes.card : classes.cardDisabled}
+                      // className={item.url ? classes.card : classes.cardDisabled}
+                      className={classes.card}
                       onClick={() => onSectionClick(item.url)}
                       key={itemIndex}
                     >
                       <CardContent className={classes.cardContent}>
-                        <div className={classes.icon}>{item.icon}</div>
+                        {/* <div className={classes.icon}>{item.icon}</div> */}
                         <div>
                           <Typography
                             className={classes.sectionTitle}
@@ -213,6 +217,9 @@ export const ConfigurationPage = withStyles(styles, {
                             {item.description}
                           </Typography>
                         </div>
+                        <div className={classes.icon}>
+                          10
+                        </div>
                       </CardContent>
                     </Card>
                   ))}
@@ -223,5 +230,5 @@ export const ConfigurationPage = withStyles(styles, {
     );
   }
 );
-ConfigurationPage.displayName = "ConfigurationPage";
-export default ConfigurationPage;
+ShopPage.displayName = "ShopPage";
+export default ShopPage;

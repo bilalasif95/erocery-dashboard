@@ -1,32 +1,44 @@
+import AppBar from '@material-ui/core/AppBar';
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
 import {
   createStyles,
   Theme,
   withStyles,
   WithStyles
 } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
-
-import { IconProps } from "@material-ui/core/Icon";
-import { sectionNames } from "@saleor/intl";
-import { hasPermission } from "../auth/misc";
-import { User } from "../auth/types/User";
-import AppHeader from "@saleor/components/AppHeader";
-import Container from "../components/Container";
-import PageHeader from "../components/PageHeader";
-import { PermissionEnum } from "../types/globalTypes";
-import AppBar from '@material-ui/core/AppBar';
 import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Tabs from '@material-ui/core/Tabs';
+import Typography from "@material-ui/core/Typography";
+
+import React from "react";
+import { FormattedMessage,useIntl } from "react-intl";
+
+import { IconProps } from "@material-ui/core/Icon";
+// import AppHeader from "@saleor/components/AppHeader";
+import useNavigator from "@saleor/hooks/useNavigator";
+import { sectionNames } from "@saleor/intl";
+import { maybe } from "@saleor/misc";
+
+import { User } from "../auth/types/User";
+import Container from "../components/Container";
+import PageHeader from "../components/PageHeader";
+
+import AddRiderDialog, {
+  FormData as AddStaffMemberForm
+} from "./AddRiderDialog";
+
+import { PermissionEnum } from "../types/globalTypes";
+
+import {
+  staffListUrl
+} from "./urls";
+
 import PropTypes from 'prop-types';
 
 function TabPanel(props) {
@@ -63,6 +75,13 @@ export interface MenuSection {
 
 const styles = (theme: Theme) =>
   createStyles({
+    btnPending:{
+      backgroundColor:'#fff',
+      border:'1px solid #fbbd2f',
+      borderRadius:'25%',
+      color:'#fbbd2f',
+      textTransform:'capitalize',
+    },
     card: {
       "&:hover": {
         boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.15);"
@@ -116,39 +135,58 @@ const styles = (theme: Theme) =>
       fontSize: 20,
       fontWeight: 600 as 600
     },
-
     tabsHeader: {
       background: "white",
       border: "1px solid #EAEAEA",
       borderRadius: "5px 5px 0 0",
       boxShadow: "none",
       color: "black",
-    },
-    btnPending:{
-      textTransform:'capitalize',
-      border:'1px solid #fbbd2f',
-      borderRadius:'25%',
-      backgroundColor:'#fff',
-      color:'#fbbd2f',
     }
   });
 
-export interface ConfigurationPageProps {
+export interface RiderPageProps {
   menu: MenuSection[];
   user: User;
   onSectionClick: (sectionName: string) => void;
-  onAdd: () => void;
 }
 
-export const ConfigurationPage = withStyles(styles, {
-  name: "ConfigurationPage"
+export const RiderPage = withStyles(styles, {
+  name: "RiderPage"
 })(
   ({
     classes,
-    menu: menus
-  }: ConfigurationPageProps & WithStyles<typeof styles>) => {
+    menu: []
+  }: RiderPageProps & WithStyles<typeof styles>) => {
     const intl = useIntl();
+    const navigate = useNavigator();
     const [value, setValue] = React.useState(0);
+    const [addCity, setAddCity] = React.useState(false);
+    const toggleModal = () => {
+      setAddCity(!addCity);
+    }
+    const addStaffMember = (e) => {
+      e.preventDefault()
+    }
+
+    const handleStaffMemberAdd = (variables: AddStaffMemberForm) => {
+    addStaffMember({
+      variables: {
+        input: {
+          email: variables.email,
+          firstName: variables.firstName,
+          lastName: variables.lastName,
+          // permissions: variables.fullAccess
+          //   ? maybe(() => shop.permissions.map(perm => perm.code))
+          //   : undefined,
+          // redirectUrl: urlJoin(
+          //   window.location.origin,
+          //   APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,
+          //   newPasswordUrl().replace(/\?/, "")
+          // ),
+          sendPasswordEmail: true
+        }
+      }
+    })};
     const handleChange = (newValue) => {
       setValue(newValue);
     };
@@ -158,17 +196,45 @@ export const ConfigurationPage = withStyles(styles, {
       // setProductMessage("");
       // setUpdateMessage("");
     };
-    const handleBack = () => navigate(productListUrl());
+    const onAdd = e => {
+      e.preventDefault();
+      navigate(
+        staffListUrl({
+          action: "add"
+        })
+      )
+      setAddCity(true);
+    } 
+    // const handleBack = () => navigate(productListUrl());
     return (
       <Container>
-        <AppHeader onBack={handleBack}>
+        {/* <AppHeader onBack={handleBack}>
           Rawalpindi
-            </AppHeader>
+        </AppHeader> */}
         <PageHeader
           className={classes.header}
           title={intl.formatMessage(sectionNames.rider)}
         >
+           <Button color="primary" variant="contained" onClick={onAdd}>
+            <FormattedMessage
+              defaultMessage="Add Rider"
+              description="button"
+            />
+          </Button>
         </PageHeader>
+        {addCity ?
+          <AddRiderDialog
+          confirmButtonState="default"
+          errors={maybe(
+            () => [],
+            []
+          )}
+          open={window.location.search.includes("add")}
+          onClose={toggleModal}
+          onConfirm={handleStaffMemberAdd}
+        />
+        : ""
+        }
         <Card>
           <AppBar position="static" className={classes.tabsHeader}>
             <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
@@ -406,5 +472,5 @@ export const ConfigurationPage = withStyles(styles, {
     );
   }
 );
-ConfigurationPage.displayName = "ConfigurationPage";
-export default ConfigurationPage;
+RiderPage.displayName = "RiderPage";
+export default RiderPage;

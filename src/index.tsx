@@ -41,6 +41,7 @@ import PageSection from "./pages";
 import PluginsSection from "./plugins";
 import ProductSection from "./products";
 import ProductTypesSection from "./productTypes";
+import RiderListSection from "./riderlist";
 import ServiceSection from "./services";
 import { serviceSection } from "./services/urls";
 import ShippingSection from "./shipping";
@@ -51,7 +52,6 @@ import TaxesSection from "./taxes";
 import TranslationsSection from "./translations";
 import { PermissionEnum } from "./types/globalTypes";
 import WebhooksSection from "./webhooks";
-import RiderListSection from "./riderlist";
 
 interface ResponseError extends ErrorResponse {
   networkError?: Error & {

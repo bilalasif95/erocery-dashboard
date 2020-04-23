@@ -10,7 +10,7 @@ import {
   TabActionDialog
 } from "../types";
 
-const staffSection = "/shop/";
+const staffSection = "/riderlist/";
 
 export const staffListPath = staffSection;
 export enum StaffListUrlFiltersEnum {

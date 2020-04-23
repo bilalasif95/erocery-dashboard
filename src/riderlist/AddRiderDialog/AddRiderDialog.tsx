@@ -69,7 +69,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-interface StaffAddMemberDialogProps extends WithStyles<typeof styles> {
+interface AddRiderDialogProps extends WithStyles<typeof styles> {
   confirmButtonState: ConfirmButtonTransitionState;
   errors: UserError[];
   open: boolean;
@@ -77,8 +77,8 @@ interface StaffAddMemberDialogProps extends WithStyles<typeof styles> {
   onConfirm: (data: FormData) => void;
 }
 
-const StaffAddMemberDialog = withStyles(styles, {
-  name: "StaffAddMemberDialog"
+const AddRiderDialog = withStyles(styles, {
+  name: "AddRiderDialog"
 })(
   ({
     classes,
@@ -87,7 +87,7 @@ const StaffAddMemberDialog = withStyles(styles, {
     open,
     onClose,
     onConfirm
-  }: StaffAddMemberDialogProps) => {
+  }: AddRiderDialogProps) => {
 
     return (
       <Dialog onClose={onClose} open={open}>
@@ -146,28 +146,28 @@ const StaffAddMemberDialog = withStyles(styles, {
                 </div>
                 <FormSpacer />
                 <FormControl variant="outlined" className={classes.form}>
-                  <InputLabel htmlFor="outlined-age-native-simple">City</InputLabel>
-                  <Select
-                    native
-                    value={data.email}
-                    onChange={change}
-                    inputProps={{
-                      id: 'outlined-age-native-simple',
-                      name: 'email'
-                    }}
-                    className={classes.formControl}
-                  >
-                    <option aria-label="None" value="" />
-                    <option value={10}>Sargodha</option>
-                    <option value={20}>Rawalpindi/Islamabad</option>
-                    <option value={30}>Lahore</option>
-                    <option value={30}>Karachi</option>
-                    <option value={30}>Faisalabad</option>
-                    <option value={30}>Peshawar</option>
-                    <option value={30}>Multan</option>
-                  </Select>
+                    <InputLabel htmlFor="outlined-age-native-simple">City</InputLabel>
+                    <Select
+                      native
+                      value={data.email}
+                      onChange={change}
+                      inputProps={{
+                        id: 'outlined-age-native-simple',
+                        name: 'email'
+                      }}
+                      className={classes.formControl}
+                    >
+                      <option aria-label="None" value="" />
+                      <option value={10}>Sargodha</option>
+                      <option value={20}>Rawalpindi/Islamabad</option>
+                      <option value={30}>Lahore</option>
+                      <option value={30}>Karachi</option>
+                      <option value={30}>Faisalabad</option>
+                      <option value={30}>Peshawar</option>
+                      <option value={30}>Multan</option>
+                    </Select>
                 </FormControl>
-                <FormSpacer />
+                 <FormSpacer />
               </DialogContent>
               <hr className={classes.hr} />
               <DialogActions className={classes.buttonsCenter}>
@@ -193,5 +193,5 @@ const StaffAddMemberDialog = withStyles(styles, {
     );
   }
 );
-StaffAddMemberDialog.displayName = "StaffAddMemberDialog";
-export default StaffAddMemberDialog;
+AddRiderDialog.displayName = "AddRiderDialog";
+export default AddRiderDialog;

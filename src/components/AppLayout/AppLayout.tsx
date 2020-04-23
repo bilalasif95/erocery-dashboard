@@ -84,6 +84,12 @@ const styles = (theme: Theme) =>
     darkThemeSwitch: {
       marginRight: theme.spacing.unit * 2
     },
+    fullLogo:{
+      width:100
+    },
+    halfLogo:{
+      width:30,
+    },
     header: {
       display: "flex",
       height: 40,
@@ -128,9 +134,6 @@ const styles = (theme: Theme) =>
         transform: "rotate(0deg)"
       }
     },
-    logoImg: {
-      width: '100px'
-    },
     logo: {
       "& svg": {
         left: "50%",
@@ -139,10 +142,10 @@ const styles = (theme: Theme) =>
         transform: "translate(-50%,-50%)"
       },
       // background: theme.palette.secondary.main,
+      alignItems: 'center',
       background: "#5fbe43",
       display: "flex",
       justifyContent: 'center',
-      alignItems: 'center',
       // height: 100,
       padding: '1.5rem 0.5rem',
       position: "relative"
@@ -153,6 +156,9 @@ const styles = (theme: Theme) =>
       },
       background: theme.palette.primary.main
     },
+    logoImg: {
+      width: '100px'
+    },
     logoSmall: {
       "& svg": {
         margin: 0,
@@ -160,18 +166,12 @@ const styles = (theme: Theme) =>
         width: "80px"
       }
     },
-    halfLogo:{
-      width:30,
-    },
-    fullLogo:{
-      width:100
-    },
     menu: {
       background: theme.palette.background.paper,
       height: "100%",
+      overflowY:'scroll',
       padding: "25px 20px",
       // minHeight:'100vh',
-      overflowY:'scroll'
     },
     menuIcon: {
       "& span": {
