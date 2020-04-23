@@ -243,229 +243,234 @@ export const RiderPage = withStyles(styles, {
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell padding="dense">
-                    Name
+            {/* <TableContainer component={Paper}> */}
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      Name
                   </TableCell>
-                  <TableCell padding="dense">
-                    Rider ID
+                    <TableCell padding="dense">
+                      Rider ID
                   </TableCell>
-                  <TableCell padding="dense">
-                    Phone  Numer
+                    <TableCell padding="dense">
+                      Phone  Numer
                   </TableCell>
-                  <TableCell padding="dense">
-                    CNIC
+                    <TableCell padding="dense">
+                      CNIC
                   </TableCell>
-                  <TableCell padding="dense">
-                    City
+                    <TableCell padding="dense">
+                      City
                   </TableCell>
-                  <TableCell padding="dense">
-                    Action
+                    <TableCell padding="dense">
+                      Action
                   </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell padding="dense">
-                    Bilal
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      Bilal
                   </TableCell>
-                  <TableCell padding="dense">
-                    001
+                    <TableCell padding="dense">
+                      001
                   </TableCell>
-                  <TableCell padding="dense">
-                    0321-1234567
+                    <TableCell padding="dense">
+                      0321-1234567
                   </TableCell>
-                  <TableCell padding="dense">
-                    82302-1234567-1
+                    <TableCell padding="dense">
+                      82302-1234567-1
                   </TableCell>
-                  <TableCell padding="dense">
-                    Sargodha
+                    <TableCell padding="dense">
+                      Sargodha
                   </TableCell>
-                  <TableCell padding="dense">
-                    Order Assigned
+                    <TableCell padding="dense">
+                      Order Assigned
                   </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell padding="dense">
-                    Bilal
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      Bilal
                   </TableCell>
-                  <TableCell padding="dense">
-                    001
+                    <TableCell padding="dense">
+                      001
                   </TableCell>
-                  <TableCell padding="dense">
-                    0321-1234567
+                    <TableCell padding="dense">
+                      0321-1234567
                   </TableCell>
-                  <TableCell padding="dense">
-                    82302-1234567-1
+                    <TableCell padding="dense">
+                      82302-1234567-1
                   </TableCell>
-                  <TableCell padding="dense">
-                    Sargodha
+                    <TableCell padding="dense">
+                      Sargodha
                   </TableCell>
-                  <TableCell padding="dense">
-                    Order Assigned
+                    <TableCell padding="dense">
+                      Order Assigned
                   </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell padding="dense">
-                    Bilal
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      Bilal
                   </TableCell>
-                  <TableCell padding="dense">
-                    001
+                    <TableCell padding="dense">
+                      001
                   </TableCell>
-                  <TableCell padding="dense">
-                    0321-1234567
+                    <TableCell padding="dense">
+                      0321-1234567
                   </TableCell>
-                  <TableCell padding="dense">
-                    82302-1234567-1
+                    <TableCell padding="dense">
+                      82302-1234567-1
                   </TableCell>
-                  <TableCell padding="dense">
-                    Sargodha
+                    <TableCell padding="dense">
+                      Sargodha
                   </TableCell>
-                  <TableCell padding="dense">
-                    Order Assigned
+                    <TableCell padding="dense">
+                      Order Assigned
                   </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell padding="dense">
-                    Bilal
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      Bilal
                   </TableCell>
-                  <TableCell padding="dense">
-                    001
+                    <TableCell padding="dense">
+                      001
                   </TableCell>
-                  <TableCell padding="dense">
-                    0321-1234567
+                    <TableCell padding="dense">
+                      0321-1234567
                   </TableCell>
-                  <TableCell padding="dense">
-                    82302-1234567-1
+                    <TableCell padding="dense">
+                      82302-1234567-1
                   </TableCell>
-                  <TableCell padding="dense">
-                    Sargodha
+                    <TableCell padding="dense">
+                      Sargodha
                   </TableCell>
-                  <TableCell padding="dense">
-                    Order Assigned
+                    <TableCell padding="dense">
+                      Order Assigned
                   </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell padding="dense">
-                    Bilal
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      Bilal
                   </TableCell>
-                  <TableCell padding="dense">
-                    001
+                    <TableCell padding="dense">
+                      001
                   </TableCell>
-                  <TableCell padding="dense">
-                    0321-1234567
+                    <TableCell padding="dense">
+                      0321-1234567
                   </TableCell>
-                  <TableCell padding="dense">
-                    82302-1234567-1
+                    <TableCell padding="dense">
+                      82302-1234567-1
                   </TableCell>
-                  <TableCell padding="dense">
-                    Sargodha
+                    <TableCell padding="dense">
+                      Sargodha
                   </TableCell>
-                  <TableCell padding="dense">
-                    Order Assigned
+                    <TableCell padding="dense">
+                      Order Assigned
                   </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell padding="dense">
-                    Bilal
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      Bilal
                   </TableCell>
-                  <TableCell padding="dense">
-                    001
+                    <TableCell padding="dense">
+                      001
                   </TableCell>
-                  <TableCell padding="dense">
-                    0321-1234567
+                    <TableCell padding="dense">
+                      0321-1234567
                   </TableCell>
-                  <TableCell padding="dense">
-                    82302-1234567-1
+                    <TableCell padding="dense">
+                      82302-1234567-1
                   </TableCell>
-                  <TableCell padding="dense">
-                    Sargodha
+                    <TableCell padding="dense">
+                      Sargodha
                   </TableCell>
-                  <TableCell padding="dense">
-                    Order Assigned
+                    <TableCell padding="dense">
+                      Order Assigned
                   </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+                  </TableRow>
+                </TableBody>
+              </Table>
+
+            {/* </TableContainer> */}
           </TabPanel>
           <TabPanel value={value} index={1}>
-          <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell padding="dense">
-                    Order #
+            {/* <TableContainer component={Paper}> */}
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      Order #
                   </TableCell>
-                  <TableCell padding="dense">
-                    Date
+                    <TableCell padding="dense">
+                      Date
                   </TableCell>
-                  <TableCell padding="dense">
-                    Ship to
+                    <TableCell padding="dense">
+                      Ship to
                   </TableCell>
-                  <TableCell padding="dense">
-                    Order Total
+                    <TableCell padding="dense">
+                      Order Total
                   </TableCell>
-                  <TableCell padding="dense">
-                    Status
+                    <TableCell padding="dense">
+                      Status
                   </TableCell>
-                  <TableCell padding="dense">
-                    Assign to
+                    <TableCell padding="dense">
+                      Assign to
                   </TableCell>
-                  <TableCell padding="dense">
-                    Action
+                    <TableCell padding="dense">
+                      Action
                   </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell padding="dense">
-                    000001234
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      000001234
                   </TableCell>
-                  <TableCell padding="dense">
-                    04-07-2020
+                    <TableCell padding="dense">
+                      04-07-2020
                   </TableCell>
-                  <TableCell padding="dense">
-                    3rd Floor
+                    <TableCell padding="dense">
+                      3rd Floor
                   </TableCell>
-                  <TableCell padding="dense">
-                    Rs. 1200.00
+                    <TableCell padding="dense">
+                      Rs. 1200.00
                   </TableCell>
-                  <TableCell padding="dense">
-                  <Button className={classes.btnPending}>Pending</Button>
+                    <TableCell padding="dense">
+                      <Button className={classes.btnPending}>Pending</Button>
+                    </TableCell>
+                    <TableCell padding="dense">
+                      Bilal Asif
                   </TableCell>
-                  <TableCell padding="dense">
-                    Bilal Asif
+                    <TableCell padding="dense">
+                      Order list
                   </TableCell>
-                  <TableCell padding="dense">
-                    Order list
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      000001234
                   </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell padding="dense">
-                    000001234
+                    <TableCell padding="dense">
+                      04-07-2020
                   </TableCell>
-                  <TableCell padding="dense">
-                    04-07-2020
+                    <TableCell padding="dense">
+                      3rd Floor
                   </TableCell>
-                  <TableCell padding="dense">
-                    3rd Floor
+                    <TableCell padding="dense">
+                      Rs. 1200.00
                   </TableCell>
-                  <TableCell padding="dense">
-                    Rs. 1200.00
+                    <TableCell padding="dense">
+                      <Button>Pending</Button>
+                    </TableCell>
+                    <TableCell padding="dense">
+                      Bilal Asif
                   </TableCell>
-                  <TableCell padding="dense">
-                  <Button>Pending</Button>
+                    <TableCell padding="dense">
+                      Order list
                   </TableCell>
-                  <TableCell padding="dense">
-                    Bilal Asif
-                  </TableCell>
-                  <TableCell padding="dense">
-                    Order list
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            {/* </TableContainer> */}
           </TabPanel>
         </Card>
       </Container>

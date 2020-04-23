@@ -82,6 +82,7 @@ const styles = (theme: Theme) =>
       paddingLeft: drawerWidth
     },
     darkThemeSwitch: {
+      display:'none',
       marginRight: theme.spacing.unit * 2
     },
     fullLogo:{
@@ -227,7 +228,7 @@ const styles = (theme: Theme) =>
           transform: "rotate(-45deg)"
         }
       },
-      left: 280,
+      left: 250,
       position: "absolute",
       zIndex: 1999
     },

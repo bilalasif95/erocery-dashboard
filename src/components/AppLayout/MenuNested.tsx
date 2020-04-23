@@ -32,17 +32,17 @@ const styles = (theme: Theme) =>
     menuListNestedClose: {
       "& svg": {
         fill: theme.palette.primary.main,
-        left: 7,
+        left: 10,
         position: "relative",
-        top: -2
+        top: 2
       },
       border: `solid 1px #EAEAEA`,
       borderRadius: "100%",
       cursor: "pointer",
       height: 32,
       position: "absolute",
-      right: 32,
-      top: 35,
+      right: 20,
+      top: 25,
       transform: "rotate(180deg)",
       width: 32
     },
@@ -85,9 +85,8 @@ const styles = (theme: Theme) =>
     },
     subHeader: {
       borderBottom: "solid 1px #EAEAEA",
-      margin: "30px",
-      marginBottom: 39,
-      paddingBottom: 22
+      marginBottom: '1rem',
+      padding: "1rem"
     },
     subHeaderDark: {
       borderBottom: "solid 1px #252728"
