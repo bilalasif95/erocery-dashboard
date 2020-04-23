@@ -12,10 +12,12 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import CardTitle from "@saleor/components/CardTitle";
+import { DateTime } from "@saleor/components/Date";
 import ExternalLink from "@saleor/components/ExternalLink";
 import Form from "@saleor/components/Form";
 import Hr from "@saleor/components/Hr";
 import Link from "@saleor/components/Link";
+import Money from "@saleor/components/Money";
 import RequirePermissions from "@saleor/components/RequirePermissions";
 import SingleAutocompleteSelectField from "@saleor/components/SingleAutocompleteSelectField";
 import Skeleton from "@saleor/components/Skeleton";
@@ -31,6 +33,11 @@ import { OrderDetails_order } from "../../types/OrderDetails";
 
 const styles = (theme: Theme) =>
   createStyles({
+    root: {
+      ...theme.typography.body2,
+      lineHeight: 1.9,
+      width: "100%"
+    },
     sectionHeader: {
       alignItems: "center",
       display: "flex",
@@ -44,6 +51,9 @@ const styles = (theme: Theme) =>
     },
     sectionHeaderToolbar: {
       marginRight: -theme.spacing.unit * 2
+    },
+    textRight: {
+      textAlign: "right"
     },
     userEmail: {
       fontWeight: 600 as 600,
@@ -98,6 +108,83 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
     const shippingAddress = maybe(() => order.shippingAddress);
 
     return (
+      <>
+      <Card>
+        <CardTitle
+          title={intl.formatMessage({
+            defaultMessage: "Order Assign By",
+            description: "section header"
+          })}
+          toolbar={
+                <Button
+                  color="primary"
+                  variant="text"
+                >
+                  {intl.formatMessage(buttonMessages.edit)}
+                </Button>
+          }
+        />
+        <CardContent>
+          <table className={classes.root}>
+            <tbody>
+              <tr>
+                <td>
+                  <FormattedMessage
+                    defaultMessage="Order #"
+                    description="order subtotal price"
+                  />
+                </td>
+                <td className={classes.textRight}>
+                  {order && order.number}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <FormattedMessage
+                    defaultMessage="Assigned To:"
+                    description="order subtotal price"
+                  />
+                </td>
+                <td className={classes.textRight}>
+                  Not Assigned yet
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <FormattedMessage
+                    defaultMessage="Time:"
+                    description="order subtotal price"
+                  />
+                </td>
+                <td className={classes.textRight}>
+                  <DateTime date={order && order.created}/>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <FormattedMessage
+                    defaultMessage="Amount:"
+                    description="order subtotal price"
+                  />
+                </td>
+                <td className={classes.textRight}>
+                  {maybe(() => order.total.gross) === undefined ? (
+                    <Skeleton />
+                  ) : (
+                    <Money money={order.total.gross} />
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <Button
+            color="primary"
+            variant="contained"
+          >
+            Assign Order
+          </Button>
+        </CardContent>
+      </Card>
       <Card>
         <CardTitle
           title={intl.formatMessage({
@@ -365,6 +452,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
           )}
         </CardContent>
       </Card>
+      </>
     );
   }
 );

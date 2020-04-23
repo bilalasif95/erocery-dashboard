@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { FormattedMessage,useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { IconProps } from "@material-ui/core/Icon";
 import useNavigator from "@saleor/hooks/useNavigator";
@@ -20,16 +20,16 @@ import { hasPermission } from "../auth/misc";
 import { User } from "../auth/types/User";
 import Container from "../components/Container";
 import PageHeader from "../components/PageHeader";
-import Grid from '@material-ui/core/Grid';
-import StaffAddMemberDialog, {
+import AddCityDialog, {
   FormData as AddStaffMemberForm
-} from "./StaffAddMemberDialog";
+} from "./AddCityDialog";
 
 import { PermissionEnum } from "../types/globalTypes";
 
 import {
   staffListUrl
 } from "./urls";
+import Grid from '@material-ui/core/Grid';
 
 export interface MenuItem {
   description: string;
@@ -51,12 +51,12 @@ const styles = (theme: Theme) =>
         boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.15);"
       },
       cursor: "pointer",
-      margin: '0 0.5rem 1rem',
-      width:'100%',
+      margin: '0 0.5rem 1rem 0.5rem',
+      width: '100%',
       transition: theme.transitions.duration.standard + "ms",
       [theme.breakpoints.down("xs")]: {
         margin: '0 0 1rem',
-        width:'100%'
+        width: '100%'
       },
     },
     cardContent: {
@@ -64,14 +64,15 @@ const styles = (theme: Theme) =>
       "&:last-child": {
         paddingBottom: 16
       },
-      display: "grid",
+      display: "flex",
+      justifyContent: 'space-between',
+      alignItems: 'center',
       gridColumnGap: theme.spacing.unit * 4 + "px",
-      gridTemplateColumns: "48px 1fr",
+      gridTemplateColumns: "230px 1fr",
       [theme.breakpoints.down("xs")]: {
-        display:'flex',
         justifyContent:'center',
         flexWrap:'wrap',
-        width:'100%'
+        width: '100%'
       },
     },
     cardDisabled: {
@@ -92,8 +93,8 @@ const styles = (theme: Theme) =>
     },
     configurationItem: {
       display: "flex",
-      justifyContent:'flex-start',
-      flexWrap:'wrap',
+      justifyContent: 'flex-start',
+      flexWrap: 'wrap',
       gridColumnGap: theme.spacing.unit * 4 + "px",
       gridTemplateColumns: "1fr 1fr"
     },
@@ -104,35 +105,69 @@ const styles = (theme: Theme) =>
       margin: 0
     },
     icon: {
-      color: theme.palette.primary.main,
-      fontSize: 48,
+      background: theme.palette.primary.main,
+      borderRadius: "50px",
+      color: "white",
+      fontSize: 40,
+      padding: "2px 0 0 6px",
+      width: '10%',
       [theme.breakpoints.down("xs")]: {
-        width:'100%',
-        textAlign:'center'
+        margin: '0 0 1rem',
+        width: '100%'
       },
+    },
+    cityDesc: {
+      width: '80%',
+      padding: '0 0.5rem',
+      [theme.breakpoints.down("xs")]: {
+        margin: '0 0 1rem',
+        width: '100%'
+      },
+    },
+    orderCount: {
+      width: '20%',
+      display:'flex',
+      justifyContent:'flex-end',
+      [theme.breakpoints.down("xs")]: {
+        width: '100%',
+        justifyContent:'center',
+      },
+    },
+    orders: {
+      background: theme.palette.primary.main,
+      borderRadius: "50px",
+      color: "white",
+      fontSize: 40,
+      padding: "0.5rem",
+      fontFamily:'Inter,roboto, sans-serif',
+      fontSize:'20px',
+      margin:'0'
     },
     sectionDescription: {},
     sectionTitle: {
       fontSize: 20,
       fontWeight: 600 as 600
+    },
+    colItem:{
+      display:'flex'
     }
   });
 
-export interface ConfigurationPageProps {
+export interface ShopPageProps {
   menu: MenuSection[];
   user: User;
   onSectionClick: (sectionName: string) => void;
 }
 
-export const ConfigurationPage = withStyles(styles, {
-  name: "ConfigurationPage"
+export const ShopPage = withStyles(styles, {
+  name: "ShopPage"
 })(
   ({
     classes,
     menu: menus,
     user,
     onSectionClick
-  }: ConfigurationPageProps & WithStyles<typeof styles>) => {
+  }: ShopPageProps & WithStyles<typeof styles>) => {
     const intl = useIntl();
     const navigate = useNavigator();
     const [addCity, setAddCity] = React.useState(false);
@@ -144,24 +179,25 @@ export const ConfigurationPage = withStyles(styles, {
     }
 
     const handleStaffMemberAdd = (variables: AddStaffMemberForm) => {
-    addStaffMember({
-      variables: {
-        input: {
-          email: variables.email,
-          firstName: variables.firstName,
-          lastName: variables.lastName,
-          // permissions: variables.fullAccess
-          //   ? maybe(() => shop.permissions.map(perm => perm.code))
-          //   : undefined,
-          // redirectUrl: urlJoin(
-          //   window.location.origin,
-          //   APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,
-          //   newPasswordUrl().replace(/\?/, "")
-          // ),
-          sendPasswordEmail: true
+      addStaffMember({
+        variables: {
+          input: {
+            email: variables.email,
+            firstName: variables.firstName,
+            lastName: variables.lastName,
+            // permissions: variables.fullAccess
+            //   ? maybe(() => shop.permissions.map(perm => perm.code))
+            //   : undefined,
+            // redirectUrl: urlJoin(
+            //   window.location.origin,
+            //   APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,
+            //   newPasswordUrl().replace(/\?/, "")
+            // ),
+            sendPasswordEmail: true
+          }
         }
-      }
-    })};
+      })
+    };
     const onAdd = e => {
       e.preventDefault();
       navigate(
@@ -170,8 +206,8 @@ export const ConfigurationPage = withStyles(styles, {
         })
       )
       setAddCity(true);
-    } 
-      
+    }
+
     return (
       <Container>
         <PageHeader
@@ -186,19 +222,19 @@ export const ConfigurationPage = withStyles(styles, {
           </Button>
         </PageHeader>
         {addCity ?
-          <StaffAddMemberDialog
-          confirmButtonState="default"
-          errors={maybe(
-            () => [],
-            []
-          )}
-          open={window.location.search.includes("add")}
-          onClose={toggleModal}
-          onConfirm={handleStaffMemberAdd}
-        />
-        : ""
+          <AddCityDialog
+            confirmButtonState="default"
+            errors={maybe(
+              () => [],
+              []
+            )}
+            open={window.location.search.includes("add")}
+            onClose={toggleModal}
+            onConfirm={handleStaffMemberAdd}
+          />
+          : ""
         }
-         {/* <div className={classes.configurationLabel}>
+        {/* <div className={classes.configurationLabel}>
                 <Typography>{menu.label}</Typography>
               </div> */}
         {menus
@@ -210,36 +246,42 @@ export const ConfigurationPage = withStyles(styles, {
           .map((menu, menuIndex) => (
             <div className={classes.configurationCategory} key={menuIndex}>
               <Grid container>
-              {/* <div className={classes.configurationItem}> */}
+                {/* <div className={classes.configurationItem}> */}
                 {menu.menuItems
                   .filter(menuItem => hasPermission(menuItem.permission, user))
                   .map((item, itemIndex) => (
-                   
-                    <Grid lg={6} sm={12}>
-                    <Card
-                      className={item.url ? classes.card : classes.cardDisabled}
-                      onClick={() => onSectionClick(item.url)}
-                      key={itemIndex}
-                    >
-                      <CardContent className={classes.cardContent}>
-                        <div className={classes.icon}>{item.icon}</div>
-                        <div>
-                          <Typography
-                            className={classes.sectionTitle}
-                            color="primary"
-                          >
-                            {item.title}
-                          </Typography>
-                          <Typography className={classes.sectionDescription}>
-                            {item.description}
-                          </Typography>
-                        </div>
-                      </CardContent>
-                    </Card>
+
+                    <Grid item lg={6} md={6} sm={12} xs={12} className={classes.colItem}>
+                      <Card
+                        // className={item.url ? classes.card : classes.cardDisabled}
+                        className={classes.card}
+                        onClick={() => onSectionClick(item.url)}
+                        key={itemIndex}
+                      >
+                        <CardContent className={classes.cardContent}>
+                          {/* <div className={classes.icon}>{item.icon}</div> */}
+                          <div className={classes.cityDesc}>
+                            <Typography
+                              className={classes.sectionTitle}
+                              color="primary"
+                            >
+                              {item.title}
+                            </Typography>
+                            <Typography className={classes.sectionDescription}>
+                              {item.description}
+                            </Typography>
+                          </div>
+                          <div className={classes.orderCount}>
+                            <p className={classes.orders}>
+                              10
+                          </p>
+                          </div>
+                        </CardContent>
+                      </Card>
                     </Grid>
-                    
+
                   ))}
-              {/* </div> */}
+                {/* </div> */}
               </Grid>
             </div>
           ))}
@@ -247,5 +289,5 @@ export const ConfigurationPage = withStyles(styles, {
     );
   }
 );
-ConfigurationPage.displayName = "ConfigurationPage";
-export default ConfigurationPage;
+ShopPage.displayName = "ShopPage";
+export default ShopPage;

@@ -85,8 +85,8 @@ const styles = (theme: Theme) =>
     },
     subHeader: {
       borderBottom: "solid 1px #EAEAEA",
-      padding: "1rem",
       marginBottom: '1rem',
+      padding: "1rem"
     },
     subHeaderDark: {
       borderBottom: "solid 1px #252728"

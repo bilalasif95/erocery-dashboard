@@ -1,5 +1,6 @@
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
+import Grid from '@material-ui/core/Grid';
 import { Theme } from "@material-ui/core/styles";
 import makeStyles from "@material-ui/styles/makeStyles";
 import React from "react";
@@ -28,7 +29,6 @@ import {
 import { productBulkUrl, ProductListUrlSortField } from "../../urls";
 import ProductList from "../ProductList";
 import ProductListFilter, { ProductFilterKeys } from "../ProductListFilter";
-import Grid from '@material-ui/core/Grid';
 
 export interface ProductListPageProps
   extends PageListProps<ProductListColumns>,
@@ -45,6 +45,23 @@ export interface ProductListPageProps
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
+  bulkButton: {
+    margin: "0 24px 0 0",
+    width:'100%',
+    [theme.breakpoints.down("xs")]: {
+      margin: "0 0.5rem 1rem",
+    }
+  },
+  columnPicker: {
+    display:'flex',
+    justifyContent:'flex-end',
+    margin: "0 24px 0 0",
+    width:'100%',
+    [theme.breakpoints.down("xs")]: {
+      justifyContent:'center',
+      margin: "0 0 1rem",
+    }
+  },
   pageHead: {
     margin:'0 0 1rem'
     // [theme.breakpoints.down("sm")]: {
@@ -53,15 +70,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     // }
   },
   pageTitle: {
+    margin:'0',
     width: '100%',
-    margin:'0'
-  },
-  bulkButton: {
-    width:'100%',
-    margin: "0 24px 0 0",
-    [theme.breakpoints.down("xs")]: {
-      margin: "0 0.5rem 1rem",
-    }
   },
   proButton: {
     width:'100%',
@@ -69,21 +79,11 @@ const useStyles = makeStyles((theme: Theme) => ({
       margin: "0 0.5rem 1rem",
     }
   },
-  columnPicker: {
-    margin: "0 24px 0 0",
-    width:'100%',
-    display:'flex',
-    justifyContent:'flex-end',
-    [theme.breakpoints.down("xs")]: {
-      justifyContent:'center',
-      margin: "0 0 1rem",
-    }
-  },
   textAlign: {
+    alignItems:'center',
     display: "flex",
-    justifyContent: 'flex-end',
-    alignItems:'center'
-  }
+    justifyContent: 'flex-end'
+  },
 }));
 
 export const ProductListPage: React.FC<ProductListPageProps> = props => {
