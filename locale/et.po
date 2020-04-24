@@ -2563,10 +2563,10 @@ msgstr "Klient"
 
 #. [src.customers.components.CustomerList.2339105195]
 #. defaultMessage is:
-#. Customer Email
+#. Customer Phone
 #: build/locale/src/customers/components/CustomerList/CustomerList.json
 msgctxt "description"
-msgid "Customer Email"
+msgid "Customer Phone"
 msgstr ""
 
 #. [src.customers.components.CustomerStats.2543847016] - section header

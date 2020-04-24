@@ -80,7 +80,7 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
           <FormattedMessage defaultMessage="Customer Name" />
         </TableCell>
         <TableCell className={classes.colEmail}>
-          <FormattedMessage defaultMessage="Customer Email" />
+          <FormattedMessage defaultMessage="Customer Phone" />
         </TableCell>
         <TableCell className={classes.colOrders}>
           <FormattedMessage defaultMessage="No. of Orders" />
