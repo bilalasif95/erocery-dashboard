@@ -38,6 +38,11 @@ const styles = (theme: Theme) =>
     },
     tableRow: {
       cursor: "pointer"
+    },
+    tableContainer: {
+      width: '100%',
+      display: 'block',
+      overflowX: 'scroll'
     }
   });
 
@@ -67,6 +72,7 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
     selected,
     isChecked
   }: CustomerListProps) => (
+    <div className={classes.tableContainer}>
     <Table>
       <TableHead
         colSpan={numberOfColumns}
@@ -148,6 +154,7 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
         )}
       </TableBody>
     </Table>
+    </div>
   )
 );
 CustomerList.displayName = "CustomerList";

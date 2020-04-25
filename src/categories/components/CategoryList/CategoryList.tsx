@@ -44,6 +44,11 @@ const styles = (theme: Theme) =>
     },
     tableRow: {
       cursor: "pointer"
+    },
+    tableContainer: {
+      width: '100%',
+      display: 'block',
+      overflowX: 'scroll'
     }
   });
 
@@ -73,6 +78,7 @@ const CategoryList = withStyles(styles, { name: "CategoryList" })(
     onUpdateListSettings,
     onRowClick
   }: CategoryListProps & WithStyles<typeof styles>) => (
+    <div className={classes.tableContainer}>
     <Table>
       <TableHead
         colSpan={numberOfColumns}
@@ -175,6 +181,7 @@ const CategoryList = withStyles(styles, { name: "CategoryList" })(
         )}
       </TableBody>
     </Table>
+    </div>
   )
 );
 CategoryList.displayName = "CategoryList";
