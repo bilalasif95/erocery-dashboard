@@ -57,6 +57,11 @@ const styles = (theme: Theme) =>
     },
     tableRow: {
       cursor: "pointer"
+    },
+    tableContainer: {
+      width: '100%',
+      display: 'block',
+      overflowX: 'scroll'
     }
   });
 
@@ -82,6 +87,7 @@ const SaleList = withStyles(styles, {
     toggleAll,
     toolbar
   }: SaleListProps & WithStyles<typeof styles>) => (
+    <div className={classes.tableContainer}>
     <Table>
       <TableHead
         colSpan={numberOfColumns}
@@ -195,6 +201,7 @@ const SaleList = withStyles(styles, {
         )}
       </TableBody>
     </Table>
+    </div>
   )
 );
 SaleList.displayName = "SaleList";

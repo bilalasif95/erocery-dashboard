@@ -40,7 +40,7 @@ interface ProductUpdateProps {
   id: string;
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   browseBtn: {
     color: "#3d9afe",
     cursor: "pointer",
@@ -60,6 +60,9 @@ const useStyles = makeStyles(() => ({
     border: "1px solid #EAEAEA",
     borderRadius: "0 0 5px 5px",
     padding: "100px",
+    [theme.breakpoints.down("sm")]: {
+      padding:'1rem'
+    },
   },
   mainContainer: {
     background: "white"
@@ -85,6 +88,9 @@ const useStyles = makeStyles(() => ({
     borderRadius: "5px",
     padding: "50px",
     textAlign: "center",
+    [theme.breakpoints.down("xs")]: {
+      padding:'2rem'
+    },
   }
 }));
 

@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { FormattedMessage,useIntl } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 
 import { IconProps } from "@material-ui/core/Icon";
 import useNavigator from "@saleor/hooks/useNavigator";
@@ -29,6 +29,7 @@ import { PermissionEnum } from "../types/globalTypes";
 import {
   staffListUrl
 } from "./urls";
+import Grid from '@material-ui/core/Grid';
 
 export interface MenuItem {
   description: string;
@@ -50,17 +51,29 @@ const styles = (theme: Theme) =>
         boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.15);"
       },
       cursor: "pointer",
-      marginBottom: theme.spacing.unit * 3,
-      transition: theme.transitions.duration.standard + "ms"
+      margin: '0 0.5rem 1rem 0.5rem',
+      width: '100%',
+      transition: theme.transitions.duration.standard + "ms",
+      [theme.breakpoints.down("xs")]: {
+        margin: '0 0 1rem',
+        width: '100%'
+      },
     },
     cardContent: {
       // Overrides Material-UI default theme
       "&:last-child": {
         paddingBottom: 16
       },
-      display: "grid",
+      display: "flex",
+      justifyContent: 'space-between',
+      alignItems: 'center',
       gridColumnGap: theme.spacing.unit * 4 + "px",
-      gridTemplateColumns: "230px 1fr"
+      gridTemplateColumns: "230px 1fr",
+      [theme.breakpoints.down("xs")]: {
+        justifyContent:'center',
+        flexWrap:'wrap',
+        width: '100%'
+      },
     },
     cardDisabled: {
       "& $icon, & $sectionTitle, & $sectionDescription": {
@@ -73,13 +86,15 @@ const styles = (theme: Theme) =>
         gridTemplateColumns: "1fr"
       },
       borderTop: `solid 1px ${theme.palette.divider}`,
-      display: "grid",
+      // display: "flex",
       gridColumnGap: theme.spacing.unit * 4 + "px",
       gridTemplateColumns: "1fr 3fr",
       paddingTop: theme.spacing.unit * 3 + "px"
     },
     configurationItem: {
-      display: "grid",
+      display: "flex",
+      justifyContent: 'flex-start',
+      flexWrap: 'wrap',
       gridColumnGap: theme.spacing.unit * 4 + "px",
       gridTemplateColumns: "1fr 1fr"
     },
@@ -94,12 +109,47 @@ const styles = (theme: Theme) =>
       borderRadius: "50px",
       color: "white",
       fontSize: 40,
-      padding: "2px 0 0 6px"
+      padding: "2px 0 0 6px",
+      width: '10%',
+      [theme.breakpoints.down("xs")]: {
+        margin: '0 0 1rem',
+        width: '100%'
+      },
+    },
+    cityDesc: {
+      width: '80%',
+      padding: '0 0.5rem',
+      [theme.breakpoints.down("xs")]: {
+        margin: '0 0 1rem',
+        width: '100%'
+      },
+    },
+    orderCount: {
+      width: '20%',
+      display:'flex',
+      justifyContent:'flex-end',
+      [theme.breakpoints.down("xs")]: {
+        width: '100%',
+        justifyContent:'center',
+      },
+    },
+    orders: {
+      background: theme.palette.primary.main,
+      borderRadius: "50px",
+      color: "white",
+      fontSize: 40,
+      padding: "0.5rem",
+      fontFamily:'Inter,roboto, sans-serif',
+      fontSize:'20px',
+      margin:'0'
     },
     sectionDescription: {},
     sectionTitle: {
       fontSize: 20,
       fontWeight: 600 as 600
+    },
+    colItem:{
+      display:'flex'
     }
   });
 
@@ -129,24 +179,25 @@ export const ShopPage = withStyles(styles, {
     }
 
     const handleStaffMemberAdd = (variables: AddStaffMemberForm) => {
-    addStaffMember({
-      variables: {
-        input: {
-          email: variables.email,
-          firstName: variables.firstName,
-          lastName: variables.lastName,
-          // permissions: variables.fullAccess
-          //   ? maybe(() => shop.permissions.map(perm => perm.code))
-          //   : undefined,
-          // redirectUrl: urlJoin(
-          //   window.location.origin,
-          //   APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,
-          //   newPasswordUrl().replace(/\?/, "")
-          // ),
-          sendPasswordEmail: true
+      addStaffMember({
+        variables: {
+          input: {
+            email: variables.email,
+            firstName: variables.firstName,
+            lastName: variables.lastName,
+            // permissions: variables.fullAccess
+            //   ? maybe(() => shop.permissions.map(perm => perm.code))
+            //   : undefined,
+            // redirectUrl: urlJoin(
+            //   window.location.origin,
+            //   APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,
+            //   newPasswordUrl().replace(/\?/, "")
+            // ),
+            sendPasswordEmail: true
+          }
         }
-      }
-    })};
+      })
+    };
     const onAdd = e => {
       e.preventDefault();
       navigate(
@@ -155,8 +206,8 @@ export const ShopPage = withStyles(styles, {
         })
       )
       setAddCity(true);
-    } 
-      
+    }
+
     return (
       <Container>
         <PageHeader
@@ -172,17 +223,20 @@ export const ShopPage = withStyles(styles, {
         </PageHeader>
         {addCity ?
           <AddCityDialog
-          confirmButtonState="default"
-          errors={maybe(
-            () => [],
-            []
-          )}
-          open={window.location.search.includes("add")}
-          onClose={toggleModal}
-          onConfirm={handleStaffMemberAdd}
-        />
-        : ""
+            confirmButtonState="default"
+            errors={maybe(
+              () => [],
+              []
+            )}
+            open={window.location.search.includes("add")}
+            onClose={toggleModal}
+            onConfirm={handleStaffMemberAdd}
+          />
+          : ""
         }
+        {/* <div className={classes.configurationLabel}>
+                <Typography>{menu.label}</Typography>
+              </div> */}
         {menus
           .filter(menu =>
             menu.menuItems.some(menuItem =>
@@ -191,39 +245,44 @@ export const ShopPage = withStyles(styles, {
           )
           .map((menu, menuIndex) => (
             <div className={classes.configurationCategory} key={menuIndex}>
-              <div className={classes.configurationLabel}>
-                <Typography>{menu.label}</Typography>
-              </div>
-              <div className={classes.configurationItem}>
+              <Grid container>
+                {/* <div className={classes.configurationItem}> */}
                 {menu.menuItems
                   .filter(menuItem => hasPermission(menuItem.permission, user))
                   .map((item, itemIndex) => (
-                    <Card
-                      // className={item.url ? classes.card : classes.cardDisabled}
-                      className={classes.card}
-                      onClick={() => onSectionClick(item.url)}
-                      key={itemIndex}
-                    >
-                      <CardContent className={classes.cardContent}>
-                        {/* <div className={classes.icon}>{item.icon}</div> */}
-                        <div>
-                          <Typography
-                            className={classes.sectionTitle}
-                            color="primary"
-                          >
-                            {item.title}
-                          </Typography>
-                          <Typography className={classes.sectionDescription}>
-                            {item.description}
-                          </Typography>
-                        </div>
-                        <div className={classes.icon}>
-                          10
-                        </div>
-                      </CardContent>
-                    </Card>
+
+                    <Grid item lg={6} md={6} sm={12} xs={12} className={classes.colItem}>
+                      <Card
+                        // className={item.url ? classes.card : classes.cardDisabled}
+                        className={classes.card}
+                        onClick={() => onSectionClick(item.url)}
+                        key={itemIndex}
+                      >
+                        <CardContent className={classes.cardContent}>
+                          {/* <div className={classes.icon}>{item.icon}</div> */}
+                          <div className={classes.cityDesc}>
+                            <Typography
+                              className={classes.sectionTitle}
+                              color="primary"
+                            >
+                              {item.title}
+                            </Typography>
+                            <Typography className={classes.sectionDescription}>
+                              {item.description}
+                            </Typography>
+                          </div>
+                          <div className={classes.orderCount}>
+                            <p className={classes.orders}>
+                              10
+                          </p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Grid>
+
                   ))}
-              </div>
+                {/* </div> */}
+              </Grid>
             </div>
           ))}
       </Container>

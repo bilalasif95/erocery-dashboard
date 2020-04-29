@@ -17,6 +17,7 @@ import { User } from "../auth/types/User";
 import Container from "../components/Container";
 import PageHeader from "../components/PageHeader";
 import { PermissionEnum } from "../types/globalTypes";
+import Grid from '@material-ui/core/Grid';
 
 export interface MenuItem {
   description: string;
@@ -38,8 +39,13 @@ const styles = (theme: Theme) =>
         boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.15);"
       },
       cursor: "pointer",
-      marginBottom: theme.spacing.unit * 3,
-      transition: theme.transitions.duration.standard + "ms"
+      margin: '0 0.5rem 1rem 0.5rem',
+      width: '100%',
+      transition: theme.transitions.duration.standard + "ms",
+      [theme.breakpoints.down("xs")]: {
+        margin: '0 0 1rem',
+        width: '100%'
+      },
     },
     cardContent: {
       // Overrides Material-UI default theme
@@ -85,6 +91,9 @@ const styles = (theme: Theme) =>
     sectionTitle: {
       fontSize: 20,
       fontWeight: 600 as 600
+    },
+    colItem:{
+      display:'flex'
     }
   });
 
@@ -121,10 +130,12 @@ export const ConfigurationPage = withStyles(styles, {
               <div className={classes.configurationLabel}>
                 <Typography>{menu.label}</Typography>
               </div>
-              <div className={classes.configurationItem}>
+              <Grid container>
+              {/* <div className={classes.configurationItem}> */}
                 {menu.menuItems
                   .filter(menuItem => hasPermission(menuItem.permission, user))
                   .map((item, itemIndex) => (
+                    <Grid item lg={6} md={6} sm={12} xs={12} className={classes.colItem}>
                     <Card
                       className={item.url ? classes.card : classes.cardDisabled}
                       onClick={() => onSectionClick(item.url)}
@@ -145,8 +156,10 @@ export const ConfigurationPage = withStyles(styles, {
                         </div>
                       </CardContent>
                     </Card>
+                    </Grid>
                   ))}
-              </div>
+              {/* </div> */}
+              </Grid>
             </div>
           ))}
       </Container>

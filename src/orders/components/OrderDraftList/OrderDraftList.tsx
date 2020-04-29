@@ -51,6 +51,11 @@ const styles = (theme: Theme) =>
     },
     link: {
       cursor: "pointer"
+    },
+    tableContainer: {
+      width: '100%',
+      display: 'block',
+      overflowX: 'scroll'
     }
   });
 
@@ -91,6 +96,7 @@ export const OrderDraftList = withStyles(styles, { name: "OrderDraftList" })(
       : undefined;
 
     return (
+      <div className={classes.tableContainer}>
       <Table>
         <TableHead
           colSpan={numberOfColumns}
@@ -203,6 +209,7 @@ export const OrderDraftList = withStyles(styles, { name: "OrderDraftList" })(
           )}
         </TableBody>
       </Table>
+      </div>
     );
   }
 );

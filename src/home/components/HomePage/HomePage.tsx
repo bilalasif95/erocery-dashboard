@@ -39,6 +39,11 @@ const styles = (theme: Theme) =>
       [theme.breakpoints.down("xs")]: {
         gridTemplateColumns: "1fr"
       }
+    },
+    homeLayout:{
+      [theme.breakpoints.down("xs")]: {
+        display:'flex !important'
+      }
     }
   });
 
@@ -77,7 +82,7 @@ const HomePage = withStyles(styles, { name: "HomePage" })(
     <Container>
       <HomeHeader userName={userName} />
       <CardSpacer />
-      <Grid>
+      <Grid className={classes.homeLayout}>
         <div>
           <RequirePermissions
             userPermissions={userPermissions}

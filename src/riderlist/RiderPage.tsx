@@ -1,4 +1,3 @@
-import AppBar from '@material-ui/core/AppBar';
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import {
@@ -34,11 +33,7 @@ import AddRiderDialog, {
 } from "./AddRiderDialog";
 
 import { PermissionEnum } from "../types/globalTypes";
-
-import {
-  staffListUrl
-} from "./urls";
-
+import AppBar from '@material-ui/core/AppBar';
 import PropTypes from 'prop-types';
 
 function TabPanel(props) {
@@ -141,6 +136,19 @@ const styles = (theme: Theme) =>
       borderRadius: "5px 5px 0 0",
       boxShadow: "none",
       color: "black",
+    },
+    btnPending: {
+      textTransform: 'capitalize',
+      border: '1px solid #fbbd2f',
+      borderRadius: '25px',
+      backgroundColor: '#fff',
+      color: '#fbbd2f',
+      padding: '0.5rem 0.7rem'
+    },
+    tableContainer: {
+      width: '100%',
+      display: 'block',
+      overflowX: 'scroll'
     }
   });
 
@@ -243,7 +251,7 @@ export const RiderPage = withStyles(styles, {
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={0}>
-            {/* <TableContainer component={Paper}> */}
+            <div className={classes.tableContainer}>
               <Table>
                 <TableHead>
                   <TableRow>
@@ -391,10 +399,10 @@ export const RiderPage = withStyles(styles, {
                 </TableBody>
               </Table>
 
-            {/* </TableContainer> */}
+            </div>
           </TabPanel>
           <TabPanel value={value} index={1}>
-            {/* <TableContainer component={Paper}> */}
+            <div className={classes.tableContainer}>
               <Table>
                 <TableHead>
                   <TableRow>
@@ -422,7 +430,7 @@ export const RiderPage = withStyles(styles, {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow>
+                <TableRow>
                     <TableCell padding="dense">
                       000001234
                   </TableCell>
@@ -436,7 +444,7 @@ export const RiderPage = withStyles(styles, {
                       Rs. 1200.00
                   </TableCell>
                     <TableCell padding="dense">
-                      <Button className={classes.btnPending}>Pending</Button>
+                      <button className={classes.btnPending}>Pending</button>
                     </TableCell>
                     <TableCell padding="dense">
                       Bilal Asif
@@ -459,7 +467,99 @@ export const RiderPage = withStyles(styles, {
                       Rs. 1200.00
                   </TableCell>
                     <TableCell padding="dense">
-                      <Button>Pending</Button>
+                      <button className={classes.btnPending}>Pending</button>
+                    </TableCell>
+                    <TableCell padding="dense">
+                      Bilal Asif
+                  </TableCell>
+                    <TableCell padding="dense">
+                      Order list
+                  </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      000001234
+                  </TableCell>
+                    <TableCell padding="dense">
+                      04-07-2020
+                  </TableCell>
+                    <TableCell padding="dense">
+                      3rd Floor
+                  </TableCell>
+                    <TableCell padding="dense">
+                      Rs. 1200.00
+                  </TableCell>
+                    <TableCell padding="dense">
+                      <button className={classes.btnPending}>Pending</button>
+                    </TableCell>
+                    <TableCell padding="dense">
+                      Bilal Asif
+                  </TableCell>
+                    <TableCell padding="dense">
+                      Order list
+                  </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      000001234
+                  </TableCell>
+                    <TableCell padding="dense">
+                      04-07-2020
+                  </TableCell>
+                    <TableCell padding="dense">
+                      3rd Floor
+                  </TableCell>
+                    <TableCell padding="dense">
+                      Rs. 1200.00
+                  </TableCell>
+                    <TableCell padding="dense">
+                      <button className={classes.btnPending}>Pending</button>
+                    </TableCell>
+                    <TableCell padding="dense">
+                      Bilal Asif
+                  </TableCell>
+                    <TableCell padding="dense">
+                      Order list
+                  </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      000001234
+                  </TableCell>
+                    <TableCell padding="dense">
+                      04-07-2020
+                  </TableCell>
+                    <TableCell padding="dense">
+                      3rd Floor
+                  </TableCell>
+                    <TableCell padding="dense">
+                      Rs. 1200.00
+                  </TableCell>
+                    <TableCell padding="dense">
+                      <button className={classes.btnPending}>Pending</button>
+                    </TableCell>
+                    <TableCell padding="dense">
+                      Bilal Asif
+                  </TableCell>
+                    <TableCell padding="dense">
+                      Order list
+                  </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell padding="dense">
+                      000001234
+                  </TableCell>
+                    <TableCell padding="dense">
+                      04-07-2020
+                  </TableCell>
+                    <TableCell padding="dense">
+                      3rd Floor
+                  </TableCell>
+                    <TableCell padding="dense">
+                      Rs. 1200.00
+                  </TableCell>
+                    <TableCell padding="dense">
+                      <button className={classes.btnPending}>Pending</button>
                     </TableCell>
                     <TableCell padding="dense">
                       Bilal Asif
@@ -470,7 +570,7 @@ export const RiderPage = withStyles(styles, {
                   </TableRow>
                 </TableBody>
               </Table>
-            {/* </TableContainer> */}
+            </div>
           </TabPanel>
         </Card>
       </Container>

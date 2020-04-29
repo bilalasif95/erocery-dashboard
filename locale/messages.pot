@@ -2694,9 +2694,9 @@ msgstr ""
 #: build/locale/src/customers/components/CustomerList/CustomerList.json
 #. [src.customers.components.CustomerList.2339105195]
 #. defaultMessage is:
-#. Customer Email
+#. Customer Phone
 msgctxt "description"
-msgid "Customer Email"
+msgid "Customer Phone"
 msgstr ""
 
 #: build/locale/src/customers/components/CustomerStats/CustomerStats.json

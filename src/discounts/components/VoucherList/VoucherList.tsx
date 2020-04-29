@@ -72,6 +72,11 @@ const styles = (theme: Theme) =>
     },
     textRight: {
       textAlign: "right"
+    },
+    tableContainer: {
+      width: '100%',
+      display: 'block',
+      overflowX: 'scroll'
     }
   });
 
@@ -97,6 +102,7 @@ const VoucherList = withStyles(styles, {
     toggleAll,
     toolbar
   }: VoucherListProps & WithStyles<typeof styles>) => (
+    <div className={classes.tableContainer}>
     <Table>
       <TableHead
         colSpan={numberOfColumns}
@@ -246,6 +252,7 @@ const VoucherList = withStyles(styles, {
         )}
       </TableBody>
     </Table>
+    </div>
   )
 );
 VoucherList.displayName = "VoucherList";
