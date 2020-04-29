@@ -114,7 +114,7 @@ const AddRiderDialog = withStyles(styles, {
                   <TextField
                     error={!!formErrors.lastName}
                     helperText={formErrors.lastName}
-                    label="Rider ID"
+                    label="CNIC"
                     name="lastName"
                     type="number"
                     value={data.lastName}
@@ -137,9 +137,9 @@ const AddRiderDialog = withStyles(styles, {
                     error={!!formErrors.email}
                     fullWidth
                     helperText={formErrors.email}
-                    label="CNIC"
+                    label="Password"
                     name="email"
-                    type="number"
+                    type="password"
                     value={data.email}
                     onChange={change}
                   />

@@ -94,7 +94,7 @@ const AddCityDialog = withStyles(styles, {
             <>
               <DialogTitle>
                 <FormattedMessage
-                  defaultMessage="Add City"
+                  defaultMessage="Add Shop"
                   description="dialog header"
                 />
               </DialogTitle>

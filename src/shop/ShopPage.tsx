@@ -165,7 +165,7 @@ export const ShopPage = withStyles(styles, {
         >
           <Button color="primary" variant="contained" onClick={onAdd}>
             <FormattedMessage
-              defaultMessage="Add City"
+              defaultMessage="Add Shop"
               description="button"
             />
           </Button>
