@@ -96,6 +96,12 @@ const styles = (theme: Theme) =>
       height: 40,
       marginBottom: theme.spacing.unit * 3
     },
+    hideBLink:{
+      [theme.breakpoints.down("xs")]: {
+        display:'none',
+        padding:'0'
+      },
+    },
     isMenuSmall: {
       "& path": {
         fill: theme.palette.primary.main
@@ -286,12 +292,6 @@ const styles = (theme: Theme) =>
         appLoaderHeight +
         70}px)`
     },
-    hideBLink:{
-      [theme.breakpoints.down("xs")]: {
-        display:'none',
-        padding:'0'
-      },
-    }
   });
 
 interface AppLayoutProps {

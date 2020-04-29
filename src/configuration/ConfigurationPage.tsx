@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import { useIntl } from "react-intl";
 
+import Grid from '@material-ui/core/Grid';
 import { IconProps } from "@material-ui/core/Icon";
 import { sectionNames } from "@saleor/intl";
 import { hasPermission } from "../auth/misc";
@@ -17,7 +18,6 @@ import { User } from "../auth/types/User";
 import Container from "../components/Container";
 import PageHeader from "../components/PageHeader";
 import { PermissionEnum } from "../types/globalTypes";
-import Grid from '@material-ui/core/Grid';
 
 export interface MenuItem {
   description: string;
@@ -40,12 +40,12 @@ const styles = (theme: Theme) =>
       },
       cursor: "pointer",
       margin: '0 0.5rem 1rem 0.5rem',
-      width: '100%',
       transition: theme.transitions.duration.standard + "ms",
       [theme.breakpoints.down("xs")]: {
         margin: '0 0 1rem',
         width: '100%'
       },
+      width: '100%',
     },
     cardContent: {
       // Overrides Material-UI default theme
@@ -61,6 +61,9 @@ const styles = (theme: Theme) =>
         color: theme.palette.text.disabled
       },
       marginBottom: theme.spacing.unit * 3
+    },
+    colItem:{
+      display:'flex'
     },
     configurationCategory: {
       [theme.breakpoints.down("md")]: {
@@ -92,9 +95,6 @@ const styles = (theme: Theme) =>
       fontSize: 20,
       fontWeight: 600 as 600
     },
-    colItem:{
-      display:'flex'
-    }
   });
 
 export interface ConfigurationPageProps {

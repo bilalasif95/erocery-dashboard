@@ -53,9 +53,9 @@ const styles = (theme: Theme) =>
       cursor: "pointer"
     },
     tableContainer: {
-      width: '100%',
       display: 'block',
-      overflowX: 'scroll'
+      overflowX: 'scroll',
+      width: '100%',
     }
   });
 

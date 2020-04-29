@@ -36,14 +36,14 @@ const styles = (theme: Theme) =>
     colOrders: {
       textAlign: "center"
     },
+    tableContainer: {
+      display: 'block',
+      overflowX: 'scroll',
+      width: '100%',
+    },
     tableRow: {
       cursor: "pointer"
     },
-    tableContainer: {
-      width: '100%',
-      display: 'block',
-      overflowX: 'scroll'
-    }
   });
 
 export interface CustomerListProps

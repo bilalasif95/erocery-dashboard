@@ -1,3 +1,4 @@
+import AppBar from '@material-ui/core/AppBar';
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import {
@@ -32,8 +33,12 @@ import AddRiderDialog, {
   FormData as AddStaffMemberForm
 } from "./AddRiderDialog";
 
+import {
+  staffListUrl
+} from "./urls";
+
 import { PermissionEnum } from "../types/globalTypes";
-import AppBar from '@material-ui/core/AppBar';
+
 import PropTypes from 'prop-types';
 
 function TabPanel(props) {
@@ -75,6 +80,7 @@ const styles = (theme: Theme) =>
       border:'1px solid #fbbd2f',
       borderRadius:'25%',
       color:'#fbbd2f',
+      padding: '0.5rem 0.7rem',
       textTransform:'capitalize',
     },
     card: {
@@ -130,6 +136,11 @@ const styles = (theme: Theme) =>
       fontSize: 20,
       fontWeight: 600 as 600
     },
+    tableContainer: {
+      display: 'block',
+      overflowX: 'scroll',
+      width: '100%',
+    },
     tabsHeader: {
       background: "white",
       border: "1px solid #EAEAEA",
@@ -137,19 +148,6 @@ const styles = (theme: Theme) =>
       boxShadow: "none",
       color: "black",
     },
-    btnPending: {
-      textTransform: 'capitalize',
-      border: '1px solid #fbbd2f',
-      borderRadius: '25px',
-      backgroundColor: '#fff',
-      color: '#fbbd2f',
-      padding: '0.5rem 0.7rem'
-    },
-    tableContainer: {
-      width: '100%',
-      display: 'block',
-      overflowX: 'scroll'
-    }
   });
 
 export interface RiderPageProps {

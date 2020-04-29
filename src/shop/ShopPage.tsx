@@ -1,6 +1,7 @@
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import Grid from '@material-ui/core/Grid';
 import {
   createStyles,
   Theme,
@@ -29,7 +30,7 @@ import { PermissionEnum } from "../types/globalTypes";
 import {
   staffListUrl
 } from "./urls";
-import Grid from '@material-ui/core/Grid';
+
 
 export interface MenuItem {
   description: string;
@@ -52,34 +53,45 @@ const styles = (theme: Theme) =>
       },
       cursor: "pointer",
       margin: '0 0.5rem 1rem 0.5rem',
-      width: '100%',
       transition: theme.transitions.duration.standard + "ms",
       [theme.breakpoints.down("xs")]: {
         margin: '0 0 1rem',
         width: '100%'
       },
+      width: '100%',
     },
     cardContent: {
       // Overrides Material-UI default theme
       "&:last-child": {
         paddingBottom: 16
       },
-      display: "flex",
-      justifyContent: 'space-between',
       alignItems: 'center',
+      display: "flex",
       gridColumnGap: theme.spacing.unit * 4 + "px",
       gridTemplateColumns: "230px 1fr",
       [theme.breakpoints.down("xs")]: {
-        justifyContent:'center',
         flexWrap:'wrap',
+        justifyContent:'center',
         width: '100%'
       },
+      justifyContent: 'space-between',
     },
     cardDisabled: {
       "& $icon, & $sectionTitle, & $sectionDescription": {
         color: theme.palette.text.disabled
       },
       marginBottom: theme.spacing.unit * 3
+    },
+    cityDesc: {
+      padding: '0 0.5rem',
+      [theme.breakpoints.down("xs")]: {
+        margin: '0 0 1rem',
+        width: '100%'
+      },
+      width: '80%',
+    },
+    colItem:{
+      display:'flex'
     },
     configurationCategory: {
       [theme.breakpoints.down("md")]: {
@@ -93,10 +105,10 @@ const styles = (theme: Theme) =>
     },
     configurationItem: {
       display: "flex",
-      justifyContent: 'flex-start',
       flexWrap: 'wrap',
       gridColumnGap: theme.spacing.unit * 4 + "px",
-      gridTemplateColumns: "1fr 1fr"
+      gridTemplateColumns: "1fr 1fr",
+      justifyContent: 'flex-start',
     },
     configurationLabel: {
       paddingBottom: 20
@@ -116,41 +128,29 @@ const styles = (theme: Theme) =>
         width: '100%'
       },
     },
-    cityDesc: {
-      width: '80%',
-      padding: '0 0.5rem',
-      [theme.breakpoints.down("xs")]: {
-        margin: '0 0 1rem',
-        width: '100%'
-      },
-    },
     orderCount: {
-      width: '20%',
       display:'flex',
       justifyContent:'flex-end',
       [theme.breakpoints.down("xs")]: {
-        width: '100%',
         justifyContent:'center',
+        width: '100%',
       },
+      width: '20%',
     },
     orders: {
       background: theme.palette.primary.main,
       borderRadius: "50px",
       color: "white",
-      fontSize: 40,
-      padding: "0.5rem",
       fontFamily:'Inter,roboto, sans-serif',
-      fontSize:'20px',
-      margin:'0'
+      fontSize: 20,
+      margin:'0',
+      padding: "0.5rem",
     },
     sectionDescription: {},
     sectionTitle: {
       fontSize: 20,
       fontWeight: 600 as 600
     },
-    colItem:{
-      display:'flex'
-    }
   });
 
 export interface ShopPageProps {

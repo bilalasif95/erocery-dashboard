@@ -67,17 +67,17 @@ const styles = (theme: Theme) =>
     colValue: {
       textAlign: "right"
     },
+    tableContainer: {
+      display: 'block',
+      overflowX: 'scroll',
+      width: '100%',
+    },
     tableRow: {
       cursor: "pointer"
     },
     textRight: {
       textAlign: "right"
     },
-    tableContainer: {
-      width: '100%',
-      display: 'block',
-      overflowX: 'scroll'
-    }
   });
 
 const numberOfColumns = 7;
