@@ -134,6 +134,8 @@ const StaffDetailsPage: React.StatelessComponent<StaffDetailsPageProps> = ({
             onSave={submit}
             onDelete={canRemove ? onDelete : undefined}
           />
+          
+         
         </Container>
       )}
     </Form>

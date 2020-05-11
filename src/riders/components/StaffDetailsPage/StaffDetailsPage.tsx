@@ -1,5 +1,9 @@
 import React from "react";
 import { useIntl } from "react-intl";
+// import {
+//   createStyles,
+//   Theme,
+// } from "@material-ui/core/styles";
 
 import AccountPermissions from "@saleor/components/AccountPermissions";
 import AccountStatus from "@saleor/components/AccountStatus";
@@ -19,6 +23,14 @@ import { PermissionEnum } from "../../../types/globalTypes";
 import { StaffMemberDetails_user } from "../../types/StaffMemberDetails";
 import StaffPreferences from "../StaffPreferences";
 import StaffProperties from "../StaffProperties/StaffProperties";
+
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+// import TableFooter from "@material-ui/core/TableFooter";
+import TableRow from "@material-ui/core/TableRow";
+import TableHead from "@saleor/components/TableHead";
+
 
 interface FormData {
   hasFullAccess: boolean;
@@ -134,6 +146,56 @@ const StaffDetailsPage: React.StatelessComponent<StaffDetailsPageProps> = ({
             onSave={submit}
             onDelete={canRemove ? onDelete : undefined}
           />
+          <Table>
+            <TableHead>
+              <TableCell>
+                Rider Name
+              </TableCell>
+              <TableCell>
+                Rider ID
+              </TableCell>
+              <TableCell>
+                Order #
+              </TableCell>
+              <TableCell>
+                Order Total
+              </TableCell>
+              <TableCell>
+                Date
+              </TableCell>
+              <TableCell>
+                Status
+              </TableCell>
+              <TableCell>
+                Action
+              </TableCell>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>
+                  Bilal
+                  </TableCell>
+                <TableCell>
+                  0011
+                  </TableCell>
+                <TableCell>
+                  0000122334
+                  </TableCell>
+                <TableCell>
+                  Rs. 12000.0
+                  </TableCell>
+                <TableCell>
+                  12/3/2020
+                  </TableCell>
+                <TableCell>
+                  <span>Deliverd</span>
+                </TableCell>
+                <TableCell>
+                  <span>Full view order | Print</span>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
         </Container>
       )}
     </Form>

@@ -33,6 +33,8 @@ import { StaffList_staffUsers_edges_node } from "../../types/StaffList";
 
 import PropTypes from 'prop-types';
 
+import {Link} from 'react-router-dom'
+
 function TabPanel(props) {
   const { children, value, index } = props;
   return (
@@ -310,7 +312,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                       Bilal Asif
                   </TableCell>
                     <TableCell padding="dense">
-                      Order list
+                      <Link to="">View Order list</Link>
                   </TableCell>
                   </TableRow>
                   </TableBody>
