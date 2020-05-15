@@ -5,14 +5,14 @@ import useListSettings from "@saleor/hooks/useListSettings";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
 import usePaginator, {
-  createPaginationState
+  createPaginationState,
 } from "@saleor/hooks/usePaginator";
 import { useIntl } from "react-intl";
 
 import { newPasswordUrl } from "@saleor/auth/urls";
 import DeleteFilterTabDialog from "@saleor/components/DeleteFilterTabDialog";
 import SaveFilterTabDialog, {
-  SaveFilterTabDialogFormData
+  SaveFilterTabDialogFormData,
 } from "@saleor/components/SaveFilterTabDialog";
 import { APP_MOUNT_URI } from "@saleor/config";
 import { configurationMenuUrl } from "@saleor/configuration";
@@ -21,7 +21,7 @@ import { commonMessages } from "@saleor/intl";
 import { getMutationState, maybe } from "@saleor/misc";
 import { ListViews } from "@saleor/types";
 import StaffAddMemberDialog, {
-  FormData as AddStaffMemberForm
+  FormData as AddStaffMemberForm,
 } from "../../components/StaffAddMemberDialog";
 import StaffListPage from "../../components/StaffListPage";
 import { TypedStaffMemberAddMutation } from "../../mutations";
@@ -32,7 +32,7 @@ import {
   StaffListUrlDialog,
   StaffListUrlFilters,
   StaffListUrlQueryParams,
-  staffMemberDetailsUrl
+  staffMemberDetailsUrl,
 } from "../../urls";
 import {
   areFiltersApplied,
@@ -40,7 +40,7 @@ import {
   getActiveFilters,
   getFilterTabs,
   getFilterVariables,
-  saveFilterTab
+  saveFilterTab,
 } from "./filter";
 
 interface StaffListProps {
@@ -48,7 +48,7 @@ interface StaffListProps {
 }
 
 export const StaffList: React.StatelessComponent<StaffListProps> = ({
-  params
+  params,
 }) => {
   const navigate = useNavigator();
   const notify = useNotifier();
@@ -73,7 +73,7 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
       staffListUrl({
         ...getActiveFilters(params),
         ...filter,
-        activeTab: undefined
+        activeTab: undefined,
       })
     );
 
@@ -82,7 +82,7 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
       staffListUrl({
         ...params,
         action: undefined,
-        ids: undefined
+        ids: undefined,
       }),
       true
     );
@@ -92,7 +92,7 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
       staffListUrl({
         ...params,
         action,
-        ids
+        ids,
       })
     );
 
@@ -100,7 +100,7 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
     navigate(
       staffListUrl({
         activeTab: tab.toString(),
-        ...getFilterTabs()[tab - 1].data
+        ...getFilterTabs()[tab - 1].data,
       })
     );
   };
@@ -119,7 +119,7 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
   const queryVariables = React.useMemo(
     () => ({
       ...paginationState,
-      filter: getFilterVariables(params)
+      filter: getFilterVariables(params),
     }),
     [params]
   );
@@ -130,7 +130,7 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
         const handleStaffMemberAddSuccess = (data: StaffMemberAdd) => {
           if (data.staffCreate.errors.length === 0) {
             notify({
-              text: intl.formatMessage(commonMessages.savedChanges)
+              text: intl.formatMessage(commonMessages.savedChanges),
             });
             navigate(staffMemberDetailsUrl(data.staffCreate.user.id));
           }
@@ -149,16 +149,16 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
                       firstName: variables.firstName,
                       lastName: variables.lastName,
                       permissions: variables.fullAccess
-                        ? maybe(() => shop.permissions.map(perm => perm.code))
+                        ? maybe(() => shop.permissions.map((perm) => perm.code))
                         : undefined,
                       redirectUrl: urlJoin(
                         window.location.origin,
                         APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,
                         newPasswordUrl().replace(/\?/, "")
                       ),
-                      sendPasswordEmail: true
-                    }
-                  }
+                      sendPasswordEmail: true,
+                    },
+                  },
                 });
               const addTransitionState = getMutationState(
                 addStaffMemberData.called,
@@ -177,22 +177,22 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
                   <StaffListPage
                     currentTab={currentTab}
                     initialSearch={params.query || ""}
-                    onSearchChange={query => changeFilterField({ query })}
+                    onSearchChange={(query) => changeFilterField({ query })}
                     onAll={() => navigate(staffListUrl())}
                     onTabChange={handleTabChange}
                     onTabDelete={() => openModal("delete-search")}
                     onTabSave={() => openModal("save-search")}
-                    tabs={tabs.map(tab => tab.name)}
+                    tabs={tabs.map((tab) => tab.name)}
                     disabled={loading || addStaffMemberData.loading}
                     settings={settings}
                     pageInfo={pageInfo}
                     staffMembers={maybe(() =>
-                      data.staffUsers.edges.map(edge => edge.node)
+                      data.staffUsers.edges.map((edge) => edge.node)
                     )}
                     onAdd={() =>
                       navigate(
                         staffListUrl({
-                          action: "add"
+                          action: "add",
                         })
                       )
                     }
@@ -200,7 +200,8 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
                     onNextPage={loadNextPage}
                     onPreviousPage={loadPreviousPage}
                     onUpdateListSettings={updateListSettings}
-                    onRowClick={id => () => navigate(staffMemberDetailsUrl(id))}
+                    onRowClick={(id) => () =>
+                      navigate(staffMemberDetailsUrl(id))}
                   />
                   <StaffAddMemberDialog
                     confirmButtonState={addTransitionState}

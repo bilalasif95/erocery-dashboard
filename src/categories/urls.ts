@@ -7,7 +7,7 @@ import {
   Dialog,
   Filters,
   Pagination,
-  TabActionDialog
+  TabActionDialog,
 } from "../types";
 import { CategoryPageTab } from "./components/CategoryUpdatePage";
 
@@ -15,7 +15,7 @@ const categorySectionUrl = "/categories/";
 
 export const categoryListPath = categorySectionUrl;
 export enum CategoryListUrlFiltersEnum {
-  query = "query"
+  query = "query",
 }
 export type CategoryListUrlFilters = Filters<CategoryListUrlFiltersEnum>;
 export type CategoryListUrlDialog = "delete" | TabActionDialog;
