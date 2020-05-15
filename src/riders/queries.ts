@@ -3,7 +3,7 @@ import { TypedQuery } from "../queries";
 import { StaffList, StaffListVariables } from "./types/StaffList";
 import {
   StaffMemberDetails,
-  StaffMemberDetailsVariables
+  StaffMemberDetailsVariables,
 } from "./types/StaffMemberDetails";
 
 export const staffMemberFragment = gql`
@@ -34,9 +34,9 @@ const staffList = gql`
       id
       name
       city
-        orders{
-          totalCount
-        }
+      orders {
+        totalCount
+      }
     }
   }
 `;
@@ -52,11 +52,12 @@ export const staffMemberDetails = gql`
       cnic
       phone
       city
-          orders(first:2){
-        edges{
-          node{
+      orders(first: 2) {
+        edges {
+          node {
             id
-            totalBalance{
+            created
+            totalBalance {
               amount
               currency
             }
@@ -64,7 +65,7 @@ export const staffMemberDetails = gql`
             status
           }
         }
-        pageInfo{
+        pageInfo {
           hasNextPage
         }
       }

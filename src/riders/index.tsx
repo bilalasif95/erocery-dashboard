@@ -9,13 +9,13 @@ import {
   staffListPath,
   StaffListUrlQueryParams,
   staffMemberDetailsPath,
-  StaffMemberDetailsUrlQueryParams
+  StaffMemberDetailsUrlQueryParams,
 } from "./urls";
 import StaffDetailsComponent from "./views/StaffDetails";
 import StaffListComponent from "./views/StaffList";
 
 const StaffList: React.StatelessComponent<RouteComponentProps<{}>> = ({
-  location
+  location,
 }) => {
   const qs = parseQs(location.search.substr(1));
   const params: StaffListUrlQueryParams = qs;
@@ -25,16 +25,13 @@ const StaffList: React.StatelessComponent<RouteComponentProps<{}>> = ({
 interface StaffDetailsRouteProps {
   id: string;
 }
-const StaffDetails: React.StatelessComponent<
-  RouteComponentProps<StaffDetailsRouteProps>
-> = ({ match }) => {
-  const qs = parseQs(location.search.substr(1));
-  const params: StaffMemberDetailsUrlQueryParams = qs;
-
+const StaffDetails: React.StatelessComponent<RouteComponentProps<
+  StaffDetailsRouteProps
+>> = ({ match }) => {
   return (
     <StaffDetailsComponent
       id={decodeURIComponent(match.params.id)}
-      params={params}
+      params={"parms"}
     />
   );
 };
