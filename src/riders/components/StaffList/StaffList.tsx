@@ -379,7 +379,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                         </TableCell>
                         <TableCell
                           padding="dense"
-                          onClick={() => navigate(orderUrl(value.id))}
+                          onClick={() => navigate(orderUrl(value.node.id))}
                         >
                           <Link to="">View Order</Link>
                         </TableCell>
