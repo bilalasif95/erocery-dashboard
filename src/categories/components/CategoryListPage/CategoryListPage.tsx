@@ -53,12 +53,14 @@ export const CategoryListPage: React.StatelessComponent<CategoryTableProps> = ({
   return (
     <Container>
       <PageHeader title={intl.formatMessage(sectionNames.categories)}>
+      {window.localStorage.getItem("subshop") === "null" ? 
         <Button color="primary" variant="contained" onClick={onAdd}>
           <FormattedMessage
             defaultMessage="Create category"
             description="button"
           />
         </Button>
+        : "" }
       </PageHeader>
       <Card>
         <SearchBar

@@ -117,6 +117,7 @@ const TableHead = withStyles(styles, {
                 [classes.dragRows]: dragRows
               })}
             >
+              {window.localStorage.getItem("subshop") === "null" ?
               <Checkbox
                 className={classNames({
                   [classes.checkboxPartialSelect]:
@@ -126,6 +127,7 @@ const TableHead = withStyles(styles, {
                 disabled={disabled}
                 onChange={() => toggleAll(items, selected)}
               />
+              : ""}
             </TableCell>
           )}
           {selected ? (

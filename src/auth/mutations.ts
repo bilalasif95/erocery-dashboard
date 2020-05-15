@@ -37,6 +37,9 @@ export const tokenAuthMutation = gql`
       }
       user {
         ...User
+        subshop {
+          id
+        }
       }
     }
   }

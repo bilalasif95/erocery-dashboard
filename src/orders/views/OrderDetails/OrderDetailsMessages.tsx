@@ -4,6 +4,7 @@ import { useIntl } from "react-intl";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
 import { maybe } from "../../../misc";
+import { AssignOrder } from "../../types/AssignOrder";
 import { OrderAddNote } from "../../types/OrderAddNote";
 import { OrderCancel } from "../../types/OrderCancel";
 import { OrderCapture } from "../../types/OrderCapture";
@@ -29,6 +30,7 @@ interface OrderDetailsMessages {
     handleDraftFinalize: (data: OrderDraftFinalize) => void;
     handleDraftUpdate: (data: OrderDraftUpdate) => void;
     handleNoteAdd: (data: OrderAddNote) => void;
+    onAssignOrder: (data: AssignOrder) => void;
     handleOrderCancel: (data: OrderCancel) => void;
     handleOrderFulfillmentCancel: (data: OrderFulfillmentCancel) => void;
     handleOrderFulfillmentCreate: (data: OrderCreateFulfillment) => void;
@@ -165,6 +167,21 @@ export const OrderDetailsMessages: React.StatelessComponent<
       pushMessage({
         text: intl.formatMessage({
           defaultMessage: "Could not add note"
+        })
+      });
+    }
+  };
+  const onAssignOrder = (data: AssignOrder) => {
+    if (!maybe(() => data.orderAssignRider.errors.length)) {
+      pushMessage({
+        text: intl.formatMessage({
+          defaultMessage: "Rider assigned successfully"
+        })
+      });
+    } else {
+      pushMessage({
+        text: intl.formatMessage({
+          defaultMessage: "Could not assign rider"
         })
       });
     }
@@ -319,6 +336,7 @@ export const OrderDetailsMessages: React.StatelessComponent<
     handlePaymentCapture,
     handlePaymentRefund,
     handleShippingMethodUpdate,
-    handleUpdate
+    handleUpdate,
+    onAssignOrder
   });
 };

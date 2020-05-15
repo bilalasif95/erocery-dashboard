@@ -13,6 +13,7 @@ import discountsIcon from "@assets/images/menu-discounts-icon.svg";
 import homeIcon from "@assets/images/menu-home-icon.svg";
 import ordersIcon from "@assets/images/menu-orders-icon.svg";
 import translationIcon from "@assets/images/menu-translation-icon.svg";
+import rider from "@assets/images/Rider.svg";
 import { commonMessages, sectionNames } from "@saleor/intl";
 import { IntlShape } from "react-intl";
 
@@ -30,7 +31,7 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
     {
       ariaLabel: "home",
       icon: homeIcon,
-      label: intl.formatMessage(sectionNames.home),
+      label: window.localStorage.getItem("subshop") === "null" ? intl.formatMessage(sectionNames.home) : "SHOP",
       url: "/"
     },
     {
@@ -54,7 +55,7 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       ],
       icon: catalogIcon,
       label: intl.formatMessage(commonMessages.catalog),
-      permission: PermissionEnum.MANAGE_PRODUCTS
+      permission: window.localStorage.getItem("subshop") === "null" ? PermissionEnum.MANAGE_PRODUCTS : PermissionEnum.VIEW_PRODUCT
     },
     {
       ariaLabel: "orders",
@@ -85,9 +86,9 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
     },
     {
       ariaLabel: "rider",
-      icon: homeIcon,
+      icon: rider,
       label: intl.formatMessage(sectionNames.rider),
-      permission: PermissionEnum.MANAGE_USERS,
+      permission: PermissionEnum.VIEW_RIDER,
       url: "/riderlist"
     },
     {
@@ -119,6 +120,7 @@ function createMenuStructure(intl: IntlShape): IMenuItem[] {
       ariaLabel: "shop",
       icon: homeIcon,
       label: intl.formatMessage(sectionNames.shop),
+      permission: PermissionEnum.MANAGE_SUBSHOPS,
       url: "/shop"
     }
   ];

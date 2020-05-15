@@ -137,7 +137,6 @@ const App: React.FC = () => {
 
 const Routes: React.FC = () => {
   const intl = useIntl();
-
   return (
     <>
       <WindowTitle title={intl.formatMessage(commonMessages.dashboard)} />
@@ -153,12 +152,12 @@ const Routes: React.FC = () => {
             <Switch>
               <SectionRoute exact path="/" component={HomePage} />
               <SectionRoute
-                permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                permissions={[window.localStorage.getItem("subshop") === "null" ? PermissionEnum.MANAGE_PRODUCTS : PermissionEnum.VIEW_PRODUCT]}
                 path="/categories"
                 component={CategorySection}
               />
               <SectionRoute
-                permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                permissions={[window.localStorage.getItem("subshop") === "null" ? PermissionEnum.MANAGE_PRODUCTS : PermissionEnum.VIEW_PRODUCT]}
                 path="/collections"
                 component={CollectionSection}
               />
@@ -188,12 +187,12 @@ const Routes: React.FC = () => {
                 component={OrdersSection}
               />
               <SectionRoute
-                permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                permissions={[window.localStorage.getItem("subshop") === "null" ? PermissionEnum.MANAGE_PRODUCTS : PermissionEnum.VIEW_PRODUCT]}
                 path="/products"
                 component={ProductSection}
               />
               <SectionRoute
-                permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                permissions={[window.localStorage.getItem("subshop") === "null" ? PermissionEnum.MANAGE_PRODUCTS : PermissionEnum.VIEW_PRODUCT]}
                 path="/product-types"
                 component={ProductTypesSection}
               />
@@ -223,12 +222,12 @@ const Routes: React.FC = () => {
                 component={TranslationsSection}
               />
               <SectionRoute
-                // permissions={[PermissionEnum.MANAGE_TRANSLATIONS]}
+                permissions={[PermissionEnum.MANAGE_SUBSHOPS]}
                 path="/shop"
                 component={ShopSection}
               />
                 <SectionRoute
-                // permissions={[PermissionEnum.MANAGE_TRANSLATIONS]}
+                permissions={[PermissionEnum.VIEW_RIDER]}
                 path="/riderlist"
                 component={RiderListSection}
               />
@@ -243,7 +242,7 @@ const Routes: React.FC = () => {
                 component={NavigationSection}
               />
               <SectionRoute
-                permissions={[PermissionEnum.MANAGE_PRODUCTS]}
+                permissions={[window.localStorage.getItem("subshop") === "null" ? PermissionEnum.MANAGE_PRODUCTS : PermissionEnum.VIEW_PRODUCT]}
                 path={attributeSection}
                 component={AttributeSection}
               />

@@ -60,6 +60,10 @@ interface CategoryListProps extends ListProps, ListActions {
 
 const numberOfColumns = 4;
 
+const disabledRow = (e) => {
+  e.preventDefault();
+}
+
 const CategoryList = withStyles(styles, { name: "CategoryList" })(
   ({
     categories,
@@ -129,19 +133,21 @@ const CategoryList = withStyles(styles, { name: "CategoryList" })(
               <TableRow
                 className={classes.tableRow}
                 hover={!!category}
-                onClick={category ? onRowClick(category.id) : undefined}
+                onClick={window.localStorage.getItem("subshop") === "null" ? category ? onRowClick(category.id) : undefined : disabledRow}
                 key={category ? category.id : "skeleton"}
                 selected={isSelected}
                 data-tc="id"
                 data-tc-id={maybe(() => category.id)}
               >
                 <TableCell padding="checkbox">
+                  {window.localStorage.getItem("subshop") === "null" ?
                   <Checkbox
                     checked={isSelected}
                     disabled={disabled}
                     disableClickPropagation
                     onChange={() => toggle(category.id)}
                   />
+                  : "" }
                 </TableCell>
                 <TableCell className={classes.colName} data-tc="name">
                   {category && category.name ? category.name : <Skeleton />}

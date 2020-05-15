@@ -6,6 +6,7 @@ import {
   fragmentOrderDetails,
   fragmentOrderEvent
 } from "./queries";
+import { AssignOrder, AssignOrderVariables } from "./types/AssignOrder";
 import { OrderAddNote, OrderAddNoteVariables } from "./types/OrderAddNote";
 import {
   OrderBulkCancel,
@@ -310,6 +311,25 @@ export const TypedOrderAddNoteMutation = TypedMutation<
   OrderAddNote,
   OrderAddNoteVariables
 >(orderAddNoteMutation);
+
+const assignOrderMutation = gql`
+  mutation AssignOrder($orderid:String!,$riderid:String!) {
+    orderAssignRider(input:{ orderid: $orderid, riderid: $riderid }) {
+      order{
+          id
+          status
+      } 
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;
+export const TypedAssignOrderMutation = TypedMutation<
+  AssignOrder,
+  AssignOrderVariables
+>(assignOrderMutation);
 
 const orderUpdateMutation = gql`
   ${fragmentAddress}

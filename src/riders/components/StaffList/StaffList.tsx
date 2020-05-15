@@ -25,7 +25,7 @@ import React from "react";
 import {
   // getUserInitials,
   // getUserName,
-  // maybe,
+  maybe,
   renderCollection
 } from "@saleor/misc";
 import { ListProps } from "@saleor/types";
@@ -184,12 +184,14 @@ const styles = (theme: Theme) =>
 
 interface StaffListProps extends ListProps, WithStyles<typeof styles> {
   staffMembers: StaffList_staffUsers_edges_node[];
+  subshops: StaffList_staffUsers_edges_node[];
 }
 
 const StaffList = withStyles(styles, { name: "StaffList" })(
   ({
     classes,
-    staffMembers
+    staffMembers,
+    subshops
   }: StaffListProps) => {
     const [value, setValue] = React.useState(0);
     const handleChange = (newValue) => {
@@ -231,7 +233,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                   </TableCell>
                   </TableRow>
                 </TableHead>
-                {renderCollection(
+                {window.localStorage.getItem("subshop") === "null" ? renderCollection(
                   staffMembers,
                   staffMember => (
                     <TableBody>
@@ -256,7 +258,35 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                       </TableCell>
                       </TableRow>
                       </TableBody>
-                      ))}
+                      ))
+                    : 
+                    renderCollection(
+                      staffMembers,
+                      staffMember => (
+                        <TableBody>
+                          <TableRow>
+                            <TableCell padding="dense">
+                              {staffMember && staffMember.node.name}
+                          </TableCell>
+                            <TableCell padding="dense">
+                            {staffMember && staffMember.node.id}
+                          </TableCell>
+                            <TableCell padding="dense">
+                            {staffMember && staffMember.node.phone}
+                          </TableCell>
+                            <TableCell padding="dense">
+                            {staffMember && staffMember.node.cnic}
+                          </TableCell>
+                            <TableCell padding="dense">
+                            {staffMember && staffMember.node.city}
+                          </TableCell>
+                            <TableCell padding="dense">
+                              Order Assigned
+                          </TableCell>
+                          </TableRow>
+                          </TableBody>
+                          ))
+                    }
               </Table>
 
             </div>
@@ -289,31 +319,70 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                   </TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                <TableRow>
-                    <TableCell padding="dense">
-                      000001234
-                  </TableCell>
-                    <TableCell padding="dense">
-                      04-07-2020
-                  </TableCell>
-                    <TableCell padding="dense">
-                      3rd Floor
-                  </TableCell>
-                    <TableCell padding="dense">
-                      Rs. 1200.00
-                  </TableCell>
-                    <TableCell padding="dense">
-                      <button className={classes.btnPending}>Pending</button>
-                    </TableCell>
-                    <TableCell padding="dense">
-                      Bilal Asif
-                  </TableCell>
-                    <TableCell padding="dense">
-                      Order list
-                  </TableCell>
-                  </TableRow>
-                  </TableBody>
+                {window.localStorage.getItem("subshop") === "null" ? renderCollection(
+                  subshops,
+                  staffMember => (maybe(() =>
+                    staffMember.orders.edges.map((value) => {
+                    return (
+                    <TableBody>
+                    <TableRow>
+                      <TableCell padding="dense">
+                          {value.node.number}
+                      </TableCell>
+                        <TableCell padding="dense">
+                          {value.node.created}
+                      </TableCell>
+                        <TableCell padding="dense">
+                          {value.node.userEmail}
+                      </TableCell>
+                        <TableCell padding="dense">
+                          {value.node.total.net.currency}.{value.node.total.net.amount}
+                      </TableCell>
+                        <TableCell padding="dense">
+                          <button className={classes.btnPending}>{value.node.status}</button>
+                        </TableCell>
+                        <TableCell padding="dense">
+                          {value.node.rider.name}
+                      </TableCell>
+                        <TableCell padding="dense">
+                          Order list
+                      </TableCell>
+                      </TableRow>
+                      </TableBody>
+                    )}
+                    ))
+                   ))
+                   :
+                   renderCollection(
+                    subshops,
+                    value => (
+                      <TableBody>
+                      <TableRow>
+                        <TableCell padding="dense">
+                            {value && value.node.number}
+                        </TableCell>
+                          <TableCell padding="dense">
+                            {value && value.node.created}
+                        </TableCell>
+                          <TableCell padding="dense">
+                            {value && value.node.userEmail}
+                        </TableCell>
+                          <TableCell padding="dense">
+                            {value && value.node.total.net.currency}.{value && value.node.total.net.amount}
+                        </TableCell>
+                          <TableCell padding="dense">
+                            <button className={classes.btnPending}>{value && value.node.status}</button>
+                          </TableCell>
+                          <TableCell padding="dense">
+                            {value && value.node.rider.name}
+                        </TableCell>
+                          <TableCell padding="dense">
+                            Order list
+                        </TableCell>
+                        </TableRow>
+                        </TableBody>
+                     ))
+                   }
               </Table>
             </div>
           </TabPanel>

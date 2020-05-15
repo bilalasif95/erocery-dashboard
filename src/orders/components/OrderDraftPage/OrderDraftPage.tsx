@@ -150,6 +150,8 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
               loading={usersLoading}
               order={order}
               users={users}
+              riders={[]}
+              onSubmit={() => null}
               userPermissions={userPermissions}
               onBillingAddressEdit={onBillingAddressEdit}
               onCustomerEdit={onCustomerEdit}

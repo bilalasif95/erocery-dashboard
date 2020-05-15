@@ -428,6 +428,10 @@ export const permissions: ShopInfo_shop_permissions[] = [
     name: "Manage staff."
   },
   {
+    code: PermissionEnum.MANAGE_SUBSHOPS,
+    name: "Manage_subshops"
+  },
+  {
     code: PermissionEnum.MANAGE_USERS,
     name: "Manage customers."
   },
@@ -442,6 +446,10 @@ export const permissions: ShopInfo_shop_permissions[] = [
   {
     code: PermissionEnum.MANAGE_WEBHOOKS,
     name: "Manage webhooks."
+  },
+  {
+    code: PermissionEnum.VIEW_RIDER,
+    name: "Can view rider"
   }
 ].map(perm => ({
   __typename: "PermissionDisplay" as "PermissionDisplay",

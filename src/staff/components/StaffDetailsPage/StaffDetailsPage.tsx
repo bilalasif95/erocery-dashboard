@@ -85,9 +85,11 @@ const StaffDetailsPage: React.StatelessComponent<StaffDetailsPageProps> = ({
     <Form initial={initialForm} onSubmit={onSubmit} confirmLeave>
       {({ data, change, hasChanged, submit }) => (
         <Container>
+          {window.localStorage.getItem("subshop") === "null" ? 
           <AppHeader onBack={onBack}>
             {intl.formatMessage(sectionNames.staff)}
           </AppHeader>
+          : ""}
           <PageHeader title={getUserName(staffMember)} />
           <Grid>
             <div>

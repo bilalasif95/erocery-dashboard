@@ -257,6 +257,9 @@ export interface OrderDetails_order {
   totalCaptured: OrderDetails_order_totalCaptured | null;
   user: OrderDetails_order_user | null;
   userEmail: string | null;
+  rider: {
+    name: string;
+  }
   availableShippingMethods: (OrderDetails_order_availableShippingMethods | null)[] | null;
 }
 

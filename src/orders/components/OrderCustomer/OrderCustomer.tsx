@@ -1,6 +1,13 @@
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import Grow from "@material-ui/core/Grow";
+import IconButton from "@material-ui/core/IconButton";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/MenuList";
+import Paper from "@material-ui/core/Paper";
+import Popper from "@material-ui/core/Popper";
 import {
   createStyles,
   Theme,
@@ -8,6 +15,8 @@ import {
   WithStyles
 } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import AddIcon from "@material-ui/icons/Add";
+import EditIcon from "@material-ui/icons/Edit";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
@@ -28,11 +37,16 @@ import { PermissionEnum } from "@saleor/types/globalTypes";
 import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
 import { SearchCustomers_search_edges_node } from "../../../containers/SearchCustomers/types/SearchCustomers";
 import { customerUrl } from "../../../customers/urls";
-import { createHref, maybe } from "../../../misc";
+import { createHref, maybe,renderCollection } from "../../../misc";
 import { OrderDetails_order } from "../../types/OrderDetails";
+
+import { StaffList_staffUsers_edges_node } from "../../../riders/types/StaffList";
 
 const styles = (theme: Theme) =>
   createStyles({
+    popover: {
+      zIndex: 1
+    },
     root: {
       ...theme.typography.body2,
       lineHeight: 1.9,
@@ -58,13 +72,17 @@ const styles = (theme: Theme) =>
     userEmail: {
       fontWeight: 600 as 600,
       marginBottom: theme.spacing.unit
-    }
+    },
+    userMenuItem: {
+      textAlign: "right"
+    },
   });
 
 export interface OrderCustomerProps
   extends Partial<FetchMoreProps>,
     UserPermissionProps {
   order: OrderDetails_order;
+  riders: StaffList_staffUsers_edges_node[];
   users?: SearchCustomers_search_edges_node[];
   loading?: boolean;
   canEditAddresses: boolean;
@@ -74,6 +92,7 @@ export interface OrderCustomerProps
   onProfileView: () => void;
   onBillingAddressEdit?: () => void;
   onShippingAddressEdit?: () => void;
+  onSubmit(event: React.FormEvent<any>);
 }
 
 const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
@@ -86,7 +105,9 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
     loading,
     order,
     users,
+    riders,
     userPermissions,
+    onSubmit,
     onCustomerEdit,
     onBillingAddressEdit,
     onFetchMore: onFetchMoreUsers,
@@ -94,7 +115,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
     onShippingAddressEdit
   }: OrderCustomerProps & WithStyles<typeof styles>) => {
     const intl = useIntl();
-
+    const anchor = React.useRef<HTMLDivElement>();
     const user = maybe(() => order.user);
     const userEmail = maybe(()=>order.userEmail)
 
@@ -102,11 +123,15 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
       maybe(() => user.email, "")
     );
     const [isInEditMode, setEditModeStatus] = React.useState(false);
+    const [rider, setRider] = React.useState(order && order.rider === null ? "Not Assigned Yet" : order && order.rider.name);
     const toggleEditMode = () => setEditModeStatus(!isInEditMode);
-
+    const [isMenuOpened, setMenuState] = React.useState(false);
     const billingAddress = maybe(() => order.billingAddress);
     const shippingAddress = maybe(() => order.shippingAddress);
-
+    const submit = e => {
+      // reset();
+      onSubmit(e);
+    };
     return (
       <>
       <Card>
@@ -116,12 +141,74 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
             description: "section header"
           })}
           toolbar={
-                <Button
-                  color="primary"
-                  variant="text"
-                >
-                  {intl.formatMessage(buttonMessages.edit)}
-                </Button>
+            <>
+            <IconButton onClick={() => setMenuState(!isMenuOpened)}>
+            {order && order.rider === null ?
+              <AddIcon color="primary" />
+              : <EditIcon color="primary" /> }
+            </IconButton>
+            <Popper
+            className={classes.popover}
+            open={isMenuOpened}
+            anchorEl={anchor.current}
+            transition
+            disablePortal
+            placement="bottom-end"
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin:
+                    placement === "bottom"
+                      ? "right top"
+                      : "right bottom"
+                }}
+              >
+                <Paper>
+                  <ClickAwayListener
+                    onClickAway={() =>
+                      setMenuState(false)
+                    }
+                    mouseEvent="onClick"
+                  >
+                    <Menu>
+                    {window.localStorage.getItem("subshop") === "null" ? 
+                    renderCollection(
+                      riders,
+                      rid =>
+                      <MenuItem
+                        className={classes.userMenuItem}
+                        onClick={()=> {
+                          setRider(rid && rid.name)
+                          order.lines.push(rid && rid.id)
+                          setMenuState(false)
+                        }}
+                      >
+                        {rid && rid.name}
+                      </MenuItem>
+                    )
+                    : renderCollection(
+                      riders,
+                      rid =>
+                      <MenuItem
+                        className={classes.userMenuItem}
+                        onClick={()=> {
+                          setRider(rid && rid.node.name)
+                          order.lines.push(rid && rid.node.id)
+                          setMenuState(false)
+                        }}
+                      >
+                        {rid && rid.node.name}
+                      </MenuItem>
+                    )}
+                    </Menu>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+          </>
           }
         />
         <CardContent>
@@ -146,7 +233,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                   />
                 </td>
                 <td className={classes.textRight}>
-                  Not Assigned yet
+                  {rider}
                 </td>
               </tr>
               <tr>
@@ -177,12 +264,23 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
               </tr>
             </tbody>
           </table>
+          {order && order.rider === null ?
           <Button
             color="primary"
             variant="contained"
+            onClick={e => submit(e)}
           >
             Assign Order
           </Button>
+          :  
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={e => submit(e)}
+          >
+            Update
+          </Button>
+          }
         </CardContent>
       </Card>
       <Card>

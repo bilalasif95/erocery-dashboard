@@ -82,6 +82,7 @@ class AuthProvider extends React.Component<
     }
     if (tokenAuthOpts.data) {
       const user = tokenAuthOpts.data.tokenCreate.user;
+      window.localStorage.setItem("subshop",tokenAuthOpts.data.tokenCreate.user && tokenAuthOpts.data.tokenCreate.user.subshop && tokenAuthOpts.data.tokenCreate.user.subshop.id)
       // FIXME: Now we set state also when auth fails and returned user is
       // `null`, because the LoginView uses this `null` to display error.
       this.setState({ user });

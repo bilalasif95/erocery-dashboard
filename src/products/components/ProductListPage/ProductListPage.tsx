@@ -168,6 +168,8 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
             onSave={handleSave}
           />
         </Grid>
+        {window.localStorage.getItem("subshop") === "null" ?
+        <>
         <Grid item md={3} sm={6} xs={6} className={classes.textAlign}>
           <Button
             onClick={() => navigate(productBulkUrl)}
@@ -196,6 +198,8 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
             />
           </Button>
         </Grid>
+        </>
+        : "" }
       </Grid>
       {/* <PageHeader title={intl.formatMessage(sectionNames.products)} className={classes.pageTitle}>
 

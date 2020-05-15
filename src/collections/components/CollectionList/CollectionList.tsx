@@ -71,7 +71,9 @@ const CollectionList = withStyles(styles, { name: "CollectionList" })(
     toolbar
   }: CollectionListProps) => {
     const intl = useIntl();
-
+    const disabledRow = (e) => {
+      e.preventDefault();
+    }
     return (
       <Table>
         <TableHead
@@ -119,19 +121,21 @@ const CollectionList = withStyles(styles, { name: "CollectionList" })(
                 <TableRow
                   className={classes.tableRow}
                   hover={!!collection}
-                  onClick={collection ? onRowClick(collection.id) : undefined}
+                  onClick={window.localStorage.getItem("subshop") === "null" ? collection ? onRowClick(collection.id) : undefined : disabledRow}
                   key={collection ? collection.id : "skeleton"}
                   selected={isSelected}
                   data-tc="id"
                   data-tc-id={maybe(() => collection.id)}
                 >
                   <TableCell padding="checkbox">
+                    {window.localStorage.getItem("subshop") === "null" ?
                     <Checkbox
                       checked={isSelected}
                       disabled={disabled}
                       disableClickPropagation
                       onChange={() => toggle(collection.id)}
                     />
+                    : ""}
                   </TableCell>
                   <TableCell className={classes.colName} data-tc="name">
                     {maybe<React.ReactNode>(

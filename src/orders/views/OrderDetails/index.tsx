@@ -113,6 +113,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                       orderMessages.handleOrderFulfillmentCreate
                     }
                     onNoteAdd={orderMessages.handleNoteAdd}
+                    onAssignOrder={orderMessages.onAssignOrder}
                     onOrderCancel={orderMessages.handleOrderCancel}
                     onOrderVoid={orderMessages.handleOrderVoid}
                     onPaymentCapture={orderMessages.handlePaymentCapture}
@@ -137,6 +138,7 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                   >
                     {({
                       orderAddNote,
+                      OrderAssignRider,
                       orderCancel,
                       orderCreateFulfillment,
                       orderDraftUpdate,
@@ -177,6 +179,12 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                   orderAddNote.mutate({
                                     input: variables,
                                     order: id
+                                  })
+                                }
+                                onAssignOrder={variables =>
+                                  OrderAssignRider.mutate({
+                                    orderid: variables.message,
+                                    riderid: order.lines[order.lines.length-1]
                                   })
                                 }
                                 onBack={() => navigate(orderListUrl())}

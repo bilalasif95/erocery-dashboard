@@ -42,6 +42,7 @@ const CollectionListPage: React.StatelessComponent<CollectionListPageProps> = ({
   return (
     <Container>
       <PageHeader title={intl.formatMessage(sectionNames.collections)}>
+      {window.localStorage.getItem("subshop") === "null" ?
         <Button
           color="primary"
           disabled={disabled}
@@ -53,6 +54,7 @@ const CollectionListPage: React.StatelessComponent<CollectionListPageProps> = ({
             description="button"
           />
         </Button>
+        : "" }
       </PageHeader>
       <Card>
         <SearchBar

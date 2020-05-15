@@ -133,7 +133,9 @@ export const ProductList = withStyles(styles, { name: "ProductList" })(
       isAttributeColumnValue
     );
     const numberOfColumns = 2 + settings.columns.length;
-
+    const disabledRow = (e) => {
+      e.preventDefault();
+    }
     return (
       <div className={classes.tableContainer}>
         <Table className={classes.table}>
@@ -296,19 +298,21 @@ export const ProductList = withStyles(styles, { name: "ProductList" })(
                     selected={isSelected}
                     hover={!!product}
                     key={product ? product.id : "skeleton"}
-                    onClick={product && onRowClick(product.id)}
+                    onClick={window.localStorage.getItem("subshop") === "null" ? product && onRowClick(product.id) : disabledRow}
                     className={classes.link}
                     data-tc="id"
                     data-tc-id={maybe(() => product.id)}
                   >
                     <TableCell padding="checkbox">
+                    {window.localStorage.getItem("subshop") === "null" ?
                       <Checkbox
                         checked={isSelected}
                         disabled={disabled}
                         disableClickPropagation
                         onChange={() => toggle(product.id)}
                       />
-                    </TableCell>
+                    : ""}
+                     </TableCell>
                     <TableCellAvatar
                       className={classes.colName}
                       thumbnail={maybe(() => product.thumbnail.url)}

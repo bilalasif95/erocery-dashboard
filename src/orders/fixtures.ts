@@ -956,6 +956,9 @@ export const order = (placeholder: string): OrderDetails_order => ({
   ],
   number: "9",
   paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
+  rider: {
+    name: "",
+  },
   shippingAddress: {
     __typename: "Address",
     city: "West Patriciastad",
@@ -1087,6 +1090,9 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
   ],
   number: "24",
   paymentStatus: null,
+  rider: {
+    name: "",
+  },
   shippingAddress: null,
   shippingMethod: null,
   shippingMethodName: null,

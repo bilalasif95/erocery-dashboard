@@ -8,9 +8,12 @@ import { Container } from "@saleor/components/Container";
 import PageHeader from "@saleor/components/PageHeader";
 // import SearchBar from "@saleor/components/SearchBar";
 import { sectionNames } from "@saleor/intl";
+import { maybe } from "@saleor/misc";
 import { ListProps, SearchPageProps, TabPageProps } from "@saleor/types";
 import { StaffList_staffUsers_edges_node } from "../../types/StaffList";
 import StaffList from "../StaffList/StaffList";
+
+import { TypedStaffffListQuery,TypedStafffListQuery } from "../../queries";
 
 export interface StaffListPageProps
   extends ListProps,
@@ -35,18 +38,46 @@ const StaffListPage: React.StatelessComponent<StaffListPageProps> = ({
   ...listProps
 }) => {
   const intl = useIntl();
-
+  const id = window.localStorage.getItem("subshop");
   return (
     <Container>
       <PageHeader title={intl.formatMessage(sectionNames.rider)}>
+        {window.localStorage.getItem("subshop") === "null" ? 
         <Button color="primary" variant="contained" onClick={onAdd}>
           <FormattedMessage
             defaultMessage="Add Rider"
             description="button"
           />
         </Button>
+        : ""}
       </PageHeader>
-      <StaffList {...listProps} />
+      {window.localStorage.getItem("subshop") === "null" ? 
+      <TypedStafffListQuery>
+      {({ data }) => {
+        return (
+          <StaffList 
+            {...listProps}
+            subshops={maybe(() =>
+              data.subshops.map(edge => edge)
+            )}
+          />
+          );
+        }}
+      </TypedStafffListQuery>
+      :
+      <TypedStaffffListQuery variables={{ id }} >
+      {({ data }) => {
+        return (
+          <StaffList 
+            {...listProps}
+            subshops={maybe(() =>
+              data.subshop.orders.edges.map(edge => edge)
+            )}
+          />
+          );
+        }}
+      </TypedStaffffListQuery>
+      }
       {/* <Card>
         <SearchBar
           allTabLabel={intl.formatMessage({

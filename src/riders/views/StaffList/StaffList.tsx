@@ -25,7 +25,7 @@ import StaffAddMemberDialog, {
 } from "../../components/StaffAddMemberDialog";
 import StaffListPage from "../../components/StaffListPage";
 import { TypedStaffMemberAddMutation } from "../../mutations";
-import { TypedStaffListQuery,TypedStaffMemberDetailsQuery } from "../../queries";
+import { TypedStaffffListQuery,TypedStaffListQuery,TypedStaffMemberDetailsQuery } from "../../queries";
 import { StaffMemberAdd } from "../../types/StaffMemberAdd";
 import {
   staffListUrl,
@@ -119,11 +119,12 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
   const queryVariables = React.useMemo(
     () => ({
       ...paginationState,
-      filter: getFilterVariables(params)
+      filter: getFilterVariables(params),
+      id
     }),
     [params]
   );
-
+  const id = window.localStorage.getItem("subshop");
   return (
     <TypedStaffListQuery displayLoader variables={queryVariables}>
       {({ data, loading }) => {
@@ -166,6 +167,7 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
 
               return (
                 <>
+                {window.localStorage.getItem("subshop") === "null" ? 
                   <TypedStaffMemberDetailsQuery>
                     {({ data }) => {
                       return (
@@ -200,6 +202,42 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
                       );
                     }}
                   </TypedStaffMemberDetailsQuery>
+                  :
+                  <TypedStaffffListQuery variables={{ id }} >
+                  {({ data }) => {
+                    return (
+                      <StaffListPage
+                        currentTab={currentTab}
+                        initialSearch={params.query || ""}
+                        onSearchChange={query => changeFilterField({ query })}
+                        onAll={() => navigate(staffListUrl())}
+                        onTabChange={handleTabChange}
+                        onTabDelete={() => openModal("delete-search")}
+                        onTabSave={() => openModal("save-search")}
+                        tabs={tabs.map(tab => tab.name)}
+                        disabled={loading || addStaffMemberData.loading}
+                        settings={settings}
+                        pageInfo={pageInfo}
+                        staffMembers={maybe(() =>
+                          data.subshop.riders.edges.map(edge => edge)
+                        )}
+                        onAdd={() =>
+                          navigate(
+                            staffListUrl({
+                              action: "add"
+                            })
+                          )
+                        }
+                        onBack={() => navigate(configurationMenuUrl)}
+                        onNextPage={loadNextPage}
+                        onPreviousPage={loadPreviousPage}
+                        onUpdateListSettings={updateListSettings}
+                        onRowClick={id => () => navigate(staffMemberDetailsUrl(id))}
+                      />
+                    );
+                  }}
+                </TypedStaffffListQuery>
+                }
                   <StaffAddMemberDialog
                     staffMembers={maybe(() =>
                       data.subshops.map(edge => edge)

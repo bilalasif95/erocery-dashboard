@@ -19,7 +19,9 @@ const props: Omit<OrderCustomerProps, "classes"> = {
   onCustomerEdit: undefined,
   onProfileView: () => undefined,
   onShippingAddressEdit: undefined,
+  onSubmit: () => undefined,
   order,
+  riders: [],
   userPermissions: permissions,
   users: clients
 };

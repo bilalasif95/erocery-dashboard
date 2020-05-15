@@ -333,7 +333,7 @@ const MenuList = withStyles(styles, { name: "MenuList" })(
             </a>
           );
         })}
-        {renderConfigure && configutationMenu.length > 0 && (
+        {renderConfigure && configutationMenu.length > 0 && window.localStorage.getItem("subshop") === "null" && (
           <a
             className={classes.menuListItem}
             href={createHref(configurationMenuUrl)}

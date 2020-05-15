@@ -3,6 +3,7 @@ import React from "react";
 import { getMutationProviderData } from "../../misc";
 import { PartialMutationProviderOutput } from "../../types";
 import {
+  TypedAssignOrderMutation,
   TypedOrderAddNoteMutation,
   TypedOrderCancelMutation,
   TypedOrderCaptureMutation,
@@ -21,6 +22,7 @@ import {
   TypedOrderUpdateMutation,
   TypedOrderVoidMutation
 } from "../mutations";
+import { AssignOrder, AssignOrderVariables } from "../types/AssignOrder";
 import { OrderAddNote, OrderAddNoteVariables } from "../types/OrderAddNote";
 import { OrderCancel, OrderCancelVariables } from "../types/OrderCancel";
 import { OrderCapture, OrderCaptureVariables } from "../types/OrderCapture";
@@ -76,6 +78,10 @@ interface OrderOperationsProps {
       OrderAddNote,
       OrderAddNoteVariables
     >;
+    OrderAssignRider: PartialMutationProviderOutput<
+      AssignOrder,
+      AssignOrderVariables
+    >; 
     orderCancel: PartialMutationProviderOutput<
       OrderCancel,
       OrderCancelVariables
@@ -145,6 +151,7 @@ interface OrderOperationsProps {
   onOrderVoid: (data: OrderVoid) => void;
   onOrderMarkAsPaid: (data: OrderMarkAsPaid) => void;
   onNoteAdd: (data: OrderAddNote) => void;
+  onAssignOrder: (data: AssignOrder) => void;
   onPaymentCapture: (data: OrderCapture) => void;
   onPaymentRefund: (data: OrderRefund) => void;
   onUpdate: (data: OrderUpdate) => void;
@@ -162,6 +169,7 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
   onDraftUpdate,
   onOrderFulfillmentCreate,
   onNoteAdd,
+  onAssignOrder,
   onOrderCancel,
   onOrderLinesAdd,
   onOrderLineDelete,
@@ -191,6 +199,8 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                     {(...createFulfillment) => (
                       <TypedOrderAddNoteMutation onCompleted={onNoteAdd}>
                         {(...addNote) => (
+                        <TypedAssignOrderMutation onCompleted={onAssignOrder}>
+                          {(...assignOrder) => (
                           <TypedOrderUpdateMutation onCompleted={onUpdate}>
                             {(...update) => (
                               <TypedOrderDraftUpdateMutation
@@ -252,6 +262,9 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                                                                       ...markAsPaid
                                                                     ) =>
                                                                       children({
+                                                                        OrderAssignRider: getMutationProviderData(
+                                                                          ...assignOrder
+                                                                        ),
                                                                         orderAddNote: getMutationProviderData(
                                                                           ...addNote
                                                                         ),
@@ -326,6 +339,8 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                               </TypedOrderDraftUpdateMutation>
                             )}
                           </TypedOrderUpdateMutation>
+                        )}
+                        </TypedAssignOrderMutation>
                         )}
                       </TypedOrderAddNoteMutation>
                     )}

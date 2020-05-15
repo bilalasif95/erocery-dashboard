@@ -19,6 +19,7 @@ const order = orderFixture(placeholderImage);
 
 const props: Omit<OrderDetailsPageProps, "classes"> = {
   countries,
+  onAssignOrder: () => undefined,
   onBack: () => undefined,
   onBillingAddressEdit: undefined,
   onFulfillmentCancel: () => undefined,

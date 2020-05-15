@@ -15,17 +15,53 @@ export interface StaffList_staffUsers_edges_node_avatar {
 
 export interface OrderCountableConnection {
   __typename: "OrderCountableConnection";
+  edges: StaffList_staffUsers_edges[];
   totalCount: Number;
 }
 
 export interface StaffList_staffUsers_edges_node {
   __typename: "SubShop";
-  id: string;
+  id: any;
   city: string;
   name: string;
   cnic: string;
   phone: string;
+  node: {
+    id: any;
+    city: string;
+    name: string;
+    cnic: string;
+    phone: string;
+    created: string;
+    number: string;
+    userEmail: string;
+    status: string;
+    rider: {
+      phone: string;
+      name: string;
+    }
+    total: {
+      net: {
+        amount: string;
+        currency: string;
+      }
+    }
+  }
+  created: string;
   orders: OrderCountableConnection;
+  number: string;
+  userEmail: string;
+  status: string;
+  rider: {
+    phone: string;
+    name: string;
+  }
+  total: {
+    net: {
+      amount: string;
+      currency: string;
+    }
+  }
   // email: string;
   // firstName: string;
   // isActive: boolean;
@@ -55,6 +91,7 @@ export interface StaffList_staffUsers {
 
 export interface StaffList {
   subshops: [] | null;
+  subshop: any | null;
   pageInfo: StaffList_staffUsers_pageInfo;
 }
 
@@ -64,4 +101,5 @@ export interface StaffListVariables {
   last?: number | null;
   before?: string | null;
   filter?: StaffUserInput | null;
+  id: string;
 }

@@ -34,6 +34,9 @@ export interface TokenAuth_tokenCreate_user {
   lastName: string;
   permissions: (TokenAuth_tokenCreate_user_permissions | null)[] | null;
   avatar: TokenAuth_tokenCreate_user_avatar | null;
+  subshop: {
+    id: string
+  }
 }
 
 export interface TokenAuth_tokenCreate {

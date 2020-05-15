@@ -13,6 +13,7 @@ import CardMenu from "@saleor/components/CardMenu";
 import { CardSpacer } from "@saleor/components/CardSpacer";
 import { Container } from "@saleor/components/Container";
 import { DateTime } from "@saleor/components/Date";
+import Form from "@saleor/components/Form";
 import Grid from "@saleor/components/Grid";
 import PageHeader from "@saleor/components/PageHeader";
 import Skeleton from "@saleor/components/Skeleton";
@@ -27,6 +28,8 @@ import OrderFulfillment from "../OrderFulfillment";
 import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
 import OrderPayment from "../OrderPayment/OrderPayment";
 import OrderUnfulfilledItems from "../OrderUnfulfilledItems/OrderUnfulfilledItems";
+
+import { TypedStaffffListQuery,TypedStaffMemberDetailsQuery } from "../../../riders/queries";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -62,6 +65,7 @@ export interface OrderDetailsPageProps extends UserPermissionProps {
   onShippingAddressEdit();
   onOrderCancel();
   onNoteAdd(data: HistoryFormData);
+  onAssignOrder(data: HistoryFormData);
   onProfileView();
 }
 
@@ -75,6 +79,7 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
     onFulfillmentCancel,
     onFulfillmentTrackingNumberUpdate,
     onNoteAdd,
+    onAssignOrder,
     onOrderCancel,
     onOrderFulfill,
     onPaymentCapture,
@@ -92,7 +97,7 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
     const unfulfilled = maybe(() => order.lines, []).filter(
       line => line.quantityFulfilled < line.quantity
     );
-
+    const id = window.localStorage.getItem("subshop");
     return (
       <Container>
         <AppHeader onBack={onBack}>
@@ -168,15 +173,55 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
             />
           </div>
           <div>
-            <OrderCustomer
-              canEditAddresses={canEditAddresses}
-              canEditCustomer={false}
-              order={order}
-              userPermissions={userPermissions}
-              onBillingAddressEdit={onBillingAddressEdit}
-              onShippingAddressEdit={onShippingAddressEdit}
-              onProfileView={onProfileView}
-            />
+          {window.localStorage.getItem("subshop") === "null" ? 
+          <TypedStaffMemberDetailsQuery>
+            {({ data }) => {
+                return (
+                <Form initial={{ message: order.id }} onSubmit={onAssignOrder} resetOnSubmit>
+                  {({ submit }) => (
+                    <OrderCustomer
+                      canEditAddresses={canEditAddresses}
+                      canEditCustomer={false}
+                      order={order}
+                      riders={maybe(() =>
+                        data.riders.map(edge => edge)
+                      )}
+                      onSubmit={submit}
+                      userPermissions={userPermissions}
+                      onBillingAddressEdit={onBillingAddressEdit}
+                      onShippingAddressEdit={onShippingAddressEdit}
+                      onProfileView={onProfileView}
+                    />
+                    )}
+                </Form>
+              );
+            }}
+          </TypedStaffMemberDetailsQuery>
+          :
+            <TypedStaffffListQuery variables={{ id }}>
+              {({ data }) => {
+              return (
+                <Form initial={{ message: order.id }} onSubmit={onAssignOrder} resetOnSubmit>
+                  {({ submit }) => (
+                    <OrderCustomer
+                      canEditAddresses={canEditAddresses}
+                      canEditCustomer={false}
+                      order={order}
+                      riders={maybe(() =>
+                        data.subshop.riders.edges.map(edge => edge)
+                      )}
+                      onSubmit={submit}
+                      userPermissions={userPermissions}
+                      onBillingAddressEdit={onBillingAddressEdit}
+                      onShippingAddressEdit={onShippingAddressEdit}
+                      onProfileView={onProfileView}
+                    />
+                    )}
+                </Form>
+              );
+              }}
+            </TypedStaffffListQuery>
+            }
             <CardSpacer />
             <OrderCustomerNote note={maybe(() => order.customerNote)} />
           </div>
