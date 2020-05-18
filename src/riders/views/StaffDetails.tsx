@@ -1,12 +1,13 @@
 import React from "react";
-
+import Card from "@material-ui/core/Card";
 import { Link } from "react-router-dom";
 
 import { TypedStaffMemberDetailsQuery } from "../queries";
 import { StaffMemberDetailsUrlQueryParams } from "../urls";
-
+import Container from "@saleor/components/Container";
+// import PageHeader from "@saleor/components/PageHeader";
 import { orderUrl } from "../../orders/urls";
-
+// import { sectionNames } from "@saleor/intl";
 import useNavigator from "@saleor/hooks/useNavigator";
 
 import Table from "@material-ui/core/Table";
@@ -24,6 +25,7 @@ export const StaffDetails: React.StatelessComponent<OrderListProps> = ({
   id,
 }) => {
   const navigate = useNavigator();
+  // const intl = useIntl();
   return (
     <TypedStaffMemberDetailsQuery displayLoader variables={{ id }}>
       {({ data, loading }) => {
@@ -54,20 +56,24 @@ export const StaffDetails: React.StatelessComponent<OrderListProps> = ({
           </TableRow>
         ));
         return (
-          <>
-            <Table>
-              <TableHead>
-                <TableCell>Rider Name</TableCell>
-                <TableCell>Rider ID</TableCell>
-                <TableCell>Order #</TableCell>
-                <TableCell>Order Total</TableCell>
-                <TableCell>Date</TableCell>
-                <TableCell>Status</TableCell>
-                <TableCell>Action</TableCell>
-              </TableHead>
-              <TableBody>{orderInfo}</TableBody>
-            </Table>
-          </>
+          <Container>
+            {/* <PageHeader title={intl.formatMessage(sectionNames.orders)}>
+            </PageHeader> */}
+            <Card>
+              <Table>
+                <TableHead>
+                  <TableCell>Rider Name</TableCell>
+                  <TableCell>Rider ID</TableCell>
+                  <TableCell>Order #</TableCell>
+                  <TableCell>Order Total</TableCell>
+                  <TableCell>Date</TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Action</TableCell>
+                </TableHead>
+                <TableBody>{orderInfo}</TableBody>
+              </Table>
+            </Card>
+          </Container>
         );
       }}
     </TypedStaffMemberDetailsQuery>
