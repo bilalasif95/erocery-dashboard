@@ -1,6 +1,5 @@
 import Card from "@material-ui/core/Card";
 import React from "react";
-
 import { Link } from "react-router-dom";
 
 import { FormattedMessage,useIntl } from "react-intl";
@@ -19,9 +18,10 @@ import {
 } from "@material-ui/core/styles";
 
 import { TypedStaffMemberDetailsQuery } from "../queries";
-import { StaffMemberDetailsUrlQueryParams } from "../urls";
 
 import { orderUrl } from "../../orders/urls";
+
+// import { StaffMemberDetailsUrlQueryParams } from "../urls";
 
 import useNavigator from "@saleor/hooks/useNavigator";
 
@@ -163,7 +163,7 @@ const styles = (theme: Theme) =>
   
 interface OrderListProps extends WithStyles<typeof styles> {
   id: string;
-  params: StaffMemberDetailsUrlQueryParams;
+  // params: StaffMemberDetailsUrlQueryParams;
   riderInfo: any;
 }
 
