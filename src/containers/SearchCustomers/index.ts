@@ -14,7 +14,7 @@ export const searchCustomers = gql`
       edges {
         node {
           id
-          email
+          phone
         }
       }
       pageInfo {

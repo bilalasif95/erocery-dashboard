@@ -41,7 +41,7 @@ export interface CustomerAddresses_user_defaultShippingAddress {
 export interface CustomerAddresses_user {
   __typename: "User";
   id: string;
-  email: string;
+  phone: string;
   firstName: string;
   lastName: string;
   addresses: (CustomerAddresses_user_addresses | null)[] | null;

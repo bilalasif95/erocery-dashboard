@@ -9,7 +9,7 @@ import {
 export const staffMemberFragment = gql`
   fragment StaffMemberFragment on User {
     id
-    email
+    phone
     firstName
     isActive
     lastName

@@ -15,13 +15,16 @@ export interface RequestPasswordReset_requestPasswordReset_errors {
 export interface RequestPasswordReset_requestPasswordReset {
   __typename: "RequestPasswordReset";
   errors: RequestPasswordReset_requestPasswordReset_errors[] | null;
+  user: {
+    phone: string;
+  }
 }
 
 export interface RequestPasswordReset {
-  requestPasswordReset: RequestPasswordReset_requestPasswordReset | null;
+  accountForgotPassword: RequestPasswordReset_requestPasswordReset | null;
 }
 
 export interface RequestPasswordResetVariables {
-  email: string;
+  phone: string;
   redirectUrl: string;
 }

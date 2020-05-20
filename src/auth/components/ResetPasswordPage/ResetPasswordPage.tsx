@@ -31,7 +31,7 @@ const useStyles = makeStyles(
 );
 
 export interface ResetPasswordPageFormData {
-  email: string;
+  phone: string;
 }
 export interface ResetPasswordPageProps {
   disabled: boolean;
@@ -46,7 +46,7 @@ const ResetPasswordPage: React.FC<ResetPasswordPageProps> = props => {
   const intl = useIntl();
 
   return (
-    <Form initial={{ email: "" }} onSubmit={onSubmit}>
+    <Form initial={{ phone: "" }} onSubmit={onSubmit}>
       {({ change: handleChange, data, submit: handleSubmit }) => (
         <>
           {!!error && (
@@ -63,12 +63,12 @@ const ResetPasswordPage: React.FC<ResetPasswordPageProps> = props => {
             disabled={disabled}
             fullWidth
             autoComplete="username"
-            label={intl.formatMessage(commonMessages.email)}
-            name="email"
+            label={intl.formatMessage(commonMessages.phone)}
+            name="phone"
             onChange={handleChange}
-            value={data.email}
+            value={data.phone}
             inputProps={{
-              "data-tc": "email"
+              "data-tc": "phone"
             }}
           />
           <FormSpacer />
@@ -81,7 +81,7 @@ const ResetPasswordPage: React.FC<ResetPasswordPageProps> = props => {
             type="submit"
           >
             <FormattedMessage
-              defaultMessage="Send Instructions"
+              defaultMessage="Reset Password"
               description="password reset, button"
             />
           </Button>

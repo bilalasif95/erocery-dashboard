@@ -60,6 +60,7 @@ const CustomerCreateAddress = withStyles(styles, {
             countries={countries}
             data={data}
             disabled={disabled}
+            variant={""}
             countryDisplayValue={countryDisplayName}
             errors={errors}
             onChange={onChange}

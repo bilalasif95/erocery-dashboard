@@ -122,7 +122,7 @@ export const StaffDetails: React.StatelessComponent<OrderListProps> = ({
                           return (
                             <>
                               <WindowTitle
-                                title={maybe(() => data.user.email)}
+                                title={maybe(() => data.user.phone)}
                               />
                               <StaffDetailsPage
                                 canEditAvatar={isUserSameAsViewer}
@@ -143,11 +143,11 @@ export const StaffDetails: React.StatelessComponent<OrderListProps> = ({
                                     variables: {
                                       id,
                                       input: {
-                                        email: variables.email,
                                         firstName: variables.firstName,
                                         isActive: variables.isActive,
                                         lastName: variables.lastName,
-                                        permissions: variables.permissions
+                                        permissions: variables.permissions,
+                                        phone: variables.phone,
                                       }
                                     }
                                   })
@@ -185,9 +185,9 @@ export const StaffDetails: React.StatelessComponent<OrderListProps> = ({
                               >
                                 <DialogContentText>
                                   <FormattedMessage
-                                    defaultMessage="Are you sure you want to delete {email} from staff members?"
+                                    defaultMessage="Are you sure you want to delete {phone} from staff members?"
                                     values={{
-                                      email: maybe(() => data.user.email, "...")
+                                      phone: maybe(() => data.user.phone, "...")
                                     }}
                                   />
                                 </DialogContentText>
@@ -207,11 +207,11 @@ export const StaffDetails: React.StatelessComponent<OrderListProps> = ({
                               >
                                 <DialogContentText>
                                   <FormattedMessage
-                                    defaultMessage="Are you sure you want to remove {email} avatar?"
+                                    defaultMessage="Are you sure you want to remove {phone} avatar?"
                                     values={{
-                                      email: (
+                                      phone: (
                                         <strong>
-                                          {maybe(() => data.user.email, "...")}
+                                          {maybe(() => data.user.phone, "...")}
                                         </strong>
                                       )
                                     }}

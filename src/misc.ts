@@ -10,7 +10,7 @@ import { PartialMutationProviderOutput, UserError } from "./types";
 import {
   AddressInput,
   AuthorizationKeyType,
-  CountryCode,
+  // CountryCode,
   OrderStatus,
   PaymentChargeStatusEnum
 } from "./types/globalTypes";
@@ -344,6 +344,6 @@ export function transformFormToAddress(
 ): AddressInput {
   return {
     ...address,
-    country: findInEnum(address.country, CountryCode)
+    country: findInEnum("PK", {PK:"PK"})
   };
 }

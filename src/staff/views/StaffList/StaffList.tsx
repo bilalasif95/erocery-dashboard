@@ -145,12 +145,12 @@ export const StaffList: React.StatelessComponent<StaffListProps> = ({
                 addStaffMember({
                   variables: {
                     input: {
-                      email: variables.email,
                       firstName: variables.firstName,
                       lastName: variables.lastName,
                       permissions: variables.fullAccess
                         ? maybe(() => shop.permissions.map((perm) => perm.code))
                         : undefined,
+                      phone: variables.phone,
                       redirectUrl: urlJoin(
                         window.location.origin,
                         APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,

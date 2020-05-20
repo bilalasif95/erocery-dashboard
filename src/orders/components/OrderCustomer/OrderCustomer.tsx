@@ -44,6 +44,9 @@ import { StaffList_staffUsers_edges_node } from "../../../riders/types/StaffList
 
 const styles = (theme: Theme) =>
   createStyles({
+    grid: {
+      display: "block",
+    },
     popover: {
       zIndex: 1
     },
@@ -120,10 +123,11 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
     const userEmail = maybe(()=>order.userEmail)
 
     const [userDisplayName, setUserDisplayName] = useStateFromProps(
-      maybe(() => user.email, "")
+      maybe(() => user.phone, "")
     );
     const [isInEditMode, setEditModeStatus] = React.useState(false);
-    const [rider, setRider] = React.useState(order && order.rider === null ? "Not Assigned Yet" : order && order.rider.name);
+    const [rider, setRider] = React.useState(order && order.rider === null || order === undefined ? "Not Assigned Yet" : order && order.rider.name);
+    const [id, setRiderID] = React.useState();
     const toggleEditMode = () => setEditModeStatus(!isInEditMode);
     const [isMenuOpened, setMenuState] = React.useState(false);
     const billingAddress = maybe(() => order.billingAddress);
@@ -137,7 +141,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
       <Card>
         <CardTitle
           title={intl.formatMessage({
-            defaultMessage: "Order Assign By",
+            defaultMessage: "Order Assigned By",
             description: "section header"
           })}
           toolbar={
@@ -172,7 +176,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                     }
                     mouseEvent="onClick"
                   >
-                    <Menu>
+                    <Menu className={classes.grid}>
                     {window.localStorage.getItem("subshop") === "null" ? 
                     renderCollection(
                       riders,
@@ -181,6 +185,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                         className={classes.userMenuItem}
                         onClick={()=> {
                           setRider(rid && rid.name)
+                          setRiderID(rid && rid.id)
                           order.lines.push(rid && rid.id)
                           setMenuState(false)
                         }}
@@ -195,6 +200,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                         className={classes.userMenuItem}
                         onClick={()=> {
                           setRider(rid && rid.node.name)
+                          setRiderID(rid && rid.node.id)
                           order.lines.push(rid && rid.node.id)
                           setMenuState(false)
                         }}
@@ -268,6 +274,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
           <Button
             color="primary"
             variant="contained"
+            disabled={rider === "Not Assigned Yet"}
             onClick={e => submit(e)}
           >
             Assign Order
@@ -276,6 +283,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
           <Button
             color="primary"
             variant="contained"
+            disabled={order && order.lines[order.lines.length-1] !== id}
             onClick={e => submit(e)}
           >
             Update
@@ -323,7 +331,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                   toggleEditMode();
                 };
                 const userChoices = maybe(() => users, []).map(user => ({
-                  label: user.email,
+                  label: user.phone,
                   value: user.id
                 }));
                 const handleUserChange = createSingleAutocompleteSelectHandler(
@@ -361,7 +369,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
           ) : (
             <>
               <Typography className={classes.userEmail}>
-                {user.email}
+                {user.phone}
               </Typography>
               <RequirePermissions
                 userPermissions={userPermissions}

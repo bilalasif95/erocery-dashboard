@@ -217,7 +217,7 @@ export interface OrderDetails_order_totalCaptured {
 export interface OrderDetails_order_user {
   __typename: "User";
   id: string;
-  email: string;
+  phone: string;
 }
 
 export interface OrderDetails_order_availableShippingMethods_price {

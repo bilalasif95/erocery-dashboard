@@ -10,7 +10,7 @@ import ResetPasswordPage, {
 } from "../components/ResetPasswordPage";
 import { RequestPasswordResetMutation } from "../mutations";
 import { RequestPasswordReset } from "../types/RequestPasswordReset";
-import { newPasswordUrl, passwordResetSuccessUrl } from "../urls";
+import { newPasswordPath , newPasswordUrl } from "../urls";
 
 const ResetPasswordView: React.FC = () => {
   const [error, setError] = React.useState<string>();
@@ -18,14 +18,15 @@ const ResetPasswordView: React.FC = () => {
   const intl = useIntl();
 
   const handleRequestPasswordReset = (data: RequestPasswordReset) => {
-    if (data.requestPasswordReset.errors.length === 0) {
-      navigate(passwordResetSuccessUrl);
+    if (data.accountForgotPassword.errors.length === 0) {
+      navigate(newPasswordPath);
+      window.localStorage.setItem("resetPhoneNumber",data.accountForgotPassword.user.phone);
     } else {
-      if (data.requestPasswordReset.errors.find(err => err.field === "email")) {
+      if (data.accountForgotPassword.errors.find(err => err.field === "phone")) {
         setError(
           intl.formatMessage({
             defaultMessage:
-              "Provided email address does not exist in our database."
+              "Provided phone number does not exist in our database."
           })
         );
       } else {
@@ -36,11 +37,11 @@ const ResetPasswordView: React.FC = () => {
 
   return (
     <RequestPasswordResetMutation onCompleted={handleRequestPasswordReset}>
-      {(requestPasswordReset, requestPasswordResetOpts) => {
+      {(accountForgotPassword, requestPasswordResetOpts) => {
         const handleSubmit = (data: ResetPasswordPageFormData) =>
-          requestPasswordReset({
+        accountForgotPassword({
             variables: {
-              email: data.email,
+              phone: data.phone,
               redirectUrl: urlJoin(
                 window.location.origin,
                 APP_MOUNT_URI === "/" ? "" : APP_MOUNT_URI,

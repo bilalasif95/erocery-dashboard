@@ -5,6 +5,7 @@ import {
   RequestPasswordReset,
   RequestPasswordResetVariables
 } from "./types/RequestPasswordReset";
+import { ResendSMSCode, ResendSMSCodeVariables } from "./types/ResetPassword";
 import { SetPassword, SetPasswordVariables } from "./types/SetPassword";
 import { TokenAuth, TokenAuthVariables } from "./types/TokenAuth";
 import { VerifyToken, VerifyTokenVariables } from "./types/VerifyToken";
@@ -68,25 +69,9 @@ export const TypedVerifyTokenMutation = TypedMutation<
 >(tokenVerifyMutation);
 
 export const requestPasswordReset = gql`
-  mutation RequestPasswordReset($phone: String!, $redirectUrl: String!) {
-    requestPasswordReset(phone: $phone, redirectUrl: $redirectUrl) {
-      errors {
-        field
-        message
-      }
-    }
-  }
-`;
-export const RequestPasswordResetMutation = TypedMutation<
-  RequestPasswordReset,
-  RequestPasswordResetVariables
->(requestPasswordReset);
-
-export const setPassword = gql`
   ${fragmentUser}
-  mutation SetPassword($phone: String!, $password: String!, $token: String!) {
-    setPassword(phone: $phone, password: $password, token: $token) {
-      token
+  mutation RequestPasswordReset($phone: String!) {
+    accountForgotPassword(input: {phone: $phone}) {
       errors {
         field
         message
@@ -97,7 +82,37 @@ export const setPassword = gql`
     }
   }
 `;
+export const RequestPasswordResetMutation = TypedMutation<
+  RequestPasswordReset,
+  RequestPasswordResetVariables
+>(requestPasswordReset);
+
+export const setPassword = gql`
+  mutation SetPassword($smsCode:String!,$phone:String!,$newPassword:String!) {
+    accountForgotVerify(input:{smsCode:$smsCode,phone:$phone,newPassword:$newPassword}) {
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;
 export const SetPasswordMutation = TypedMutation<
   SetPassword,
   SetPasswordVariables
 >(setPassword);
+
+export const AccountResendSms = gql`
+  mutation AccountResendSms($phone:String!) {
+    accountResendSms(phone:$phone){
+      errors {
+        field
+        message
+      }
+    }
+  }
+`;
+export const SetAccountResendSMS = TypedMutation<
+  ResendSMSCode,
+  ResendSMSCodeVariables
+>(AccountResendSms);

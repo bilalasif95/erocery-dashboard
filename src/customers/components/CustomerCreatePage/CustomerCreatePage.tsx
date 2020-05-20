@@ -10,6 +10,7 @@ import Grid from "@saleor/components/Grid";
 import PageHeader from "@saleor/components/PageHeader";
 import SaveButtonBar from "@saleor/components/SaveButtonBar";
 import { sectionNames } from "@saleor/intl";
+import { CITIES } from "@saleor/types/globalTypes";
 import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
 import { UserError } from "../../../types";
 import { AddressTypeInput } from "../../types";
@@ -27,10 +28,10 @@ export interface CustomerCreatePageFormData extends AddressTypeInput {
 
 const initialForm: CustomerCreatePageFormData = {
   city: "",
-  cityArea: "",
-  companyName: "",
-  country: "",
-  countryArea: "",
+  // cityArea: "",
+  // companyName: "",
+  // country: "",
+  // countryArea: "",
   customerFirstName: "",
   customerLastName: "",
   email: "",
@@ -38,7 +39,7 @@ const initialForm: CustomerCreatePageFormData = {
   lastName: "",
   note: "",
   phone: "",
-  postalCode: "",
+  // postalCode: "",
   streetAddress1: "",
   streetAddress2: ""
 };
@@ -53,7 +54,7 @@ export interface CustomerCreatePageProps {
 }
 
 const CustomerCreatePage: React.StatelessComponent<CustomerCreatePageProps> = ({
-  countries,
+  // countries,
   disabled,
   errors,
   saveButtonBar,
@@ -63,9 +64,9 @@ const CustomerCreatePage: React.StatelessComponent<CustomerCreatePageProps> = ({
   const intl = useIntl();
 
   const [countryDisplayName, setCountryDisplayName] = React.useState("");
-  const countryChoices = countries.map(country => ({
-    label: country.country,
-    value: country.code
+  const countryChoices = CITIES.map(country => ({
+    label: country.city,
+    value: country.city
   }));
 
   return (

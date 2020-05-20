@@ -45,7 +45,7 @@ export const commonMessages = defineMessages({
     description: "field is optional"
   },
   phone: {
-    defaultMessage: "Phone No",
+    defaultMessage: "Phone Number",
     description: "Format:- 03xxxxxxxxx"
   },
   properties: {
@@ -163,6 +163,10 @@ export const sectionNames = defineMessages({
   },
   orders: {
     defaultMessage: "Orders",
+    description: "orders section name"
+  },
+  ordersList: {
+    defaultMessage: "Orders List",
     description: "orders section name"
   },
   pages: {

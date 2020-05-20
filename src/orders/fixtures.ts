@@ -14,23 +14,23 @@ import { OrderList_orders_edges_node } from "./types/OrderList";
 export const clients: SearchCustomers_search_edges_node[] = [
   {
     __typename: "User" as "User",
-    email: "test.client1@example.com",
-    id: "c1"
+    id: "c1",
+    phone: "test.client1@example.com",
   },
   {
     __typename: "User" as "User",
-    email: "test.client2@example.com",
-    id: "c2"
+    id: "c2",
+    phone: "test.client2@example.com",
   },
   {
     __typename: "User" as "User",
-    email: "test.client3@example.com",
-    id: "c3"
+    id: "c3",
+    phone: "test.client3@example.com",
   },
   {
     __typename: "User" as "User",
-    email: "test.client4@example.com",
-    id: "c4"
+    id: "c4",
+    phone: "test.client4@example.com",
   }
 ];
 export const orders: OrderList_orders_edges_node[] = [

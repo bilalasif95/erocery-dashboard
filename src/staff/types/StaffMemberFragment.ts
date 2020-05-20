@@ -14,7 +14,7 @@ export interface StaffMemberFragment_avatar {
 export interface StaffMemberFragment {
   __typename: "User";
   id: string;
-  email: string;
+  phone: string;
   firstName: string;
   isActive: boolean;
   lastName: string;

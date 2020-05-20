@@ -28,7 +28,7 @@ export interface StaffMemberUpdate_staffUpdate_user_permissions {
 export interface StaffMemberUpdate_staffUpdate_user {
   __typename: "User";
   id: string;
-  email: string;
+  phone: string;
   firstName: string;
   isActive: boolean;
   lastName: string;

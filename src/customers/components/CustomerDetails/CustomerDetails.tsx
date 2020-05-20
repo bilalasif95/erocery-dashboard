@@ -37,7 +37,7 @@ export interface CustomerDetailsProps extends WithStyles<typeof styles> {
   data: {
     firstName: string;
     lastName: string;
-    email: string;
+    phone: string;
     isActive: boolean;
     note: string;
   };
@@ -45,7 +45,7 @@ export interface CustomerDetailsProps extends WithStyles<typeof styles> {
   errors: {
     firstName?: string;
     lastName?: string;
-    email?: string;
+    phone?: string;
     note?: string;
   };
   onChange: (event: React.ChangeEvent<any>) => void;
@@ -124,13 +124,13 @@ const CustomerDetails = withStyles(styles, { name: "CustomerDetails" })(
           <FormSpacer />
           <TextField
             disabled={disabled}
-            error={!!errors.email}
+            error={!!errors.phone}
             fullWidth
-            helperText={errors.email}
-            name="email"
-            type="email"
-            label={intl.formatMessage(commonMessages.email)}
-            value={data.email}
+            helperText={errors.phone}
+            name="phone"
+            type="tel"
+            label={intl.formatMessage(commonMessages.phone)}
+            value={data.phone}
             onChange={onChange}
           />
           <FormSpacer />

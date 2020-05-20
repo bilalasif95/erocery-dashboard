@@ -49,6 +49,7 @@
     "qs": "^6.7.0",
     "react": "^16.9.0",
     "react-apollo": "^3.0.0",
+    "react-compound-timer": "^1.2.0",
     "react-dom": "^16.9.0",
     "react-dropzone": "^8.2.0",
     "react-error-boundary": "^1.2.5",

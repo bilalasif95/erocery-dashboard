@@ -24,17 +24,17 @@ import { buttonMessages, commonMessages } from "@saleor/intl";
 import { UserError } from "../../../types";
 
 export interface FormData {
-  email: string;
+  phone: string;
   firstName: string;
   fullAccess: boolean;
   lastName: string;
 }
 
 const initialForm: FormData = {
-  email: "",
   firstName: "",
   fullAccess: false,
-  lastName: ""
+  lastName: "",
+  phone: "",
 };
 
 const styles = (theme: Theme) =>
@@ -112,13 +112,13 @@ const StaffAddMemberDialog = withStyles(styles, {
                 </div>
                 <FormSpacer />
                 <TextField
-                  error={!!formErrors.email}
+                  error={!!formErrors.phone}
                   fullWidth
-                  helperText={formErrors.email}
-                  label={intl.formatMessage(commonMessages.email)}
-                  name="email"
-                  type="email"
-                  value={data.email}
+                  helperText={formErrors.phone}
+                  label={intl.formatMessage(commonMessages.phone)}
+                  name="phone"
+                  type="tel"
+                  value={data.phone}
                   onChange={change}
                 />
               </DialogContent>

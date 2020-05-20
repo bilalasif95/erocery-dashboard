@@ -81,7 +81,7 @@ export const CustomerDetailsView: React.StatelessComponent<
                 return (
                   <>
                     <WindowTitle
-                      title={maybe(() => customerDetails.data.user.email)}
+                      title={maybe(() => customerDetails.data.user.phone)}
                     />
                     <CustomerDetailsPage
                       customer={customerDetails.data.user}
@@ -104,11 +104,11 @@ export const CustomerDetailsView: React.StatelessComponent<
                           variables: {
                             id,
                             input: {
-                              email: formData.email,
                               firstName: formData.firstName,
                               isActive: formData.isActive,
                               lastName: formData.lastName,
-                              note: formData.note
+                              note: formData.note,
+                              phone: formData.phone,
                             }
                           }
                         })
@@ -141,13 +141,13 @@ export const CustomerDetailsView: React.StatelessComponent<
                     >
                       <DialogContentText>
                         <FormattedMessage
-                          defaultMessage="Are you sure you want to delete {email}?"
+                          defaultMessage="Are you sure you want to delete {phone}?"
                           description="delete customer, dialog content"
                           values={{
-                            email: (
+                            phone: (
                               <strong>
                                 {maybe(
-                                  () => customerDetails.data.user.email,
+                                  () => customerDetails.data.user.phone,
                                   "..."
                                 )}
                               </strong>

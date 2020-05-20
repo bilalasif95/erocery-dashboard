@@ -59,14 +59,14 @@ export const CustomerCreate: React.StatelessComponent<{}> = () => {
                 onSubmit={formData => {
                   const address = {
                     city: formData.city,
-                    cityArea: formData.cityArea,
-                    companyName: formData.companyName,
-                    country: formData.country,
-                    countryArea: formData.countryArea,
+                    // cityArea: formData.cityArea,
+                    // companyName: formData.companyName,
+                    // country: formData.country,
+                    // countryArea: formData.countryArea,
                     firstName: formData.firstName,
                     lastName: formData.lastName,
                     phone: formData.phone,
-                    postalCode: formData.postalCode,
+                    // postalCode: formData.postalCode,
                     streetAddress1: formData.streetAddress1,
                     streetAddress2: formData.streetAddress2
                   };
@@ -75,10 +75,10 @@ export const CustomerCreate: React.StatelessComponent<{}> = () => {
                       input: {
                         defaultBillingAddress: transformFormToAddress(address),
                         defaultShippingAddress: transformFormToAddress(address),
-                        email: formData.email,
                         firstName: formData.customerFirstName,
                         lastName: formData.customerLastName,
                         note: formData.note,
+                        phone: formData.phone,
                         sendPasswordEmail: false
                       }
                     }

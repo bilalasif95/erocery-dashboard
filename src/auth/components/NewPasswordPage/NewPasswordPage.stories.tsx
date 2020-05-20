@@ -9,8 +9,8 @@ storiesOf("Views / Authentication / Set up a new password", module)
   .addDecorator(CardDecorator)
   .addDecorator(Decorator)
   .add("default", () => (
-    <NewPasswordPage disabled={false} onSubmit={() => undefined} />
+    <NewPasswordPage disabled={false} onSubmit={() => undefined} error="" Submit={() => undefined} setTimer={() => undefined} timer={0} />
   ))
   .add("loading", () => (
-    <NewPasswordPage disabled={true} onSubmit={() => undefined} />
+    <NewPasswordPage disabled={true} onSubmit={() => undefined} error="" Submit={() => undefined} setTimer={() => undefined} timer={0} />
   ));

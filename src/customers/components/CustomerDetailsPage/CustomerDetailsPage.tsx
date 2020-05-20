@@ -21,7 +21,7 @@ import CustomerStats from "../CustomerStats/CustomerStats";
 export interface CustomerDetailsPageFormData {
   firstName: string;
   lastName: string;
-  email: string;
+  phone: string;
   isActive: boolean;
   note: string;
 }
@@ -59,11 +59,11 @@ const CustomerDetailsPage: React.StatelessComponent<
     <Form
       errors={errors}
       initial={{
-        email: maybe(() => customer.email, ""),
         firstName: maybe(() => customer.firstName, ""),
         isActive: maybe(() => customer.isActive, false),
         lastName: maybe(() => customer.lastName, ""),
-        note: maybe(() => customer.note, "")
+        note: maybe(() => customer.note, ""),
+        phone: maybe(() => customer.phone, ""),
       }}
       onSubmit={onSubmit}
       confirmLeave

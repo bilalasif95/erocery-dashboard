@@ -13,7 +13,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Chris",
     id: "VXNlcjoyMQ==",
     isActive: true,
-    lastName: "Cooper"
+    lastName: "Cooper",
+    phone: "",
   },
   {
     avatar: {
@@ -24,7 +25,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: false,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -35,7 +37,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: true,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -46,7 +49,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: true,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -57,7 +61,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: true,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -68,7 +73,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: true,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -79,7 +85,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: false,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -90,7 +97,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: true,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -101,7 +109,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: true,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -112,7 +121,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: false,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -123,7 +133,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: false,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   },
   {
     avatar: {
@@ -134,7 +145,8 @@ export const staffMembers: StaffList_staffUsers_edges_node[] = [
     firstName: "Jacob",
     id: "VXNlcjoyMQ==",
     isActive: true,
-    lastName: "Smith"
+    lastName: "Smith",
+    phone: "",
   }
 ].map(staffMember => ({ __typename: "User" as "User", ...staffMember }));
 export const staffMember: StaffMemberDetails_user = {

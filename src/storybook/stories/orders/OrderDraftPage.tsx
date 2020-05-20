@@ -17,6 +17,7 @@ const props: Omit<OrderDraftPageProps, "classes"> = {
   countries,
   disabled: false,
   fetchUsers: () => undefined,
+  onAssignOrder: () => undefined,
   onBack: () => undefined,
   onBillingAddressEdit: undefined,
   onCustomerEdit: () => undefined,

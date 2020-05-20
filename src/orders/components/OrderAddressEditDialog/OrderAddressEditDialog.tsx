@@ -15,6 +15,7 @@ import Form from "@saleor/components/Form";
 import useStateFromProps from "@saleor/hooks/useStateFromProps";
 import { buttonMessages } from "@saleor/intl";
 import { maybe } from "@saleor/misc";
+import { CITIES } from "@saleor/types/globalTypes";
 import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
 import { AddressTypeInput } from "../../../customers/types";
 import { UserError } from "../../../types";
@@ -49,19 +50,19 @@ const OrderAddressEditDialog = withStyles(styles, {
     open,
     errors,
     variant,
-    countries,
+    // countries,
     onClose,
     onConfirm
   }: OrderAddressEditDialogProps) => {
     const intl = useIntl();
     const [countryDisplayName, setCountryDisplayName] = useStateFromProps(
       maybe(
-        () => countries.find(country => address.country === country.code).label
+        () =>  CITIES.find(country => address.city === country.city).label
       )
     );
-    const countryChoices = countries.map(country => ({
-      label: country.label,
-      value: country.code
+    const countryChoices =  CITIES.map(country => ({
+      label: country.city,
+      value: country.city
     }));
 
     return (
@@ -96,6 +97,7 @@ const OrderAddressEditDialog = withStyles(styles, {
                     countries={countryChoices}
                     countryDisplayValue={countryDisplayName}
                     data={data}
+                    variant={variant}
                     errors={errors}
                     onChange={change}
                     onCountryChange={handleCountrySelect}

@@ -133,7 +133,7 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
                   {getUserName(customer)}
                 </TableCell>
                 <TableCell className={classes.colEmail}>
-                  {maybe<React.ReactNode>(() => customer.email, <Skeleton />)}
+                  {maybe<React.ReactNode>(() => customer.phone, <Skeleton />)}
                 </TableCell>
                 <TableCell className={classes.colOrders}>
                   {maybe<React.ReactNode>(
