@@ -8,11 +8,11 @@ interface WindowTitleProps {
 }
 
 export const WindowTitle: React.StatelessComponent<WindowTitleProps> = ({
-  title
+  title,
 }) => {
   const shop = useShop();
 
   return shop === undefined || !title ? null : (
-    <Helmet title={`${title} | ${shop?shop.name:"Erocery"}`} />
+    <Helmet title={`${title} | ${shop ? shop.name : "Erocery"}`} />
   );
 };

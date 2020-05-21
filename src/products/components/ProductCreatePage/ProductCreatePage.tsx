@@ -23,7 +23,7 @@ import { sectionNames } from "@saleor/intl";
 import {
   getChoices,
   ProductAttributeValueChoices,
-  ProductType
+  ProductType,
 } from "@saleor/products/utils/data";
 import createMultiAutocompleteSelectHandler from "@saleor/utils/handlers/multiAutocompleteSelectChangeHandler";
 import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
@@ -31,11 +31,11 @@ import { FetchMoreProps, UserError } from "../../../types";
 import {
   createAttributeChangeHandler,
   createAttributeMultiChangeHandler,
-  createProductTypeSelectHandler
+  createProductTypeSelectHandler,
 } from "../../utils/handlers";
 import ProductAttributes, {
   ProductAttributeInput,
-  ProductAttributeInputData
+  ProductAttributeInputData,
 } from "../ProductAttributes";
 import ProductDetailsForm from "../ProductDetailsForm";
 import ProductOrganization from "../ProductOrganization";
@@ -85,9 +85,7 @@ interface ProductCreatePageProps {
   onSubmit?(data: ProductCreatePageSubmitData);
 }
 
-export const ProductCreatePage: React.StatelessComponent<
-  ProductCreatePageProps
-> = ({
+export const ProductCreatePage: React.StatelessComponent<ProductCreatePageProps> = ({
   currency,
   disabled,
   categories: categoryChoiceList,
@@ -103,7 +101,7 @@ export const ProductCreatePage: React.StatelessComponent<
   saveButtonBarState,
   onBack,
   fetchProductTypes,
-  onSubmit
+  onSubmit,
 }: ProductCreatePageProps) => {
   const intl = useIntl();
   const localizeDate = useDateLocalize();
@@ -111,7 +109,7 @@ export const ProductCreatePage: React.StatelessComponent<
   const {
     change: changeAttributeData,
     data: attributes,
-    set: setAttributeData
+    set: setAttributeData,
   } = useFormset<ProductAttributeInputData>([]);
 
   const initialDescription = convertToRaw(ContentState.createFromText(""));
@@ -128,7 +126,7 @@ export const ProductCreatePage: React.StatelessComponent<
     seoDescription: "",
     seoTitle: "",
     sku: null,
-    stockQuantity: null
+    stockQuantity: null,
   };
 
   // Display values
@@ -146,7 +144,7 @@ export const ProductCreatePage: React.StatelessComponent<
     hasVariants: false,
     id: "",
     name: "",
-    productAttributes: []
+    productAttributes: [],
   });
 
   const categories = getChoices(categoryChoiceList);
@@ -156,7 +154,7 @@ export const ProductCreatePage: React.StatelessComponent<
   const handleSubmit = (data: FormData) =>
     onSubmit({
       attributes,
-      ...data
+      ...data,
     });
 
   return (
@@ -173,7 +171,7 @@ export const ProductCreatePage: React.StatelessComponent<
         hasChanged,
         submit,
         triggerChange,
-        toggleValue
+        toggleValue,
       }) => {
         const handleCollectionSelect = createMultiAutocompleteSelectHandler(
           toggleValue,
@@ -256,7 +254,7 @@ export const ProductCreatePage: React.StatelessComponent<
                 <SeoForm
                   helperText={intl.formatMessage({
                     defaultMessage:
-                      "Add search engine title and description to make this product easier to find"
+                      "Add search engine title and description to make this product easier to find",
                   })}
                   title={data.seoTitle}
                   titlePlaceholder={data.name}
@@ -297,20 +295,20 @@ export const ProductCreatePage: React.StatelessComponent<
                   hiddenMessage={intl.formatMessage(
                     {
                       defaultMessage: "will be visible from {date}",
-                      description: "product"
+                      description: "product",
                     },
                     {
-                      date: localizeDate(data.publicationDate)
+                      date: localizeDate(data.publicationDate),
                     }
                   )}
                   onChange={change}
                   visibleMessage={intl.formatMessage(
                     {
                       defaultMessage: "since {date}",
-                      description: "product"
+                      description: "product",
                     },
                     {
-                      date: localizeDate(data.publicationDate)
+                      date: localizeDate(data.publicationDate),
                     }
                   )}
                 />

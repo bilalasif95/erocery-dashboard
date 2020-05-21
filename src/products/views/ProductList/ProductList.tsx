@@ -8,7 +8,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import ActionDialog from "@saleor/components/ActionDialog";
 import DeleteFilterTabDialog from "@saleor/components/DeleteFilterTabDialog";
 import SaveFilterTabDialog, {
-  SaveFilterTabDialogFormData
+  SaveFilterTabDialogFormData,
 } from "@saleor/components/SaveFilterTabDialog";
 import { defaultListSettings, ProductListColumns } from "@saleor/config";
 import useBulkActions from "@saleor/hooks/useBulkActions";
@@ -17,7 +17,7 @@ import useLocale from "@saleor/hooks/useLocale";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useNotifier from "@saleor/hooks/useNotifier";
 import usePaginator, {
-  createPaginationState
+  createPaginationState,
 } from "@saleor/hooks/usePaginator";
 import useShop from "@saleor/hooks/useShop";
 import { commonMessages } from "@saleor/intl";
@@ -28,11 +28,11 @@ import { getSortUrlVariables } from "@saleor/utils/sort";
 import ProductListPage from "../../components/ProductListPage";
 import {
   TypedProductBulkDeleteMutation,
-  TypedProductBulkPublishMutation
+  TypedProductBulkPublishMutation,
 } from "../../mutations";
 import {
   AvailableInGridAttributesQuery,
-  TypedProductListQuery
+  TypedProductListQuery,
 } from "../../queries";
 import { productBulkDelete } from "../../types/productBulkDelete";
 import { productBulkPublish } from "../../types/productBulkPublish";
@@ -43,7 +43,7 @@ import {
   ProductListUrlFilters,
   ProductListUrlQueryParams,
   ProductListUrlSortField,
-  productUrl
+  productUrl,
 } from "../../urls";
 import {
   areFiltersApplied,
@@ -53,7 +53,7 @@ import {
   getActiveFilters,
   getFilterTabs,
   getFilterVariables,
-  saveFilterTab
+  saveFilterTab,
 } from "./filters";
 import { getSortQueryVariables } from "./sort";
 
@@ -62,7 +62,7 @@ interface ProductListProps {
 }
 
 export const ProductList: React.StatelessComponent<ProductListProps> = ({
-  params
+  params,
 }) => {
   const { locale } = useLocale();
   const navigate = useNavigator();
@@ -83,7 +83,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
         productListUrl({
           ...params,
           after: undefined,
-          before: undefined
+          before: undefined,
         }),
         true
       ),
@@ -104,7 +104,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
       productListUrl({
         ...params,
         action: undefined,
-        ids: undefined
+        ids: undefined,
       }),
       true
     );
@@ -120,7 +120,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
       productListUrl({
         ...getActiveFilters(params),
         ...filter,
-        activeTab: undefined
+        activeTab: undefined,
       })
     );
   };
@@ -130,7 +130,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
       productListUrl({
         ...params,
         action,
-        ids
+        ids,
       })
     );
 
@@ -139,7 +139,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
     navigate(
       productListUrl({
         activeTab: tab.toString(),
-        ...getFilterTabs()[tab - 1].data
+        ...getFilterTabs()[tab - 1].data,
       })
     );
   };
@@ -160,7 +160,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
       productListUrl({
         ...params,
         ...getSortUrlVariables(field, params),
-        attributeId
+        attributeId,
       })
     );
 
@@ -172,7 +172,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
     () => ({
       ...paginationState,
       filter,
-      sort
+      sort,
     }),
     [params, settings.rowNumber]
   );
@@ -181,7 +181,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
     <AvailableInGridAttributesQuery
       variables={{ first: 6, ids: settings.columns }}
     >
-      {attributes => (
+      {(attributes) => (
         <TypedProductListQuery displayLoader variables={queryVariables}>
           {({ data, loading, refetch }) => {
             const { loadNextPage, loadPreviousPage, pageInfo } = paginate(
@@ -194,7 +194,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
               if (data.productBulkDelete.errors.length === 0) {
                 closeModal();
                 notify({
-                  text: intl.formatMessage(commonMessages.savedChanges)
+                  text: intl.formatMessage(commonMessages.savedChanges),
                 });
                 reset();
                 refetch();
@@ -205,7 +205,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
               if (data.productBulkPublish.errors.length === 0) {
                 closeModal();
                 notify({
-                  text: intl.formatMessage(commonMessages.savedChanges)
+                  text: intl.formatMessage(commonMessages.savedChanges),
                 });
                 reset();
                 refetch();
@@ -244,13 +244,13 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                             activeAttributeSortId={params.attributeId}
                             sort={{
                               asc: params.asc,
-                              sort: params.sort
+                              sort: params.sort,
                             }}
                             onSort={handleSort}
                             availableInGridAttributes={maybe(
                               () =>
                                 attributes.data.availableInGrid.edges.map(
-                                  edge => edge.node
+                                  (edge) => edge.node
                                 ),
                               []
                             )}
@@ -262,7 +262,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                             gridAttributes={maybe(
                               () =>
                                 attributes.data.grid.edges.map(
-                                  edge => edge.node
+                                  (edge) => edge.node
                                 ),
                               []
                             )}
@@ -282,7 +282,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                               params,
                               {
                                 currencySymbol,
-                                locale
+                                locale,
                               },
                               changeFilterField,
                               intl
@@ -290,7 +290,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                             onAdd={() => navigate(productAddUrl)}
                             disabled={loading}
                             products={maybe(() =>
-                              data.products.edges.map(edge => edge.node)
+                              data.products.edges.map((edge) => edge.node)
                             )}
                             onFetchMore={() =>
                               attributes.loadMore(
@@ -307,16 +307,16 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                                       ...prev.availableInGrid,
                                       edges: [
                                         ...prev.availableInGrid.edges,
-                                        ...next.availableInGrid.edges
+                                        ...next.availableInGrid.edges,
                                       ],
-                                      pageInfo: next.availableInGrid.pageInfo
-                                    }
+                                      pageInfo: next.availableInGrid.pageInfo,
+                                    },
                                   };
                                 },
                                 {
                                   after:
                                     attributes.data.availableInGrid.pageInfo
-                                      .endCursor
+                                      .endCursor,
                                 }
                               )
                             }
@@ -324,10 +324,10 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                             onPreviousPage={loadPreviousPage}
                             onUpdateListSettings={updateListSettings}
                             pageInfo={pageInfo}
-                            onRowClick={id => () => navigate(productUrl(id))}
+                            onRowClick={(id) => () => navigate(productUrl(id))}
                             onAll={() =>
                               changeFilters({
-                                status: undefined
+                                status: undefined,
                               })
                             }
                             toolbar={
@@ -368,17 +368,17 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                             selected={listElements.length}
                             toggle={toggle}
                             toggleAll={toggleAll}
-                            onSearchChange={query =>
+                            onSearchChange={(query) =>
                               changeFilterField({ query })
                             }
-                            onFilterAdd={filter =>
+                            onFilterAdd={(filter) =>
                               changeFilterField(createFilter(filter))
                             }
                             onTabSave={() => openModal("save-search")}
                             onTabDelete={() => openModal("delete-search")}
                             onTabChange={handleTabChange}
                             initialSearch={params.query || ""}
-                            tabs={getFilterTabs().map(tab => tab.name)}
+                            tabs={getFilterTabs().map((tab) => tab.name)}
                           />
                           <ActionDialog
                             open={params.action === "delete"}
@@ -386,12 +386,12 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                             onClose={closeModal}
                             onConfirm={() =>
                               productBulkDelete({
-                                variables: { ids: params.ids }
+                                variables: { ids: params.ids },
                               })
                             }
                             title={intl.formatMessage({
                               defaultMessage: "Delete Products",
-                              description: "dialog header"
+                              description: "dialog header",
                             })}
                             variant="delete"
                           >
@@ -408,7 +408,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                                     <strong>
                                       {maybe(() => params.ids.length)}
                                     </strong>
-                                  )
+                                  ),
                                 }}
                               />
                             </DialogContentText>
@@ -421,13 +421,13 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                               productBulkPublish({
                                 variables: {
                                   ids: params.ids,
-                                  isPublished: true
-                                }
+                                  isPublished: true,
+                                },
                               })
                             }
                             title={intl.formatMessage({
                               defaultMessage: "Publish Products",
-                              description: "dialog header"
+                              description: "dialog header",
                             })}
                           >
                             <DialogContentText>
@@ -443,7 +443,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                                     <strong>
                                       {maybe(() => params.ids.length)}
                                     </strong>
-                                  )
+                                  ),
                                 }}
                               />
                             </DialogContentText>
@@ -456,13 +456,13 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                               productBulkPublish({
                                 variables: {
                                   ids: params.ids,
-                                  isPublished: false
-                                }
+                                  isPublished: false,
+                                },
                               })
                             }
                             title={intl.formatMessage({
                               defaultMessage: "Unpublish Products",
-                              description: "dialog header"
+                              description: "dialog header",
                             })}
                           >
                             <DialogContentText>
@@ -478,7 +478,7 @@ export const ProductList: React.StatelessComponent<ProductListProps> = ({
                                     <strong>
                                       {maybe(() => params.ids.length)}
                                     </strong>
-                                  )
+                                  ),
                                 }}
                               />
                             </DialogContentText>

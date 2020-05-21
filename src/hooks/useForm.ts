@@ -33,7 +33,7 @@ function parseErrors(errors: UserError[]): Record<string, string> {
           curr.field
             ? {
                 ...acc,
-                [curr.field.split(":")[0]]: curr.message
+                [curr.field.split(":")[0]]: curr.message,
               }
             : acc,
         {}
@@ -74,7 +74,7 @@ function useForm<T extends FormData>(
   const [hasChanged, setChanged] = useState(false);
   const [data, setData] = useStateFromProps(initial, {
     mergeFunc: merge,
-    onRefresh: newData => handleRefresh(data, newData, setChanged)
+    onRefresh: (newData) => handleRefresh(data, newData, setChanged),
   });
 
   function toggleValue(event: ChangeEvent, cb?: () => void) {
@@ -87,7 +87,7 @@ function useForm<T extends FormData>(
       }
       setData({
         ...data,
-        [name]: toggle(value, field, isEqual)
+        [name]: toggle(value, field, isEqual),
       });
     }
 
@@ -106,9 +106,9 @@ function useForm<T extends FormData>(
       if (data[name] !== value) {
         setChanged(true);
       }
-      setData(data => ({
+      setData((data) => ({
         ...data,
-        [name]: value
+        [name]: value,
       }));
     }
   }
@@ -118,9 +118,9 @@ function useForm<T extends FormData>(
   }
 
   function set(newData: Partial<T>) {
-    setData(data => ({
+    setData((data) => ({
       ...data,
-      ...newData
+      ...newData,
     }));
   }
 
@@ -141,7 +141,7 @@ function useForm<T extends FormData>(
     set,
     submit,
     toggleValue,
-    triggerChange
+    triggerChange,
   };
 }
 

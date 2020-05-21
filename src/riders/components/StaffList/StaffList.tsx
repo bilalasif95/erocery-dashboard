@@ -32,7 +32,7 @@ import {
   // getUserInitials,
   // getUserName,
   maybe,
-  renderCollection
+  renderCollection,
 } from "@saleor/misc";
 import { ListProps } from "@saleor/types";
 import { StaffList_staffUsers_edges_node } from "../../types/StaffList";
@@ -192,11 +192,7 @@ interface StaffListProps extends ListProps, WithStyles<typeof styles> {
 }
 
 const StaffList = withStyles(styles, { name: "StaffList" })(
-  ({
-    classes,
-    staffMembers,
-    subshops
-  }: StaffListProps) => {
+  ({ classes, staffMembers, subshops }: StaffListProps) => {
     const [value, setValue] = React.useState(0);
     const handleChange = (newValue) => {
       setValue(newValue);
@@ -208,102 +204,94 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
     };
     return (
       <Card>
-          <AppBar position="static" className={classes.tabsHeader}>
-            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-              <Tab label="Rider List" onClick={() => tabClicked(0)} />
-              <Tab label="Assign Order" onClick={() => tabClicked(1)} />
-            </Tabs>
-          </AppBar>
-          <TabPanel value={value} index={0}>
-            <div className={classes.tableContainer}>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell padding="dense">
-                      Name
-                  </TableCell>
-                    <TableCell padding="dense">
-                      Rider ID
-                  </TableCell>
-                    <TableCell padding="dense">
-                      Phone  Numer
-                  </TableCell>
-                    <TableCell padding="dense">
-                      CNIC
-                  </TableCell>
-                    <TableCell padding="dense">
-                      City
-                  </TableCell>
-                    <TableCell padding="dense">
-                      Action
-                  </TableCell>
-                  </TableRow>
-                </TableHead>
-                {window.localStorage.getItem("subshop") === "null" ? renderCollection(
-                  staffMembers,
-                  staffMember => (
+        <AppBar position="static" className={classes.tabsHeader}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="simple tabs example"
+          >
+            <Tab label="Rider List" onClick={() => tabClicked(0)} />
+            <Tab label="Assign Order" onClick={() => tabClicked(1)} />
+          </Tabs>
+        </AppBar>
+        <TabPanel value={value} index={0}>
+          <div className={classes.tableContainer}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell padding="dense">Name</TableCell>
+                  <TableCell padding="dense">Rider ID</TableCell>
+                  <TableCell padding="dense">Phone Numer</TableCell>
+                  <TableCell padding="dense">CNIC</TableCell>
+                  <TableCell padding="dense">City</TableCell>
+                  <TableCell padding="dense">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              {window.localStorage.getItem("subshop") === "null"
+                ? renderCollection(staffMembers, (staffMember) => (
                     <TableBody>
                       <TableRow>
                         <TableCell padding="dense">
                           {staffMember && staffMember.name}
-                      </TableCell>
+                        </TableCell>
                         <TableCell padding="dense">
-                        {staffMember && staffMember.id}
-                      </TableCell>
+                          {staffMember && staffMember.id}
+                        </TableCell>
                         <TableCell padding="dense">
-                        {staffMember && staffMember.phone}
-                      </TableCell>
+                          {staffMember && staffMember.phone}
+                        </TableCell>
                         <TableCell padding="dense">
-                        {staffMember && staffMember.cnic}
-                      </TableCell>
+                          {staffMember && staffMember.cnic}
+                        </TableCell>
                         <TableCell padding="dense">
-                        {staffMember && staffMember.city}
-                      </TableCell>
-                      <TableCell
-                        padding="dense"
-                        onClick={() => navigate(staffMemberDetailsPath(staffMember.id))}
-                      >
-                        <Link to="">View Orders list</Link>
-                      </TableCell>
+                          {staffMember && staffMember.city}
+                        </TableCell>
+                        <TableCell
+                          padding="dense"
+                          onClick={() =>
+                            navigate(staffMemberDetailsPath(staffMember.id))
+                          }
+                        >
+                          <Link to="">View Orders list</Link>
+                        </TableCell>
                       </TableRow>
-                      </TableBody>
-                      ))
-                    : 
-                    renderCollection(
-                      staffMembers,
-                      staffMember => (
-                        <TableBody>
-                          <TableRow>
-                            <TableCell padding="dense">
-                              {staffMember && staffMember.node.name}
-                          </TableCell>
-                            <TableCell padding="dense">
-                            {staffMember && staffMember.node.id}
-                          </TableCell>
-                            <TableCell padding="dense">
-                            {staffMember && staffMember.node.phone}
-                          </TableCell>
-                            <TableCell padding="dense">
-                            {staffMember && staffMember.node.cnic}
-                          </TableCell>
-                            <TableCell padding="dense">
-                            {staffMember && staffMember.node.city}
-                          </TableCell>
-                          <TableCell
-                            padding="dense"
-                            onClick={() => navigate(staffMemberDetailsPath(staffMember.node.id))}
-                          >
-                            <Link to="">View Orders list</Link>
-                          </TableCell>
-                          </TableRow>
-                          </TableBody>
-                          ))
-                    }
-              </Table>
-
-            </div>
-          </TabPanel>
-          <TabPanel value={value} index={1}>
+                    </TableBody>
+                  ))
+                : renderCollection(staffMembers, (staffMember) => (
+                    <TableBody>
+                      <TableRow>
+                        <TableCell padding="dense">
+                          {staffMember && staffMember.node.name}
+                        </TableCell>
+                        <TableCell padding="dense">
+                          {staffMember && staffMember.node.id}
+                        </TableCell>
+                        <TableCell padding="dense">
+                          {staffMember && staffMember.node.phone}
+                        </TableCell>
+                        <TableCell padding="dense">
+                          {staffMember && staffMember.node.cnic}
+                        </TableCell>
+                        <TableCell padding="dense">
+                          {staffMember && staffMember.node.city}
+                        </TableCell>
+                        <TableCell
+                          padding="dense"
+                          onClick={() =>
+                            navigate(
+                              staffMemberDetailsPath(staffMember.node.id)
+                            )
+                          }
+                        >
+                          <Link to="">View Orders list</Link>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  ))}
+            </Table>
+          </div>
+        </TabPanel>
+        <TabPanel value={value} index={1}>
           <div className={classes.tableContainer}>
             <Table>
               <TableHead>
@@ -316,66 +304,72 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                   <TableCell padding="dense">Assign to</TableCell>
                   <TableCell padding="dense">Action</TableCell>
                 </TableRow>
-                </TableHead>
-                {window.localStorage.getItem("subshop") === "null" ? renderCollection(
-                  subshops,
-                  staffMember => (maybe(() =>
-                    staffMember.orders.edges.map((value) => {
-                    return (
+              </TableHead>
+              {window.localStorage.getItem("subshop") === "null"
+                ? renderCollection(subshops, (staffMember) =>
+                    maybe(() =>
+                      staffMember.orders.edges.map((value) => {
+                        return (
+                          <TableBody>
+                            <TableRow>
+                              <TableCell padding="dense">
+                                {value.node.number}
+                              </TableCell>
+                              <TableCell padding="dense">
+                                {value.node.created}
+                              </TableCell>
+                              <TableCell padding="dense">
+                                {value.node.userEmail}
+                              </TableCell>
+                              <TableCell padding="dense">
+                                {value.node.total.net.currency}.
+                                {value.node.total.net.amount}
+                              </TableCell>
+                              <TableCell padding="dense">
+                                <button className={classes.btnPending}>
+                                  {value.node.status}
+                                </button>
+                              </TableCell>
+                              <TableCell padding="dense">
+                                {value.node.rider.name}
+                              </TableCell>
+                              <TableCell
+                                padding="dense"
+                                onClick={() =>
+                                  navigate(orderUrl(value.node.id))
+                                }
+                              >
+                                <Link to="">View Order</Link>
+                              </TableCell>
+                            </TableRow>
+                          </TableBody>
+                        );
+                      })
+                    )
+                  )
+                : renderCollection(subshops, (value) => (
                     <TableBody>
-                    <TableRow>
-                      <TableCell padding="dense">
-                          {value.node.number}
-                      </TableCell>
-                        <TableCell padding="dense">
-                          {value.node.created}
-                      </TableCell>
-                        <TableCell padding="dense">
-                          {value.node.userEmail}
-                      </TableCell>
-                        <TableCell padding="dense">
-                          {value.node.total.net.currency}.{value.node.total.net.amount}
-                      </TableCell>
-                        <TableCell padding="dense">
-                          <button className={classes.btnPending}>{value.node.status}</button>
-                        </TableCell>
-                        <TableCell padding="dense">
-                          {value.node.rider.name}
-                      </TableCell>
-                      <TableCell
-                          padding="dense"
-                          onClick={() => navigate(orderUrl(value.node.id))}
-                        >
-                          <Link to="">View Order</Link>
-                      </TableCell>
-                      </TableRow>
-                      </TableBody>
-                    )}
-                    ))
-                   ))
-                   :
-                   renderCollection(
-                    subshops,
-                    value => (
-                      <TableBody>
                       <TableRow>
                         <TableCell padding="dense">
-                            {value && value.node.number}
+                          {value && value.node.number}
                         </TableCell>
-                          <TableCell padding="dense">
-                            {value && value.node.created}
+                        <TableCell padding="dense">
+                          {value && value.node.created}
                         </TableCell>
-                          <TableCell padding="dense">
-                            {value && value.node.userEmail}
+                        <TableCell padding="dense">
+                          {value && value.node.userEmail}
                         </TableCell>
-                          <TableCell padding="dense">
-                            {value && value.node.total.net.currency}.{value && value.node.total.net.amount}
+                        <TableCell padding="dense">
+                          {value && value.node.total.net.currency}.
+                          {value && value.node.total.net.amount}
                         </TableCell>
-                          <TableCell padding="dense">
-                            <button className={classes.btnPending}>{value && value.node.status}</button>
-                          </TableCell>
-                          <TableCell padding="dense">
-                            {value && value.node.rider.name}
+                        <TableCell padding="dense">
+                          <button className={classes.btnPending}>
+                            {value && value.node.status}
+                          </button>
+                        </TableCell>
+                        <TableCell padding="dense">
+                          {value && value.node.rider.name}
                         </TableCell>
                         <TableCell
                           padding="dense"
@@ -383,14 +377,13 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                         >
                           <Link to="">View Order</Link>
                         </TableCell>
-                        </TableRow>
-                        </TableBody>
-                     ))
-                   }
-              </Table>
-            </div>
-          </TabPanel>
-        </Card>
+                      </TableRow>
+                    </TableBody>
+                  ))}
+            </Table>
+          </div>
+        </TabPanel>
+      </Card>
     );
   }
 );
