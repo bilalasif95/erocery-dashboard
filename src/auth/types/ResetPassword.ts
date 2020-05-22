@@ -43,12 +43,10 @@ export interface SetPassword_setPassword {
   user: SetPassword_setPassword_user | null;
 }
 
-export interface SetPassword {
-  accountForgotVerify: SetPassword_setPassword | null;
+export interface ResendSMSCode {
+  accountResendSms: SetPassword_setPassword | null;
 }
 
-export interface SetPasswordVariables {
-  newPassword: string;
+export interface ResendSMSCodeVariables {
   phone: string;
-  smsCode: string;
 }

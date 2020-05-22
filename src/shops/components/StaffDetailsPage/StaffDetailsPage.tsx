@@ -21,12 +21,13 @@ import StaffPreferences from "../StaffPreferences";
 import StaffProperties from "../StaffProperties/StaffProperties";
 
 interface FormData {
+  email: string;
   hasFullAccess: boolean;
   isActive: boolean;
   permissions: PermissionEnum[];
   firstName: string;
   lastName: string;
-  email: string;
+  phone: string;
 }
 
 export interface StaffDetailsPageProps {
@@ -78,7 +79,8 @@ const StaffDetailsPage: React.StatelessComponent<StaffDetailsPageProps> = ({
     ),
     isActive: maybe(() => staffMember.isActive, false),
     lastName: maybe(() => staffMember.lastName, ""),
-    permissions: maybe(() => staffMember.permissions, []).map(perm => perm.code)
+    permissions: maybe(() => staffMember.permissions, []).map(perm => perm.code),
+    phone: maybe(() => staffMember.phone, ""),
   };
 
   return (

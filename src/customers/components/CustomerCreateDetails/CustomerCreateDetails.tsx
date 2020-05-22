@@ -28,7 +28,7 @@ const styles = (theme: Theme) =>
 export interface CustomerCreateDetailsProps extends WithStyles<typeof styles> {
   data: CustomerCreatePageFormData;
   disabled: boolean;
-  errors: FormErrors<"customerFirstName" | "customerLastName" | "email">;
+  errors: FormErrors<"customerFirstName" | "customerLastName" | "phone">;
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
@@ -78,13 +78,13 @@ const CustomerCreateDetails = withStyles(styles, {
             />
             <TextField
               disabled={disabled}
-              error={!!errors.email}
+              error={!!errors.phone}
               fullWidth
-              name="email"
-              label={intl.formatMessage(commonMessages.email)}
-              helperText={errors.email}
-              type="email"
-              value={data.email}
+              name="phone"
+              label={intl.formatMessage(commonMessages.phone)}
+              helperText={errors.phone}
+              type="tel"
+              value={data.phone}
               onChange={onChange}
             />
           </div>

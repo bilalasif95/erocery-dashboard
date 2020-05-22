@@ -16,6 +16,7 @@ export interface StaffList_staffUsers_edges_node_avatar {
 export interface StaffList_staffUsers_edges_node {
   __typename: "User";
   id: string;
+  phone: string;
   email: string;
   firstName: string;
   isActive: boolean;

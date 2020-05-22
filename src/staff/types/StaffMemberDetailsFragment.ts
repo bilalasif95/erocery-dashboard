@@ -22,7 +22,7 @@ export interface StaffMemberDetailsFragment_permissions {
 export interface StaffMemberDetailsFragment {
   __typename: "User";
   id: string;
-  email: string;
+  phone: string;
   firstName: string;
   isActive: boolean;
   lastName: string;

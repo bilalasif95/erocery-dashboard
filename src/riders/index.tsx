@@ -31,7 +31,8 @@ const StaffDetails: React.StatelessComponent<RouteComponentProps<
   return (
     <StaffDetailsComponent
       id={decodeURIComponent(match.params.id)}
-      params={"parms"}
+      // params={"parms"}
+      riderInfo={[]}
     />
   );
 };

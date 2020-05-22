@@ -33,6 +33,17 @@ export enum AuthorizationKeyType {
   GOOGLE_OAUTH2 = "GOOGLE_OAUTH2",
 }
 
+export const CITIES = [
+  {
+    city:"Islamabad",
+    label:"Islamabad",
+  },
+  {
+    city:"Sargodha",
+    label:"Islamabad",
+  },
+];
+
 export enum CollectionPublished {
   HIDDEN = "HIDDEN",
   PUBLISHED = "PUBLISHED",
@@ -577,7 +588,7 @@ export interface AddressInput {
   city?: string | null;
   cityArea?: string | null;
   postalCode?: string | null;
-  country?: CountryCode | null;
+  country?: any | null;
   countryArea?: string | null;
   phone?: string | null;
 }
@@ -715,7 +726,7 @@ export interface CustomerInput {
   defaultShippingAddress?: AddressInput | null;
   firstName?: string | null;
   lastName?: string | null;
-  email?: string | null;
+  phone?: string | null;
   isActive?: boolean | null;
   note?: string | null;
 }
@@ -1018,7 +1029,7 @@ export interface SiteDomainInput {
 export interface StaffCreateInput {
   firstName?: string | null;
   lastName?: string | null;
-  email?: string | null;
+  phone?: string | null;
   isActive?: boolean | null;
   note?: string | null;
   permissions?: (PermissionEnum | null)[] | null;
@@ -1029,7 +1040,7 @@ export interface StaffCreateInput {
 export interface StaffInput {
   firstName?: string | null;
   lastName?: string | null;
-  email?: string | null;
+  phone?: string | null;
   isActive?: boolean | null;
   note?: string | null;
   permissions?: (PermissionEnum | null)[] | null;
@@ -1053,7 +1064,7 @@ export interface UserCreateInput {
   defaultShippingAddress?: AddressInput | null;
   firstName?: string | null;
   lastName?: string | null;
-  email?: string | null;
+  phone?: string | null;
   isActive?: boolean | null;
   note?: string | null;
   sendPasswordEmail?: boolean | null;

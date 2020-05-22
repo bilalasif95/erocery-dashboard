@@ -17,6 +17,7 @@ import useStateFromProps from "@saleor/hooks/useStateFromProps";
 import { buttonMessages } from "@saleor/intl";
 import { maybe } from "@saleor/misc";
 import { UserError } from "@saleor/types";
+import { CITIES } from "@saleor/types/globalTypes";
 import createSingleAutocompleteSelectHandler from "@saleor/utils/handlers/singleAutocompleteSelectChangeHandler";
 import { AddressTypeInput } from "../../types";
 import { CustomerAddresses_user_addresses } from "../../types/CustomerAddresses";
@@ -46,7 +47,7 @@ const CustomerAddressDialog = withStyles(styles, {})(
     address,
     classes,
     confirmButtonState,
-    countries,
+    // countries,
     errors,
     open,
     variant,
@@ -54,27 +55,27 @@ const CustomerAddressDialog = withStyles(styles, {})(
     onConfirm
   }: CustomerAddressDialogProps & WithStyles<typeof styles>) => {
     const [countryDisplayName, setCountryDisplayName] = useStateFromProps(
-      maybe(() => address.country.country, "")
+      maybe(() => address.city, "")
     );
     const initialForm: AddressTypeInput = {
       city: maybe(() => address.city, ""),
-      cityArea: maybe(() => address.cityArea, ""),
-      companyName: maybe(() => address.companyName, ""),
-      country: maybe(() => address.country.code, ""),
-      countryArea: maybe(() => address.countryArea, ""),
+      // cityArea: maybe(() => address.cityArea, ""),
+      // companyName: maybe(() => address.companyName, ""),
+      // country: maybe(() => address.country.code, ""),
+      // countryArea: maybe(() => address.countryArea, ""),
       firstName: maybe(() => address.firstName, ""),
       lastName: maybe(() => address.lastName, ""),
       phone: maybe(() => address.phone, ""),
-      postalCode: maybe(() => address.postalCode, ""),
+      // postalCode: maybe(() => address.postalCode, ""),
       streetAddress1: maybe(() => address.streetAddress1, ""),
       streetAddress2: maybe(() => address.streetAddress2, "")
     };
 
     const countryChoices = maybe(
       () =>
-        countries.map(country => ({
-          label: country.label,
-          value: country.code
+        CITIES.map(country => ({
+          label: country.city,
+          value: country.city
         })),
       []
     );
@@ -114,6 +115,7 @@ const CustomerAddressDialog = withStyles(styles, {})(
                   <AddressEdit
                     countries={countryChoices}
                     data={data}
+                    variant={variant}
                     countryDisplayValue={countryDisplayName}
                     errors={errors}
                     onChange={change}

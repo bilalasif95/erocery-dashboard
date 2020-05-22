@@ -462,7 +462,7 @@ const AppLayout = withStyles(styles, {
                                   className={classes.userChip}
                                   label={
                                     <>
-                                      {user.email}
+                                      {user.phone}
                                       <ArrowDropdown
                                         className={classNames(classes.arrow, {
                                           [classes.rotate]: isMenuOpened

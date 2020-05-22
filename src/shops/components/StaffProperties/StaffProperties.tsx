@@ -100,6 +100,7 @@ interface StaffPropertiesProps extends WithStyles<typeof styles> {
   className?: string;
   data: {
     email: string;
+    phone: string;
     firstName: string;
     lastName: string;
   };
@@ -196,9 +197,9 @@ const StaffProperties = withStyles(styles, { name: "StaffProperties" })(
                 </div>
                 <div className={classes.prop}>
                   <TextField
-                    label={intl.formatMessage(commonMessages.email)}
-                    value={data.email}
-                    name="email"
+                    label={intl.formatMessage(commonMessages.phone)}
+                    value={data.phone}
+                    name="phone"
                     onChange={onChange}
                     fullWidth
                   />

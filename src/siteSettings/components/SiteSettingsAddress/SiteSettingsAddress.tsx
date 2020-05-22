@@ -8,7 +8,8 @@ import { useIntl } from "react-intl";
 import CardTitle from "@saleor/components/CardTitle";
 import FormSpacer from "@saleor/components/FormSpacer";
 import Grid from "@saleor/components/Grid";
-import SingleAutocompleteSelectField, {
+// import SingleAutocompleteSelectField, {
+import {
   SingleAutocompleteChoiceType
 } from "@saleor/components/SingleAutocompleteSelectField";
 import { AddressTypeInput } from "@saleor/customers/types";
@@ -35,13 +36,13 @@ const styles = createStyles({
 const SiteSettingsAddress = withStyles(styles, { name: "SiteSettingsAddress" })(
   ({
     classes,
-    countries,
+    // countries,
     data,
     disabled,
-    displayCountry,
+    // displayCountry,
     errors,
     onChange,
-    onCountryChange
+    // onCountryChange
   }: SiteSettingsAddressProps) => {
     const intl = useIntl();
 
@@ -54,7 +55,7 @@ const SiteSettingsAddress = withStyles(styles, { name: "SiteSettingsAddress" })(
           })}
         />
         <CardContent>
-          <TextField
+          {/* <TextField
             disabled={disabled}
             error={!!errors.companyName}
             helperText={errors.companyName}
@@ -65,8 +66,8 @@ const SiteSettingsAddress = withStyles(styles, { name: "SiteSettingsAddress" })(
             onChange={onChange}
             value={data.companyName}
             fullWidth
-          />
-          <FormSpacer />
+          /> */}
+          {/* <FormSpacer /> */}
           <TextField
             disabled={disabled}
             error={!!errors.streetAddress1}
@@ -108,6 +109,18 @@ const SiteSettingsAddress = withStyles(styles, { name: "SiteSettingsAddress" })(
             />
             <TextField
               disabled={disabled}
+              error={!!errors.phone}
+              fullWidth
+              helperText={errors.phone}
+              label={intl.formatMessage({
+                defaultMessage: "Phone"
+              })}
+              name={"phone" as keyof SiteSettingsPageFormData}
+              value={data.phone}
+              onChange={onChange}
+            />
+            {/* <TextField
+              disabled={disabled}
               error={!!errors.postalCode}
               helperText={errors.postalCode}
               label={intl.formatMessage({
@@ -117,10 +130,10 @@ const SiteSettingsAddress = withStyles(styles, { name: "SiteSettingsAddress" })(
               onChange={onChange}
               value={data.postalCode}
               fullWidth
-            />
+            /> */}
           </Grid>
           <FormSpacer />
-          <Grid>
+          {/* <Grid>
             <SingleAutocompleteSelectField
               disabled={disabled}
               displayValue={displayCountry}
@@ -150,19 +163,7 @@ const SiteSettingsAddress = withStyles(styles, { name: "SiteSettingsAddress" })(
               fullWidth
             />
           </Grid>
-          <FormSpacer />
-          <TextField
-            disabled={disabled}
-            error={!!errors.phone}
-            fullWidth
-            helperText={errors.phone}
-            label={intl.formatMessage({
-              defaultMessage: "Phone"
-            })}
-            name={"phone" as keyof SiteSettingsPageFormData}
-            value={data.phone}
-            onChange={onChange}
-          />
+          <FormSpacer /> */}
         </CardContent>
       </Card>
     );

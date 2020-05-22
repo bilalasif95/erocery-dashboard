@@ -93,7 +93,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
               />
             </TableCell>
             <TableCell>
-              <FormattedMessage defaultMessage="Email Address" />
+              <FormattedMessage defaultMessage="Phone Number" />
             </TableCell>
           </TableRow>
         </TableHead>
@@ -163,7 +163,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                 </TableCell>
                 <TableCell>
                   {maybe<React.ReactNode>(
-                    () => staffMember.email,
+                    () => staffMember.phone,
                     <Skeleton />
                   )}
                 </TableCell>

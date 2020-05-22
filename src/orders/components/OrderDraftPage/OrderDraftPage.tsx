@@ -13,6 +13,7 @@ import CardMenu from "@saleor/components/CardMenu";
 import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
 import { Container } from "@saleor/components/Container";
 import { DateTime } from "@saleor/components/Date";
+import Form from "@saleor/components/Form";
 import Grid from "@saleor/components/Grid";
 import PageHeader from "@saleor/components/PageHeader";
 import SaveButtonBar from "@saleor/components/SaveButtonBar";
@@ -27,6 +28,8 @@ import OrderCustomer from "../OrderCustomer";
 import OrderDraftDetails from "../OrderDraftDetails/OrderDraftDetails";
 import { FormData as OrderDraftDetailsProductsFormData } from "../OrderDraftDetailsProducts";
 import OrderHistory, { FormData as HistoryFormData } from "../OrderHistory";
+
+import { TypedStaffffListQuery,TypedStaffMemberDetailsQuery } from "../../../riders/queries";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -58,6 +61,7 @@ export interface OrderDraftPageProps
   onDraftFinalize: () => void;
   onDraftRemove: () => void;
   onNoteAdd: (data: HistoryFormData) => void;
+  onAssignOrder: (data: HistoryFormData) => void;
   onOrderLineAdd: () => void;
   onOrderLineChange: (
     id: string,
@@ -84,6 +88,7 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
     onDraftRemove,
     onFetchMore,
     onNoteAdd,
+    onAssignOrder,
     onOrderLineAdd,
     onOrderLineChange,
     onOrderLineRemove,
@@ -96,7 +101,7 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
     userPermissions
   }: OrderDraftPageProps & WithStyles<typeof styles>) => {
     const intl = useIntl();
-
+    const id = window.localStorage.getItem("subshop");
     return (
       <Container>
         <AppHeader onBack={onBack}>
@@ -142,23 +147,67 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
             />
           </div>
           <div>
-            <OrderCustomer
-              canEditAddresses={true}
-              canEditCustomer={true}
-              fetchUsers={fetchUsers}
-              hasMore={hasMore}
-              loading={usersLoading}
-              order={order}
-              users={users}
-              riders={[]}
-              onSubmit={() => null}
-              userPermissions={userPermissions}
-              onBillingAddressEdit={onBillingAddressEdit}
-              onCustomerEdit={onCustomerEdit}
-              onFetchMore={onFetchMore}
-              onProfileView={onProfileView}
-              onShippingAddressEdit={onShippingAddressEdit}
-            />
+          {window.localStorage.getItem("subshop") === "null" ? 
+          <TypedStaffMemberDetailsQuery>
+            {({ data }) => {
+                return (
+                <Form initial={{ message: order && order.id }} onSubmit={onAssignOrder} resetOnSubmit>
+                  {({ submit }) => (
+                    <OrderCustomer
+                      canEditAddresses={true}
+                      canEditCustomer={true}
+                      fetchUsers={fetchUsers}
+                      hasMore={hasMore}
+                      loading={usersLoading}
+                      order={order}
+                      users={users}
+                      riders={maybe(() =>
+                        data.riders.map(edge => edge)
+                      )}
+                      onSubmit={submit}
+                      userPermissions={userPermissions}
+                      onBillingAddressEdit={onBillingAddressEdit}
+                      onCustomerEdit={onCustomerEdit}
+                      onFetchMore={onFetchMore}
+                      onProfileView={onProfileView}
+                      onShippingAddressEdit={onShippingAddressEdit}
+                    />
+                    )}
+                </Form>
+              );
+            }}
+          </TypedStaffMemberDetailsQuery>
+          :
+            <TypedStaffffListQuery variables={{ id }}>
+              {({ data }) => {
+              return (
+                <Form initial={{ message: order && order.id }} onSubmit={onAssignOrder} resetOnSubmit>
+                  {({ submit }) => (
+                    <OrderCustomer
+                      canEditAddresses={true}
+                      canEditCustomer={true}
+                      fetchUsers={fetchUsers}
+                      hasMore={hasMore}
+                      loading={usersLoading}
+                      order={order}
+                      users={users}
+                      riders={maybe(() =>
+                        data.subshop.riders.edges.map(edge => edge)
+                      )}
+                      onSubmit={submit}
+                      userPermissions={userPermissions}
+                      onBillingAddressEdit={onBillingAddressEdit}
+                      onCustomerEdit={onCustomerEdit}
+                      onFetchMore={onFetchMore}
+                      onProfileView={onProfileView}
+                      onShippingAddressEdit={onShippingAddressEdit}
+                    />
+                    )}
+                </Form>
+              );
+              }}
+            </TypedStaffffListQuery>
+            }
           </div>
         </Grid>
         <SaveButtonBar

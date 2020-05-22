@@ -688,7 +688,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 2
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -699,7 +700,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 2
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -710,7 +712,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 1
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -721,7 +724,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 1
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -732,7 +736,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -743,7 +748,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -754,7 +760,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 1
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -765,7 +772,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 2
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -776,7 +784,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 2
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -787,7 +796,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 1
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -798,7 +808,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 1
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -809,7 +820,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -820,7 +832,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -831,7 +844,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -842,7 +856,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -853,7 +868,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 1
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -864,7 +880,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 1
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -875,7 +892,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 2
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -886,7 +904,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 2
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -897,7 +916,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -908,7 +928,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -919,7 +940,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -930,7 +952,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 0
-    }
+    },
+    phone: "",
   },
   {
     __typename: "User",
@@ -941,7 +964,8 @@ export const customerList: ListCustomers_customers_edges_node[] = [
     orders: {
       __typename: "OrderCountableConnection",
       totalCount: 6
-    }
+    },
+    phone: "",
   }
 ];
 export const customer: CustomerDetails_user & CustomerAddresses_user = {
@@ -1068,5 +1092,6 @@ export const customer: CustomerDetails_user & CustomerAddresses_user = {
         }
       }
     ]
-  }
+  },
+  phone: "",
 };

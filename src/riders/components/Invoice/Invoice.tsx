@@ -64,7 +64,8 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                 marginTop: "10px",
               }}
             >
-              ORDER P.O NO:<Text style={{ fontWeight: "bold" }}>188884</Text>
+              ORDER P.O NO:
+              <Text style={{ fontWeight: "bold" }}>{data.info.node.id}</Text>
             </Text>
           </View>
           <View>
@@ -85,7 +86,9 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
             <Text style={{ fontWeight: "bold", fontSize: "8" }}>
               Recipient:
             </Text>
-            <Text style={{ fontSize: "6" }}>Ali khan IslamAbad.</Text>
+            <Text style={{ fontSize: "6" }}>
+              {data.riderInfo[0].name} City:{data.riderInfo[0].city}
+            </Text>
           </View>
           <View style={{ marginLeft: "5px", marginTop: "10px" }}>
             <Text style={{ fontWeight: "bold", fontSize: "8" }}>Seller:</Text>

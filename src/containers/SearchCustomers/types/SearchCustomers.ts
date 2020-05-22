@@ -9,7 +9,7 @@
 export interface SearchCustomers_search_edges_node {
   __typename: "User";
   id: string;
-  email: string;
+  phone: string;
 }
 
 export interface SearchCustomers_search_edges {

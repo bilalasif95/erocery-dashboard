@@ -9,7 +9,7 @@ import React from "react";
 import { useIntl } from "react-intl";
 
 import { AddressTypeInput } from "@saleor/customers/types";
-import { commonMessages } from "@saleor/intl";
+// import { commonMessages } from "@saleor/intl";
 import { FormErrors } from "@saleor/types";
 import FormSpacer from "../FormSpacer";
 import SingleAutocompleteSelectField, {
@@ -30,6 +30,7 @@ interface AddressEditProps extends WithStyles<typeof styles> {
   countryDisplayValue: string;
   data: AddressTypeInput;
   disabled?: boolean;
+  variant: string;
   errors: FormErrors<keyof AddressTypeInput>;
   onChange(event: React.ChangeEvent<any>);
   onCountryChange(event: React.ChangeEvent<any>);
@@ -44,13 +45,14 @@ const AddressEdit = withStyles(styles, { name: "AddressEdit" })(
     disabled,
     errors,
     onChange,
+    variant,
     onCountryChange
   }: AddressEditProps) => {
     const intl = useIntl();
 
     return (
       <>
-        <div className={classes.root}>
+        {/* <div className={classes.root}>
           <div>
             <TextField
               disabled={disabled}
@@ -107,7 +109,7 @@ const AddressEdit = withStyles(styles, { name: "AddressEdit" })(
             />
           </div>
         </div>
-        <FormSpacer />
+        <FormSpacer /> */}
         <TextField
           disabled={disabled}
           error={!!errors.streetAddress1}
@@ -136,7 +138,7 @@ const AddressEdit = withStyles(styles, { name: "AddressEdit" })(
         <FormSpacer />
         <div className={classes.root}>
           <div>
-            <TextField
+            {/* <TextField
               disabled={disabled}
               error={!!errors.city}
               helperText={errors.city}
@@ -147,9 +149,40 @@ const AddressEdit = withStyles(styles, { name: "AddressEdit" })(
               onChange={onChange}
               value={data.city}
               fullWidth
+            /> */}
+            <SingleAutocompleteSelectField
+              disabled={disabled}
+              displayValue={countryDisplayValue}
+              error={!!errors.city}
+              helperText={errors.city}
+              label={intl.formatMessage({
+                defaultMessage: "City"
+              })}
+              name="city"
+              onChange={onCountryChange}
+              value={data.city}
+              choices={countries}
+              InputProps={{
+                autoComplete: "off"
+              }}
             />
           </div>
+          {variant === "" ? "" :
           <div>
+            <TextField
+              disabled={disabled}
+              error={!!errors.phone}
+              fullWidth
+              helperText={errors.phone}
+              label={intl.formatMessage({
+                defaultMessage: "Phone"
+              })}
+              name="phone"
+              value={data.phone}
+              onChange={onChange}
+            />
+          </div>}
+          {/* <div>
             <TextField
               disabled={disabled}
               error={!!errors.postalCode}
@@ -162,10 +195,10 @@ const AddressEdit = withStyles(styles, { name: "AddressEdit" })(
               value={data.postalCode}
               fullWidth
             />
-          </div>
+          </div> */}
         </div>
 
-        <FormSpacer />
+        {/* <FormSpacer />
         <div className={classes.root}>
           <div>
             <SingleAutocompleteSelectField
@@ -199,7 +232,7 @@ const AddressEdit = withStyles(styles, { name: "AddressEdit" })(
               fullWidth
             />
           </div>
-        </div>
+        </div> */}
       </>
     );
   }

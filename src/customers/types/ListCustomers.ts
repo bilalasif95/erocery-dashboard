@@ -19,6 +19,7 @@ export interface ListCustomers_customers_edges_node {
   email: string;
   firstName: string;
   lastName: string;
+  phone: string;
   orders: ListCustomers_customers_edges_node_orders | null;
 }
 

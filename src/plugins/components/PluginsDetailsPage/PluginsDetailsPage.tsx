@@ -116,7 +116,7 @@ const PluginsDetailsPage: React.StatelessComponent<PluginsDetailsPageProps> = ({
                     <Typography>
                       {intl.formatMessage({
                         defaultMessage:
-                          "This adress will be used to generate invoices and calculate shipping rates. Email adress you provide here will be used as a contact adress for your customers."
+                          "This adress will be used to generate invoices and calculate shipping rates. Phone number you provide here will be used as a contact adress for your customers."
                       })}
                     </Typography>
                   </div>

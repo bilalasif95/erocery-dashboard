@@ -421,6 +421,12 @@ export const OrderDetails: React.StatelessComponent<OrderDetailsProps> = ({
                                     order: id
                                   })
                                 }
+                                onAssignOrder={variables =>
+                                  OrderAssignRider.mutate({
+                                    orderid: variables.message,
+                                    riderid: order.lines[order.lines.length-1]
+                                  })
+                                }
                                 users={maybe(
                                   () =>
                                     users.data.search.edges.map(
