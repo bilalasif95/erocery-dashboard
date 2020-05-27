@@ -5,7 +5,7 @@ import {
   createStyles,
   Theme,
   withStyles,
-  WithStyles
+  WithStyles,
 } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import ArrowBack from "@material-ui/icons/ArrowBack";
@@ -17,7 +17,7 @@ import { buttonMessages } from "@saleor/intl";
 import {
   getMenuItemByPath,
   IMenu,
-  validateMenuOptions
+  validateMenuOptions,
 } from "../../utils/menu";
 import Debounce, { DebounceProps } from "../Debounce";
 
@@ -39,19 +39,19 @@ const validationError: Error = new Error(
   "Values supplied to AutocompleteSelectMenu should be unique"
 );
 
-const DebounceAutocomplete: React.ComponentType<
-  DebounceProps<string>
-> = Debounce;
+const DebounceAutocomplete: React.ComponentType<DebounceProps<
+  string
+>> = Debounce;
 
 const styles = (theme: Theme) =>
   createStyles({
     container: {
       flexGrow: 1,
-      position: "relative"
+      position: "relative",
     },
     menuBack: {
       marginLeft: -theme.spacing.unit / 2,
-      marginRight: theme.spacing.unit
+      marginRight: theme.spacing.unit,
     },
     paper: {
       left: 0,
@@ -59,12 +59,12 @@ const styles = (theme: Theme) =>
       padding: theme.spacing.unit,
       position: "absolute",
       right: 0,
-      zIndex: 2
+      zIndex: 2,
     },
-    root: {}
+    root: {},
   });
 const AutocompleteSelectMenu = withStyles(styles, {
-  name: "AutocompleteSelectMenu"
+  name: "AutocompleteSelectMenu",
 })(
   ({
     classes,
@@ -78,7 +78,7 @@ const AutocompleteSelectMenu = withStyles(styles, {
     options,
     placeholder,
     onChange,
-    onInputChange
+    onInputChange,
   }: AutocompleteSelectMenuProps & WithStyles<typeof styles>) => {
     const [inputValue, setInputValue] = React.useState(displayValue || "");
     const [menuPath, setMenuPath] = React.useState<number[]>([]);
@@ -87,8 +87,8 @@ const AutocompleteSelectMenu = withStyles(styles, {
       onChange({
         target: {
           name,
-          value
-        }
+          value,
+        },
       } as any);
 
     // Validate if option values are duplicated
@@ -106,9 +106,9 @@ const AutocompleteSelectMenu = withStyles(styles, {
 
     return (
       <DebounceAutocomplete debounceFn={onInputChange}>
-        {debounceFn => (
+        {(debounceFn) => (
           <Downshift
-            itemToString={item => (item ? item.label : "")}
+            itemToString={(item) => (item ? item.label : "")}
             onSelect={handleChange}
           >
             {({ getItemProps, isOpen, openMenu, closeMenu, selectItem }) => {
@@ -123,12 +123,12 @@ const AutocompleteSelectMenu = withStyles(styles, {
                         setMenuPath([]);
                         setInputValue(displayValue);
                       },
-                      onChange: event => {
+                      onChange: (event) => {
                         debounceFn(event.target.value);
                         setInputValue(event.target.value);
                       },
                       onFocus: () => openMenu(),
-                      placeholder
+                      placeholder,
                     }}
                     disabled={disabled}
                     error={error}
@@ -138,14 +138,18 @@ const AutocompleteSelectMenu = withStyles(styles, {
                     value={inputValue}
                   />
                   {isOpen && (
-                    <Paper className={classes.paper} square>
+                    <Paper
+                      style={{ maxHeight: 150, overflow: "auto" }}
+                      className={classes.paper}
+                      square
+                    >
                       {options.length ? (
                         <>
                           {menuPath.length > 0 && (
                             <MenuItem
                               component="div"
                               {...getItemProps({
-                                item: null
+                                item: null,
                               })}
                               onClick={() =>
                                 setMenuPath(

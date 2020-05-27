@@ -11,7 +11,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 
 import AutocompleteSelectMenu from "@saleor/components/AutocompleteSelectMenu";
 import ConfirmButton, {
-  ConfirmButtonTransitionState
+  ConfirmButtonTransitionState,
 } from "@saleor/components/ConfirmButton";
 import FormSpacer from "@saleor/components/FormSpacer";
 import { SearchCategories_search_edges_node } from "@saleor/containers/SearchCategories/types/SearchCategories";
@@ -54,14 +54,14 @@ export interface MenuItemDialogProps {
 const defaultInitial: MenuItemDialogFormData = {
   id: "",
   name: "",
-  type: "category"
+  type: "category",
 };
 
 function getMenuItemData(value: string): MenuItemData {
   const [type, ...idParts] = value.split(":");
   return {
     id: idParts.join(":"),
-    type: type as MenuItemType
+    type: type as MenuItemType,
   };
 }
 
@@ -86,7 +86,7 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
   open,
   categories,
   collections,
-  pages
+  pages,
 }) => {
   const intl = useIntl();
   const errors = useModalDialogErrors(apiErrors, open);
@@ -104,12 +104,12 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
       setData(initial || defaultInitial);
       setDisplayValue(initialDisplayValue);
       setUrl(undefined);
-    }
+    },
   });
 
   // Refresh initial display value if changed
   React.useEffect(() => setDisplayValue(initialDisplayValue), [
-    initialDisplayValue
+    initialDisplayValue,
   ]);
 
   const mutationErrors = getErrors(errors);
@@ -120,15 +120,15 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
     options = [
       ...options,
       {
-        children: categories.map(category => ({
+        children: categories.map((category) => ({
           children: [],
           data: {},
           label: category.name,
-          value: "category:" + category.id
+          value: "category:" + category.id,
         })),
         data: {},
-        label: intl.formatMessage(sectionNames.categories)
-      }
+        label: intl.formatMessage(sectionNames.categories),
+      },
     ];
   }
 
@@ -136,15 +136,15 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
     options = [
       ...options,
       {
-        children: collections.map(collection => ({
+        children: collections.map((collection) => ({
           children: [],
           data: {},
           label: collection.name,
-          value: "collection:" + collection.id
+          value: "collection:" + collection.id,
         })),
         data: {},
-        label: intl.formatMessage(sectionNames.collections)
-      }
+        label: intl.formatMessage(sectionNames.collections),
+      },
     ];
   }
 
@@ -152,15 +152,15 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
     options = [
       ...options,
       {
-        children: pages.map(page => ({
+        children: pages.map((page) => ({
           children: [],
           data: {},
           label: page.title,
-          value: "page:" + page.id
+          value: "page:" + page.id,
         })),
         data: {},
-        label: intl.formatMessage(sectionNames.pages)
-      }
+        label: intl.formatMessage(sectionNames.pages),
+      },
     ];
   }
 
@@ -175,12 +175,12 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
             description="add link to navigation"
             id="menuItemDialogAddLink"
             values={{
-              url: <strong>{url}</strong>
+              url: <strong>{url}</strong>,
             }}
           />
         ),
-        value: "link:" + url
-      }
+        value: "link:" + url,
+      },
     ];
   }
 
@@ -199,9 +199,9 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
     const value = event.target.value;
     const menuItemData = getMenuItemData(value);
 
-    setData(value => ({
+    setData((value) => ({
       ...value,
-      ...menuItemData
+      ...menuItemData,
     }));
     setDisplayValue(getDisplayValue(options, value));
   };
@@ -209,7 +209,7 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
   const handleSubmit = () => onSubmit(data);
 
   const idError = ["category", "collection", "page", "url"]
-    .map(field => getFieldError(errors, field))
+    .map((field) => getFieldError(errors, field))
     .reduce((acc, err) => acc || err);
 
   return (
@@ -219,7 +219,7 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
       maxWidth="sm"
       fullWidth
       PaperProps={{
-        style: { overflowY: "visible" }
+        style: { overflowY: "visible" },
       }}
     >
       <DialogTitle>
@@ -227,12 +227,12 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
           ? intl.formatMessage({
               defaultMessage: "Edit Item",
               description: "edit menu item, header",
-              id: "menuItemDialogEditItem"
+              id: "menuItemDialogEditItem",
             })
           : intl.formatMessage({
               defaultMessage: "Add Item",
               description: "create new menu item, header",
-              id: "menuItemDialogAddItem"
+              id: "menuItemDialogAddItem",
             })}
       </DialogTitle>
       <DialogContent style={{ overflowY: "visible" }}>
@@ -241,14 +241,14 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
           label={intl.formatMessage({
             defaultMessage: "Name",
             description: "menu item name",
-            id: "menuItemDialogNameLabel"
+            id: "menuItemDialogNameLabel",
           })}
           fullWidth
           value={data.name}
-          onChange={event =>
-            setData(value => ({
+          onChange={(event) =>
+            setData((value) => ({
               ...value,
-              name: event.target.value
+              name: event.target.value,
             }))
           }
           name="name"
@@ -263,7 +263,7 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
           label={intl.formatMessage({
             defaultMessage: "Link",
             description: "label",
-            id: "menuItemDialogLinkLabel"
+            id: "menuItemDialogLinkLabel",
           })}
           displayValue={displayValue}
           loading={loading}
@@ -271,15 +271,15 @@ const MenuItemDialog: React.StatelessComponent<MenuItemDialogProps> = ({
           error={!!idError}
           helperText={idError}
           placeholder={intl.formatMessage({
-            defaultMessage: "Start typing to begin search...",
-            id: "menuItemDialogLinkPlaceholder"
+            defaultMessage: "Start typing to begin search..",
+            id: "menuItemDialogLinkPlaceholder",
           })}
           onInputChange={handleQueryChange}
         />
         {mutationErrors.length > 0 && (
           <>
             <FormSpacer />
-            {mutationErrors.map(err => (
+            {mutationErrors.map((err) => (
               <Typography key={err} color="error">
                 {err}
               </Typography>

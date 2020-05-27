@@ -5,7 +5,7 @@ import {
   createStyles,
   Theme,
   withStyles,
-  WithStyles
+  WithStyles,
 } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -36,25 +36,25 @@ const styles = (theme: Theme) =>
   createStyles({
     iconCell: {
       "&:last-child": {
-        paddingRight: 0
+        paddingRight: 0,
       },
-      width: 48 + theme.spacing.unit / 2
+      width: 48 + theme.spacing.unit / 2,
     },
     tableRow: {
-      cursor: "pointer"
+      cursor: "pointer",
     },
     textRight: {
-      textAlign: "right"
+      textAlign: "right",
     },
     wideColumn: {
-      width: "60%"
-    }
+      width: "60%",
+    },
   });
 
 const numberOfColumns = 4;
 
 const DiscountCategories = withStyles(styles, {
-  name: "DiscountCategories"
+  name: "DiscountCategories",
 })(
   ({
     discount: sale,
@@ -70,7 +70,7 @@ const DiscountCategories = withStyles(styles, {
     toggle,
     toggleAll,
     selected,
-    isChecked
+    isChecked,
   }: DiscountCategoriesProps & WithStyles<typeof styles>) => {
     const intl = useIntl();
 
@@ -79,7 +79,7 @@ const DiscountCategories = withStyles(styles, {
         <CardTitle
           title={intl.formatMessage({
             defaultMessage: "Eligible Categories",
-            description: "section header"
+            description: "section header",
           })}
           toolbar={
             <Button color="primary" onClick={onCategoryAssign}>
@@ -95,7 +95,7 @@ const DiscountCategories = withStyles(styles, {
             colSpan={numberOfColumns}
             selected={selected}
             disabled={disabled}
-            items={maybe(() => sale.categories.edges.map(edge => edge.node))}
+            items={maybe(() => sale.categories.edges.map((edge) => edge.node))}
             toggleAll={toggleAll}
             toolbar={toolbar}
           >
@@ -129,8 +129,8 @@ const DiscountCategories = withStyles(styles, {
           </TableFooter>
           <TableBody>
             {renderCollection(
-              maybe(() => sale.categories.edges.map(edge => edge.node)),
-              category => {
+              maybe(() => sale.categories.edges.map((edge) => edge.node)),
+              (category) => {
                 const isSelected = category ? isChecked(category.id) : false;
 
                 return (
@@ -164,7 +164,7 @@ const DiscountCategories = withStyles(styles, {
                     <TableCell className={classes.iconCell}>
                       <IconButton
                         disabled={!category || disabled}
-                        onClick={event => {
+                        onClick={(event) => {
                           event.stopPropagation();
                           onCategoryUnassign(category.id);
                         }}
