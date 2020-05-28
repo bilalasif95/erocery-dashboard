@@ -14,7 +14,7 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import ConfirmButton, {
-  ConfirmButtonTransitionState
+  ConfirmButtonTransitionState,
 } from "@saleor/components/ConfirmButton";
 import FormSpacer from "@saleor/components/FormSpacer";
 import useSearchQuery from "@saleor/hooks/useSearchQuery";
@@ -30,18 +30,23 @@ export interface FormData {
 const styles = createStyles({
   avatar: {
     "&:first-child": {
-      paddingLeft: 0
-    }
+      paddingLeft: 0,
+    },
   },
   checkboxCell: {
-    paddingLeft: 0
+    paddingLeft: 0,
+  },
+  dropDownScroll: {
+    height: "80px",
+    overflowX: "hidden",
+    overflowY: "auto",
   },
   overflow: {
-    overflowY: "visible"
+    overflowY: "visible",
   },
   wideCell: {
-    width: "100%"
-  }
+    width: "100%",
+  },
 });
 
 interface AssignCategoriesDialogProps extends WithStyles<typeof styles> {
@@ -63,7 +68,7 @@ function handleCategoryAssign(
   if (isSelected) {
     setSelectedCategories(
       selectedCategories.filter(
-        selectedProduct => selectedProduct.id !== product.id
+        (selectedProduct) => selectedProduct.id !== product.id
       )
     );
   } else {
@@ -72,7 +77,7 @@ function handleCategoryAssign(
 }
 
 const AssignCategoriesDialog = withStyles(styles, {
-  name: "AssignCategoriesDialog"
+  name: "AssignCategoriesDialog",
 })(
   ({
     classes,
@@ -82,7 +87,7 @@ const AssignCategoriesDialog = withStyles(styles, {
     categories: categories,
     onClose,
     onFetch,
-    onSubmit
+    onSubmit,
   }: AssignCategoriesDialogProps) => {
     const intl = useIntl();
     const [query, onQueryChange] = useSearchQuery(onFetch);
@@ -106,34 +111,35 @@ const AssignCategoriesDialog = withStyles(styles, {
             description="dialog header"
           />
         </DialogTitle>
-        <DialogContent className={classes.overflow}>
+        <DialogContent>
           <TextField
             name="query"
             value={query}
             onChange={onQueryChange}
             label={intl.formatMessage({
-              defaultMessage: "Search Categories"
+              defaultMessage: "Search Categories",
             })}
             placeholder={intl.formatMessage({
-              defaultMessage: "Search by category name, etc..."
+              defaultMessage: "Search by category name, etc...",
             })}
             fullWidth
             InputProps={{
               autoComplete: "off",
-              endAdornment: loading && <CircularProgress size={16} />
+              endAdornment: loading && <CircularProgress size={16} />,
             }}
           />
           <FormSpacer />
           <Table>
             <TableBody>
               {categories &&
-                categories.map(category => {
+                categories.map((category) => {
                   const isSelected = !!selectedCategories.find(
-                    selectedCategories => selectedCategories.id === category.id
+                    (selectedCategories) =>
+                      selectedCategories.id === category.id
                   );
 
                   return (
-                    <TableRow key={category.id}>
+                    <TableRow key={category.id} style={styles.dropDownScroll}>
                       <TableCell
                         padding="checkbox"
                         className={classes.checkboxCell}
