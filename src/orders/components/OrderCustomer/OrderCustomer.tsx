@@ -48,6 +48,8 @@ const styles = (theme: Theme) =>
       display: "block",
     },
     popover: {
+      minWidth: "150px",
+      right: "25px",
       zIndex: 1
     },
     root: {
