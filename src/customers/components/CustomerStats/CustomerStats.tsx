@@ -74,9 +74,10 @@ const CustomerStats = withStyles(styles, { name: "CustomerStats" })(
                 {customer.lastPlacedOrder.edges.length === 0 ? (
                   "-"
                 ) : (
-                  <DateTime
-                    date={customer.lastPlacedOrder.edges[0].node.created}
-                  />
+                  <>{customer.lastPlacedOrder.edges[0].node.created}</>
+                  // <DateTime
+                  //   date={customer.lastPlacedOrder.edges[0].node.created}
+                  // />
                 )}
               </Typography>
             ),

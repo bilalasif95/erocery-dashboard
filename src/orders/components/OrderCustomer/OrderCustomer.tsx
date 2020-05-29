@@ -21,7 +21,7 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import CardTitle from "@saleor/components/CardTitle";
-import { DateTime } from "@saleor/components/Date";
+// import { DateTime } from "@saleor/components/Date";
 import ExternalLink from "@saleor/components/ExternalLink";
 import Form from "@saleor/components/Form";
 import Hr from "@saleor/components/Hr";
@@ -143,7 +143,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
       <Card>
         <CardTitle
           title={intl.formatMessage({
-            defaultMessage: "Order Assigned By",
+            defaultMessage: "Order Assigned To",
             description: "section header"
           })}
           toolbar={
@@ -252,7 +252,8 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                   />
                 </td>
                 <td className={classes.textRight}>
-                  <DateTime date={order && order.created}/>
+                  {order && order.created}
+                  {/* <DateTime date={order && order.created}/> */}
                 </td>
               </tr>
               <tr>

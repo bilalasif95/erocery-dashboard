@@ -12,7 +12,7 @@ import AppHeader from "@saleor/components/AppHeader";
 import CardMenu from "@saleor/components/CardMenu";
 import { ConfirmButtonTransitionState } from "@saleor/components/ConfirmButton";
 import { Container } from "@saleor/components/Container";
-import { DateTime } from "@saleor/components/Date";
+// import { DateTime } from "@saleor/components/Date";
 import Form from "@saleor/components/Form";
 import Grid from "@saleor/components/Grid";
 import PageHeader from "@saleor/components/PageHeader";
@@ -35,7 +35,7 @@ const styles = (theme: Theme) =>
   createStyles({
     date: {
       marginBottom: theme.spacing.unit * 3,
-      marginLeft: theme.spacing.unit * 7
+      // marginLeft: theme.spacing.unit * 7
     },
     header: {
       marginBottom: 0
@@ -126,7 +126,8 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
         <div className={classes.date}>
           {order && order.created ? (
             <Typography variant="caption">
-              <DateTime date={order.created} />
+              {order.created}
+              {/* <DateTime date={order.created} /> */}
             </Typography>
           ) : (
             <Skeleton style={{ width: "10em" }} />

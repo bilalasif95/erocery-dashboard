@@ -49,7 +49,7 @@ const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
     order,
     onCapture,
     onMarkAsPaid,
-    onRefund,
+    // onRefund,
     onVoid
   }: OrderPaymentProps) => {
     const intl = useIntl();
@@ -260,14 +260,14 @@ const OrderPayment = withStyles(styles, { name: "OrderPayment" })(
                     />
                   </Button>
                 )}
-                {canRefund && (
+                {/* {canRefund && (
                   <Button color="primary" variant="text" onClick={onRefund}>
                     <FormattedMessage
                       defaultMessage="Refund"
                       description="button"
                     />
                   </Button>
-                )}
+                )} */}
                 {canVoid && (
                   <Button color="primary" variant="text" onClick={onVoid}>
                     <FormattedMessage

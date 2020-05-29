@@ -10,7 +10,7 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import CardTitle from "@saleor/components/CardTitle";
-import { DateTime } from "@saleor/components/Date";
+// import { DateTime } from "@saleor/components/Date";
 import Money from "@saleor/components/Money";
 import Skeleton from "@saleor/components/Skeleton";
 import StatusLabel from "@saleor/components/StatusLabel";
@@ -115,7 +115,8 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
                   </TableCell>
                   <TableCell padding="dense">
                     {maybe(() => order.created) ? (
-                      <DateTime date={order.created} />
+                       <>{order.created}</>
+                      // <DateTime date={order.created} />
                     ) : (
                       <Skeleton />
                     )}

@@ -13,7 +13,7 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
 import Checkbox from "@saleor/components/Checkbox";
-import { DateTime } from "@saleor/components/Date";
+// import { DateTime } from "@saleor/components/Date";
 import Money from "@saleor/components/Money";
 import Skeleton from "@saleor/components/Skeleton";
 import TableHead from "@saleor/components/TableHead";
@@ -171,7 +171,8 @@ export const OrderDraftList = withStyles(styles, { name: "OrderDraftList" })(
                   </TableCell>
                   <TableCell padding="dense" className={classes.colDate}>
                     {maybe(() => order.created) ? (
-                      <DateTime date={order.created} />
+                      <>{order.created}</>
+                      // <DateTime date={order.created} />
                     ) : (
                       <Skeleton />
                     )}

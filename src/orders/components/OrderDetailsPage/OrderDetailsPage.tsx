@@ -12,7 +12,7 @@ import AppHeader from "@saleor/components/AppHeader";
 import CardMenu from "@saleor/components/CardMenu";
 import { CardSpacer } from "@saleor/components/CardSpacer";
 import { Container } from "@saleor/components/Container";
-import { DateTime } from "@saleor/components/Date";
+// import { DateTime } from "@saleor/components/Date";
 import Form from "@saleor/components/Form";
 import Grid from "@saleor/components/Grid";
 import PageHeader from "@saleor/components/PageHeader";
@@ -124,7 +124,8 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
         <div className={classes.date}>
           {order && order.created ? (
             <Typography variant="caption">
-              <DateTime date={order.created} />
+              {order.created}
+              {/* <DateTime date={order.created} /> */}
             </Typography>
           ) : (
             <Skeleton style={{ width: "10em" }} />

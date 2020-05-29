@@ -151,23 +151,6 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
         <Grid item md={3} sm={6} xs={6}>
           <PageHeader title={intl.formatMessage(sectionNames.products)} className={classes.pageTitle} />
         </Grid>
-        <Grid item md={3} sm={6} xs={6} className={classes.textAlign}>
-          <ColumnPicker
-            className={classes.columnPicker}
-            columns={columns}
-            defaultColumns={defaultSettings.columns}
-            hasMore={hasMore}
-            loading={loading}
-            initialColumns={settings.columns}
-            total={
-              columns.length -
-              availableInGridAttributes.length +
-              totalGridAttributes
-            }
-            onFetchMore={onFetchMore}
-            onSave={handleSave}
-          />
-        </Grid>
         {window.localStorage.getItem("subshop") === "null" ?
         <>
         <Grid item md={3} sm={6} xs={6} className={classes.textAlign}>
@@ -199,7 +182,28 @@ export const ProductListPage: React.FC<ProductListPageProps> = props => {
           </Button>
         </Grid>
         </>
-        : "" }
+        : <>
+        <Grid item md={3} sm={6} xs={6} className={classes.textAlign}></Grid>
+        <Grid item md={3} sm={6} xs={6} className={classes.textAlign}></Grid>
+        </>
+        }
+        <Grid item md={3} sm={6} xs={6} className={classes.textAlign}>
+          <ColumnPicker
+            className={classes.columnPicker}
+            columns={columns}
+            defaultColumns={defaultSettings.columns}
+            hasMore={hasMore}
+            loading={loading}
+            initialColumns={settings.columns}
+            total={
+              columns.length -
+              availableInGridAttributes.length +
+              totalGridAttributes
+            }
+            onFetchMore={onFetchMore}
+            onSave={handleSave}
+          />
+        </Grid>
       </Grid>
       {/* <PageHeader title={intl.formatMessage(sectionNames.products)} className={classes.pageTitle}>
 
