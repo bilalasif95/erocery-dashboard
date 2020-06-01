@@ -1,7 +1,8 @@
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import React from "react";
-import { FormattedMessage, useIntl } from "react-intl";
+// import { FormattedMessage, useIntl } from "react-intl";
+import { useIntl } from "react-intl";
 
 import Container from "@saleor/components/Container";
 import PageHeader from "@saleor/components/PageHeader";
@@ -43,7 +44,7 @@ const CustomerListPage: React.StatelessComponent<CustomerListPageProps> = ({
   return (
     <Container>
       <PageHeader title={intl.formatMessage(sectionNames.customers)}>
-        <Button
+        {/* <Button
           color="primary"
           variant="contained"
           disabled={disabled}
@@ -53,7 +54,7 @@ const CustomerListPage: React.StatelessComponent<CustomerListPageProps> = ({
             defaultMessage="Add customer"
             description="button"
           />
-        </Button>
+        </Button> */}
       </PageHeader>
       <Card>
         <SearchBar

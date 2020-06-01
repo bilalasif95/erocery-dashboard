@@ -127,9 +127,9 @@ export const ProductUpdate: React.FC<ProductUpdateProps> = props => {
     const input = anchor.current
     const files = input.files
     const bodyFormData = new FormData();
-    for(let i=0;i<files.length;i++){
-      bodyFormData.append('images', files[i]);
-    }
+    Array.from(files).forEach(file => 
+      bodyFormData.append('images', file)
+    );
     axios
     .post(endpoints.addImages, bodyFormData)
 			.then(res=>{
