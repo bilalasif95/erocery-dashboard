@@ -35,6 +35,7 @@ const styles = (theme: Theme) =>
 export interface CustomerDetailsProps extends WithStyles<typeof styles> {
   customer: CustomerDetails_user;
   data: {
+    email: string;
     firstName: string;
     lastName: string;
     phone: string;
@@ -43,6 +44,7 @@ export interface CustomerDetailsProps extends WithStyles<typeof styles> {
   };
   disabled: boolean;
   errors: {
+    email?: string;
     firstName?: string;
     lastName?: string;
     phone?: string;
@@ -122,17 +124,30 @@ const CustomerDetails = withStyles(styles, { name: "CustomerDetails" })(
             />
           </div>
           <FormSpacer />
-          <TextField
-            disabled={disabled}
-            error={!!errors.phone}
-            fullWidth
-            helperText={errors.phone}
-            name="phone"
-            type="tel"
-            label={intl.formatMessage(commonMessages.phone)}
-            value={data.phone}
-            onChange={onChange}
-          />
+          <div className={classes.root}>
+            <TextField
+              disabled={disabled}
+              error={!!errors.phone}
+              fullWidth
+              helperText={errors.phone}
+              name="phone"
+              type="tel"
+              label={intl.formatMessage(commonMessages.phone)}
+              value={data.phone}
+              onChange={onChange}
+            />
+            <TextField
+              disabled={disabled}
+              error={!!errors.email}
+              fullWidth
+              helperText={errors.email}
+              name="email"
+              type="tel"
+              label={intl.formatMessage(commonMessages.email)}
+              value={data.email}
+              onChange={onChange}
+            />
+          </div>
           <FormSpacer />
           <TextField
             disabled={disabled}

@@ -724,6 +724,7 @@ export interface CustomerFilterInput {
 export interface CustomerInput {
   defaultBillingAddress?: AddressInput | null;
   defaultShippingAddress?: AddressInput | null;
+  email?: string | null;
   firstName?: string | null;
   lastName?: string | null;
   phone?: string | null;

@@ -19,6 +19,7 @@ import CustomerOrders from "../CustomerOrders/CustomerOrders";
 import CustomerStats from "../CustomerStats/CustomerStats";
 
 export interface CustomerDetailsPageFormData {
+  email: string;
   firstName: string;
   lastName: string;
   phone: string;
@@ -59,6 +60,7 @@ const CustomerDetailsPage: React.StatelessComponent<
     <Form
       errors={errors}
       initial={{
+        email: maybe(() => customer.email, ""),
         firstName: maybe(() => customer.firstName, ""),
         isActive: maybe(() => customer.isActive, false),
         lastName: maybe(() => customer.lastName, ""),
