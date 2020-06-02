@@ -1,8 +1,10 @@
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
+import makeStyles from "@material-ui/styles/makeStyles";
 import React from "react";
-import { useIntl } from "react-intl";
+import { FormattedMessage,useIntl } from "react-intl";
 
 import CardTitle from "@saleor/components/CardTitle";
 import { ControlledCheckbox } from "@saleor/components/ControlledCheckbox";
@@ -17,6 +19,12 @@ interface VoucherLimitsProps {
   onChange: (event: React.ChangeEvent<any>) => void;
 }
 
+const useStyles = makeStyles(() => ({
+  limit: {
+    marginBottom: "0.5rem"
+  },
+}));
+
 const VoucherLimits = ({
   data,
   disabled,
@@ -24,6 +32,7 @@ const VoucherLimits = ({
   onChange
 }: VoucherLimitsProps) => {
   const intl = useIntl();
+  const classes = useStyles({});  
 
   return (
     <Card>
@@ -34,7 +43,10 @@ const VoucherLimits = ({
         })}
       />
       <CardContent>
-        <ControlledCheckbox
+        <Typography variant="subtitle1" className={classes.limit}>
+          <FormattedMessage defaultMessage="Limit number of times this discount can be used in total" />
+        </Typography>
+        {/* <ControlledCheckbox
           checked={data.hasUsageLimit}
           label={intl.formatMessage({
             defaultMessage:
@@ -42,8 +54,8 @@ const VoucherLimits = ({
           })}
           name={"hasUsageLimit" as keyof FormData}
           onChange={onChange}
-        />
-        {data.hasUsageLimit && (
+        /> */}
+        {/* {data.hasUsageLimit && ( */}
           <TextField
             disabled={disabled}
             error={!!errors.usageLimit}
@@ -61,7 +73,7 @@ const VoucherLimits = ({
             }}
             fullWidth
           />
-        )}
+        {/* )} */}
         <ControlledCheckbox
           checked={data.applyOncePerCustomer}
           label={intl.formatMessage({

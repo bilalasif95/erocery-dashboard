@@ -137,7 +137,7 @@ const CustomerDetails = withStyles(styles, { name: "CustomerDetails" })(
               onChange={onChange}
             />
             <TextField
-              disabled={disabled}
+              disabled={true}
               error={!!errors.email}
               fullWidth
               helperText={errors.email}
