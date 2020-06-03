@@ -1,6 +1,6 @@
-import moment from "moment-timezone";
 import Card from "@material-ui/core/Card";
 
+import moment from "moment-timezone";
 import * as React from "react";
 
 import { FormattedMessage, useIntl } from "react-intl";
