@@ -397,10 +397,12 @@ export default (colors: IThemeColors): Theme =>
         body: {
           fontSize: ".875rem",
           paddingBottom: 8,
-          paddingTop: 8
+          paddingTop: 8,
+          minWidth: '200px !important',
         },
         head: {
-          fontSize: ".875rem"
+          fontSize: ".875rem",
+          minWidth: '200px !important',
         },
         paddingCheckbox: {
           "&:first-child": {
