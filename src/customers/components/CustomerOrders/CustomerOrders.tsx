@@ -1,4 +1,3 @@
-import moment from "moment-timezone";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
@@ -7,6 +6,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import moment from "moment-timezone";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 

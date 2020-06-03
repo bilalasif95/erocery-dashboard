@@ -1,4 +1,3 @@
-import moment from "moment-timezone";
 import AppBar from "@material-ui/core/AppBar";
 import Card from "@material-ui/core/Card";
 import useNavigator from "@saleor/hooks/useNavigator";
@@ -24,6 +23,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Tabs from "@material-ui/core/Tabs";
 import Typography from "@material-ui/core/Typography";
 // import classNames from "classnames";
+import moment from "moment-timezone";
 import React from "react";
 // import {  useIntl } from "react-intl";
 

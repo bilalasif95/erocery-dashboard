@@ -1,4 +1,3 @@
-import moment from "moment-timezone";
 import {
   createStyles,
   Theme,
@@ -6,6 +5,7 @@ import {
   WithStyles
 } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import moment from "moment-timezone";
 import React from "react";
 import { useIntl } from "react-intl";
 
