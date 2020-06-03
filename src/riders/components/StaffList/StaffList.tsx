@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import AppBar from "@material-ui/core/AppBar";
 import Card from "@material-ui/core/Card";
 import useNavigator from "@saleor/hooks/useNavigator";
@@ -316,7 +317,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                                 {value.node.number}
                               </TableCell>
                               <TableCell padding="dense">
-                                {value.node.created}
+                                {moment.utc(value.node.created).local().format("DD/MM/YYYY hh:mm A")}
                               </TableCell>
                               <TableCell padding="dense">
                                 {value.node.userEmail}
@@ -354,7 +355,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                           {value && value.node.number}
                         </TableCell>
                         <TableCell padding="dense">
-                          {value && value.node.created}
+                          {value && moment.utc(value.node.created).local().format("DD/MM/YYYY hh:mm A")}
                         </TableCell>
                         <TableCell padding="dense">
                           {value && value.node.userEmail}

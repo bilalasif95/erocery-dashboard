@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -252,7 +253,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                   />
                 </td>
                 <td className={classes.textRight}>
-                  {order && order.created}
+                  {order && moment.utc(order.created).local().format("DD/MM/YYYY hh:mm A")}
                   {/* <DateTime date={order && order.created}/> */}
                 </td>
               </tr>

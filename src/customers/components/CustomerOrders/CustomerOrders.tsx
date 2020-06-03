@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import { createStyles, withStyles, WithStyles } from "@material-ui/core/styles";
@@ -115,7 +116,7 @@ const CustomerOrders = withStyles(styles, { name: "CustomerOrders" })(
                   </TableCell>
                   <TableCell padding="dense">
                     {maybe(() => order.created) ? (
-                       <>{order.created}</>
+                       <>{moment.utc(order.created).local().format("DD/MM/YYYY hh:mm A")}</>
                       // <DateTime date={order.created} />
                     ) : (
                       <Skeleton />

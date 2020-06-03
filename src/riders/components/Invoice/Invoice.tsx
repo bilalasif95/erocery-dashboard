@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import React from "react";
 
 import {
@@ -78,7 +79,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
             >
               ORDER Date:
               <Text style={{ fontWeight: "bold" }}>
-                {data.info.node.created}
+                {moment.utc(data.info.node.created).local().format("DD/MM/YYYY hh:mm A")}
               </Text>
             </Text>
           </View>

@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import {
@@ -74,7 +75,7 @@ const CustomerStats = withStyles(styles, { name: "CustomerStats" })(
                 {customer.lastPlacedOrder.edges.length === 0 ? (
                   "-"
                 ) : (
-                  <>{customer.lastPlacedOrder.edges[0].node.created}</>
+                  <>{moment.utc(customer.lastPlacedOrder.edges[0].node.created).local().format("DD/MM/YYYY hh:mm A")}</>
                   // <DateTime
                   //   date={customer.lastPlacedOrder.edges[0].node.created}
                   // />

@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import {
   createStyles,
   Theme,
@@ -126,7 +127,7 @@ const OrderDraftPage = withStyles(styles, { name: "OrderDraftPage" })(
         <div className={classes.date}>
           {order && order.created ? (
             <Typography variant="caption">
-              {order.created}
+              {moment.utc(order.created).local().format("DD/MM/YYYY hh:mm A")}
               {/* <DateTime date={order.created} /> */}
             </Typography>
           ) : (

@@ -1,3 +1,4 @@
+import moment from "moment-timezone";
 import {
   createStyles,
   Theme,
@@ -171,7 +172,7 @@ export const OrderDraftList = withStyles(styles, { name: "OrderDraftList" })(
                   </TableCell>
                   <TableCell padding="dense" className={classes.colDate}>
                     {maybe(() => order.created) ? (
-                      <>{order.created}</>
+                      <>{moment.utc(order.created).local().format("DD/MM/YYYY hh:mm A")}</>
                       // <DateTime date={order.created} />
                     ) : (
                       <Skeleton />
