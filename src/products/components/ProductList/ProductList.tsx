@@ -82,7 +82,9 @@ const styles = (theme: Theme) =>
       tableLayout: "fixed"
     },
     tableContainer: {
-      overflowX: "scroll"
+      display: 'block',
+      overflowX: 'scroll',
+      width: '100%',
     },
     textLeft: {
       textAlign: "left"

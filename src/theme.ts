@@ -397,10 +397,28 @@ export default (colors: IThemeColors): Theme =>
         body: {
           fontSize: ".875rem",
           paddingBottom: 8,
-          paddingTop: 8
+          paddingTop: 8,
+
+          "&:first-child": {
+            minWidth: '70px',
+            width: '70px',
+          },
+          "@media(max-width: 1200px)": {
+            minWidth: '200px',
+            width: '200px',
+          }
         },
         head: {
-          fontSize: ".875rem"
+          fontSize: ".875rem",
+
+          "&:first-child": {
+            minWidth: '70px',
+            width: '70px',
+          },
+          "@media(max-width: 1200px)": {
+            minWidth: '200px',
+            width: '200px',
+          }
         },
         paddingCheckbox: {
           "&:first-child": {
@@ -549,22 +567,3 @@ Card.defaultProps = {
   elevation: 0
 };
 
-// -webkitScrollbar: {
-// 	width: '4px',
-// 	background: transparent, 
-// }
-
-
-// ::-webkit-scrollbar-track-piece:vertical {
-//     background-color: '#f2f3f7',
-// }
-
-// ::-webkit-scrollbar-thumb:vertical {
-//     background: '#2f5af7',
-//     /* min-height: 150px;
-//     min-width: 150px; */
-// }
-
-// ::-webkit-scrollbar-thumb:vertical:hover {
-//     background: '#555555',
-// }

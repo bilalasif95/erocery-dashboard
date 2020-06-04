@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display:'flex',
     justifyContent:'flex-end',
     margin: "0 24px 0 0",
+    position: 'relative',
     width:'100%',
     [theme.breakpoints.down("xs")]: {
       justifyContent:'center',
