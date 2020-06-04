@@ -245,6 +245,7 @@ const styles = (theme: Theme) =>
       padding: 25
     },
     popover: {
+      minWidth: "175px",
       zIndex: 1
     },
     root: {
