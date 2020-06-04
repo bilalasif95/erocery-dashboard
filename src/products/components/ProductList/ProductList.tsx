@@ -40,20 +40,20 @@ import { getArrowDirection } from "@saleor/utils/sort";
 
 const styles = (theme: Theme) =>
   createStyles({
-    // [theme.breakpoints.up("lg")]: {
-    //   colName: {
-    //     width: "auto"
-    //   },
-    //   colPrice: {
-    //     width: 200
-    //   },
-    //   colPublished: {
-    //     width: 200
-    //   },
-    //   colType: {
-    //     width: 200
-    //   }
-    // },
+    [theme.breakpoints.up("lg")]: {
+      colName: {
+        width: "auto"
+      },
+      colPrice: {
+        width: 200
+      },
+      colPublished: {
+        width: 200
+      },
+      colType: {
+        width: 200
+      }
+    },
     colAttribute: {
       width: 150
     },

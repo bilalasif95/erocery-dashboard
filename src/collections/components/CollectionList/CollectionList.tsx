@@ -39,14 +39,15 @@ const styles = (theme: Theme) =>
     colProducts: {
       textAlign: "center"
     },
-    tableRow: {
-      cursor: "pointer" as "pointer"
-    },
     tableContainer: {
       display: 'block',
       overflowX: 'scroll',
       width: '100%',
     },
+    tableRow: {
+      cursor: "pointer" as "pointer"
+    },
+   
   });
 
 interface CollectionListProps

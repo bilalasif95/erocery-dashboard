@@ -400,24 +400,24 @@ export default (colors: IThemeColors): Theme =>
           paddingTop: 8,
 
           "&:first-child": {
+            minWidth: '70px',
             width: '70px',
-             minWidth: '70px',
           },
           "@media(max-width: 1200px)": {
-            width: '200px',
             minWidth: '200px',
+            width: '200px',
           }
         },
         head: {
           fontSize: ".875rem",
 
           "&:first-child": {
+            minWidth: '70px',
             width: '70px',
-             minWidth: '70px',
           },
           "@media(max-width: 1200px)": {
-            width: '200px',
             minWidth: '200px',
+            width: '200px',
           }
         },
         paddingCheckbox: {
