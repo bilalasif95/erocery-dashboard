@@ -1,5 +1,6 @@
 import moment from "moment-timezone";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 
 import {
   Document,
@@ -13,6 +14,9 @@ import {
 import logo from "@assets/images/invoice/erocery-black-logo.png";
 import codeBar from "@assets/images/invoice/QR-code.jpg";
 
+import Money from "@saleor/components/Money";
+import Skeleton from "@saleor/components/Skeleton";
+import { maybe } from "../../../misc";
 
 const styles = StyleSheet.create({
   imageLogo: {
@@ -95,9 +99,9 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
+                    flexWrap: 'nowrap',
                     fontSize: "7",
                     fontWeight: "bold",
-                    flexWrap: 'nowrap',
                     justifyContent: 'flex-start',
                     width: '50%'
                   }}
@@ -109,16 +113,16 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
+                    flexWrap: 'nowrap',
                     fontSize: "7",
                     fontWeight: "bold",
-                    flexWrap: 'nowrap',
                     justifyContent: 'flex-end',
                     width: '50%'
                   }}
                 >
                   <Text style={{ fontWeight: 'bold', marginRight: 2 }}>Order Date:</Text>
                   <Text>
-                    {moment.utc(data.info.node.created).local().format("DD/MM/YYYY hh:mm A")}
+                    {moment.utc(data.info.node.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}
                   </Text>
                 </View>
               </View>
@@ -129,7 +133,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                 Recipient:
             </Text>
               <Text style={{ fontSize: "8" }}>
-                {data.riderInfo[0].name} City:{data.riderInfo[0].city}
+                {data.riderInfo[0].name},{data.riderInfo[0].city}
               </Text>
             </View>
             <View style={{ backgroundColor: 'white',  marginBottom: 1, padding: 5}}>
@@ -140,8 +144,8 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
               </Text>
             </View>
             <View style={{
-                backgroundColor: 'white',
                 alignItems: 'center',
+                backgroundColor: 'white',
                 display: 'flex',
                 flexDirection: 'row',
                 fontSize: "8",
@@ -155,7 +159,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'flex-start',
-                    width: '50%'
+                    width: '33%'
                   }}
                 >
                   <Text>Subtotal</Text>
@@ -164,16 +168,44 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    justifyContent: 'flex-end',
-                    width: '50%'
+                    justifyContent: 'center',
+                    width: '33%'
                   }}
                 >
-                  <Text>PKR 620.0</Text>
+                  <Text>
+                  {maybe(() => data.info.node.lines) === undefined ? (
+                    <Skeleton />
+                  ) : (
+                    <FormattedMessage
+                      defaultMessage="{quantity} items"
+                      description="ordered products"
+                      values={{
+                        quantity: data.info.node.lines
+                          .map(line => line.quantity)
+                          .reduce((curr, prev) => prev + curr, 0)
+                      }}
+                    />
+                  )}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    width: '33%'
+                  }}
+                >
+                  <Text>{maybe(() => data.info.node.subtotal.gross) === undefined ? (
+                    <Skeleton />
+                  ) : (
+                    <Money money={data.info.node.subtotal.gross} />
+                  )}</Text>
                 </View>
               </View>
               <View style={{
-                backgroundColor: 'white',
                 alignItems: 'center',
+                backgroundColor: 'white',
                 display: 'flex',
                 flexDirection: 'row',
                 fontSize: "8",
@@ -187,7 +219,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                     display: 'flex',
                     flexDirection: 'row',
                     justifyContent: 'flex-start',
-                    width: '50%'
+                    width: '33%'
                   }}
                 >
                   <Text>Shipping</Text>
@@ -196,16 +228,45 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   style={{
                     display: 'flex',
                     flexDirection: 'row',
-                    justifyContent: 'flex-end',
-                    width: '50%'
+                    justifyContent: 'center',
+                    width: '33%'
                   }}
                 >
-                  <Text>PKR 620.0</Text>
+                  <Text>
+                  {maybe(() => data.info.node.shippingMethodName) === undefined &&
+                  maybe(() => data.info.node.shippingPrice) === undefined ? (
+                    <Skeleton />
+                  ) : data.info.node.shippingMethodName === null ? (
+                    <>
+                    <FormattedMessage
+                      defaultMessage="does not apply"
+                      description="order does not require shipping"
+                      id= "orderPaymentShippingDoesNotApply"
+                    />
+                    </>
+                  ) : (
+                    data.info.node.shippingMethodName
+                  )}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    width: '33%'
+                  }}
+                >
+                  <Text>{maybe(() => data.info.node.shippingPrice.gross) === undefined ? (
+                    <Skeleton />
+                  ) : (
+                    <Money money={data.info.node.shippingPrice.gross} />
+                  )}</Text>
                 </View>
               </View>
               <View style={{
-                backgroundColor: 'white',
                 alignItems: 'center',
+                backgroundColor: 'white',
                 display: 'flex',
                 flexDirection: 'row',
                 fontSize: "8",
@@ -232,7 +293,11 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                     width: '50%'
                   }}
                 >
-                  <Text style={{fontWeight: "bold"}}>PKR 620.0</Text>
+                  <Text style={{fontWeight: "bold"}}>{maybe(() => data.info.node.total.gross) === undefined ? (
+                    <Skeleton />
+                  ) : (
+                    <Money money={data.info.node.total.gross} />
+                  )}</Text>
                 </View>
               </View>
           </View>

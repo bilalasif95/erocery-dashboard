@@ -75,7 +75,7 @@ const CustomerStats = withStyles(styles, { name: "CustomerStats" })(
                 {customer.lastPlacedOrder.edges.length === 0 ? (
                   "-"
                 ) : (
-                  <>{moment.utc(customer.lastPlacedOrder.edges[0].node.created).local().format("DD/MM/YYYY hh:mm A")}</>
+                  <>{moment.utc(customer.lastPlacedOrder.edges[0].node.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}</>
                   // <DateTime
                   //   date={customer.lastPlacedOrder.edges[0].node.created}
                   // />

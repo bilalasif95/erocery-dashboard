@@ -129,7 +129,32 @@ export const TypedStaffffListQuery = TypedQuery<StaffList, StaffListVariables>(
   staffListtt
 );
 
+export const fragmentOrderLine = gql`
+  fragment OrderLineFragment on OrderLine {
+    id
+    isShippingRequired
+    productName
+    productSku
+    quantity
+    quantityFulfilled
+    unitPrice {
+      gross {
+        amount
+        currency
+      }
+      net {
+        amount
+        currency
+      }
+    }
+    thumbnail {
+      url
+    }
+  }
+`;
+
 export const staffMemberDetails = gql`
+${fragmentOrderLine}
   query Rider {
     riders {
       id
@@ -145,6 +170,32 @@ export const staffMemberDetails = gql`
             totalBalance {
               amount
               currency
+            }
+            shippingPrice {
+              gross {
+                amount
+                currency
+              }
+            }
+            lines {
+              ...OrderLineFragment
+            }
+            shippingMethodName
+            subtotal {
+              gross {
+                amount
+                currency
+              }
+            }
+            total {
+              gross {
+                amount
+                currency
+              }
+              tax {
+                amount
+                currency
+              }
             }
             userEmail
             status

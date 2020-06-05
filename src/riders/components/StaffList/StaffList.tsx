@@ -317,7 +317,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                                 {value.node.number}
                               </TableCell>
                               <TableCell padding="dense">
-                                {moment.utc(value.node.created).local().format("DD/MM/YYYY hh:mm A")}
+                                {moment.utc(value.node.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}
                               </TableCell>
                               <TableCell padding="dense">
                                 {value.node.userEmail}
@@ -355,7 +355,7 @@ const StaffList = withStyles(styles, { name: "StaffList" })(
                           {value && value.node.number}
                         </TableCell>
                         <TableCell padding="dense">
-                          {value && moment.utc(value.node.created).local().format("DD/MM/YYYY hh:mm A")}
+                          {value && moment.utc(value.node.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}
                         </TableCell>
                         <TableCell padding="dense">
                           {value && value.node.userEmail}

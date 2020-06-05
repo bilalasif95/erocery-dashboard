@@ -253,7 +253,7 @@ const OrderCustomer = withStyles(styles, { name: "OrderCustomer" })(
                   />
                 </td>
                 <td className={classes.textRight}>
-                  {order && moment.utc(order.created).local().format("DD/MM/YYYY hh:mm A")}
+                  {order && moment.utc(order.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}
                   {/* <DateTime date={order && order.created}/> */}
                 </td>
               </tr>

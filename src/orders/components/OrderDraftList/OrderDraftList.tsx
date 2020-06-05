@@ -172,7 +172,7 @@ export const OrderDraftList = withStyles(styles, { name: "OrderDraftList" })(
                   </TableCell>
                   <TableCell padding="dense" className={classes.colDate}>
                     {maybe(() => order.created) ? (
-                      <>{moment.utc(order.created).local().format("DD/MM/YYYY hh:mm A")}</>
+                      <>{moment.utc(order.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}</>
                       // <DateTime date={order.created} />
                     ) : (
                       <Skeleton />

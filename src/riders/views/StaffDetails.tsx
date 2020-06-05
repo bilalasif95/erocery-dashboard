@@ -220,7 +220,7 @@ const StaffDetails = withStyles(styles, { name: "StaffList" })(
                   {info.node.totalBalance.currency}.
                   {info.node.totalBalance.amount}
                 </TableCell>
-                <TableCell padding="dense">{moment.utc(info.node.created).local().format("DD/MM/YYYY hh:mm A")}</TableCell>
+                <TableCell padding="dense">{moment.utc(info.node.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}</TableCell>
                 <TableCell padding="dense">
                   <button className={classes.btnPending}>
                     {info.node.status}
