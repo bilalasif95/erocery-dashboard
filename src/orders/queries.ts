@@ -189,6 +189,9 @@ export const orderListQuery = gql`
           created
           id
           number
+          user{
+            phone
+          }
           paymentStatus
           status
           total {

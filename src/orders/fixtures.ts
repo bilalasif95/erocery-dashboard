@@ -68,6 +68,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "laura.stone@example.com"
   },
   {
@@ -104,6 +107,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "elizabeth.vaughn@example.com"
   },
   {
@@ -121,6 +127,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 321.71,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "david.lawson@example.com"
   },
@@ -158,6 +167,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "aaron.randall@example.com"
   },
   {
@@ -193,6 +205,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 335.84,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "laura.jensen@example.com"
   },
@@ -230,6 +245,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "jenna.villa@example.com"
   },
   {
@@ -265,6 +283,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 213.69,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "wesley.davis@example.com"
   },
@@ -302,6 +323,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "anthony.gonzalez@example.com"
   },
   {
@@ -337,6 +361,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 298.76,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "denise.freeman@example.com"
   },
@@ -374,6 +401,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "james.ball@example.com"
   },
   {
@@ -409,6 +439,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 280.41,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "michael.martinez@example.com"
   },
@@ -446,6 +479,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "melissa.simon@example.com"
   },
   {
@@ -481,6 +517,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 485.19,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "justin.mccoy@example.com"
   },
@@ -518,6 +557,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "anthony.gonzalez@example.com"
   },
   {
@@ -553,6 +595,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 237.55,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "bradley.ford@example.com"
   },
@@ -590,6 +635,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "david.lawson@example.com"
   },
   {
@@ -625,6 +673,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 812.67,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "lauren.watson@example.com"
   },
@@ -662,6 +713,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "mark.lee@example.com"
   },
   {
@@ -698,6 +752,9 @@ export const orders: OrderList_orders_edges_node[] = [
         currency: "USD"
       }
     },
+    user: {
+      phone: "",
+    },
     userEmail: "kara.murphy@example.com"
   },
   {
@@ -733,6 +790,9 @@ export const orders: OrderList_orders_edges_node[] = [
         amount: 557,
         currency: "USD"
       }
+    },
+    user: {
+      phone: "",
     },
     userEmail: "curtis.bailey@example.com"
   }

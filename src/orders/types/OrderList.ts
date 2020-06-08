@@ -50,6 +50,9 @@ export interface OrderList_orders_edges_node {
   paymentStatus: PaymentChargeStatusEnum | null;
   status: OrderStatus;
   total: OrderList_orders_edges_node_total | null;
+  user: {
+    phone: string;
+  }
   userEmail: string | null;
 }
 

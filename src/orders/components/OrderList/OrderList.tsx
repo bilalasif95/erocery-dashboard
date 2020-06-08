@@ -195,14 +195,16 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
                     )}
                   </TableCell>
                   <TableCell padding="dense" className={classes.colCustomer}>
-                    {maybe(() => order.billingAddress) ? (
-                      <>
-                        {order.billingAddress.firstName}
-                        &nbsp;
-                        {order.billingAddress.lastName}
-                      </>
-                    ) : maybe(() => order.userEmail) !== undefined ? (
-                      order.userEmail
+                    {
+                    // maybe(() => order.billingAddress) ? (
+                    //   <>
+                    //     {order.billingAddress.firstName}
+                    //     &nbsp;
+                    //     {order.billingAddress.lastName}
+                    //   </>
+                    // ) : 
+                    maybe(() => order.user.phone) !== undefined ? (
+                      order.user.phone
                     ) : (
                       <Skeleton />
                     )}
