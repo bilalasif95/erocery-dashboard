@@ -33,6 +33,7 @@ const VoucherLimits = ({
 }: VoucherLimitsProps) => {
   const intl = useIntl();
   const classes = useStyles({});
+  data.hasUsageLimit = true;
   return (
     <Card>
       <CardTitle
