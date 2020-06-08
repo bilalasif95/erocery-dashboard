@@ -148,10 +148,10 @@ const OrderListFilter: React.FC<OrderListFilterProps> = props => {
           },
           {
             label: intl.formatMessage({
-              defaultMessage: "Ready to Capture",
+              defaultMessage: "Assigned",
               description: "order status"
             }),
-            value: OrderStatusFilter.READY_TO_CAPTURE.toString()
+            value: OrderStatusFilter.ASSIGNED.toString()
           }
         ],
         type: FieldType.select

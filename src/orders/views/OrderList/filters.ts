@@ -27,6 +27,10 @@ import {
 export const ORDER_FILTERS_KEY = "orderFilters";
 
 const filterMessages = defineMessages({
+  assigned: {
+    defaultMessage: "Assigned",
+    description: "order status"
+  },
   dateFrom: {
     defaultMessage: "Date from {date}",
     description: "filter by date"
@@ -70,6 +74,9 @@ function getStatusLabel(status: string, intl: IntlShape): string {
 
     case OrderStatusFilter.READY_TO_CAPTURE.toString():
       return intl.formatMessage(filterMessages.readyToCapture);
+
+    case OrderStatusFilter.ASSIGNED.toString():
+      return intl.formatMessage(filterMessages.assigned);
   }
 
   return "";

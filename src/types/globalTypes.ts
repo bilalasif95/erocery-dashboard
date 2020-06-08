@@ -423,6 +423,7 @@ export enum OrderStatus {
 }
 
 export enum OrderStatusFilter {
+  ASSIGNED= "ASSIGNED",
   CANCELED = "CANCELED",
   FULFILLED = "FULFILLED",
   PARTIALLY_FULFILLED = "PARTIALLY_FULFILLED",

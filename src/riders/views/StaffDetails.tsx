@@ -9,6 +9,7 @@ import AppHeader from "@saleor/components/AppHeader";
 
 import { Container } from "@saleor/components/Container";
 
+import Money from "@saleor/components/Money";
 import PageHeader from "@saleor/components/PageHeader";
 
 import { sectionNames } from "@saleor/intl";
@@ -215,10 +216,9 @@ const StaffDetails = withStyles(styles, { name: "StaffList" })(
                 {/* <TableCell></TableCell> */}
                 <TableCell padding="dense">{riderInfo[0].name}</TableCell>
                 <TableCell padding="dense">{riderInfo[0].id}</TableCell>
-                <TableCell padding="dense">{info.node.id}</TableCell>
+                <TableCell padding="dense">{info.node.number}</TableCell>
                 <TableCell padding="dense">
-                  {info.node.totalBalance.currency}.
-                  {info.node.totalBalance.amount}
+                  <Money money={info.node.total.gross} />
                 </TableCell>
                 <TableCell padding="dense">{moment.utc(info.node.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}</TableCell>
                 <TableCell padding="dense">

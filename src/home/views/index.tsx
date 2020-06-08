@@ -31,7 +31,7 @@ const HomeSection = () => {
           onOrdersToCaptureClick={() =>
             navigate(
               orderListUrl({
-                status: [OrderStatusFilter.READY_TO_CAPTURE]
+                status: [OrderStatusFilter.ASSIGNED]
               })
             )
           }

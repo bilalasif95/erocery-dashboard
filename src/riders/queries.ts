@@ -162,10 +162,11 @@ ${fragmentOrderLine}
       cnic
       phone
       city
-      orders(first:2){
+      orders(first:100){
         edges{
           node{
             id
+            number
             created
             totalBalance {
               amount

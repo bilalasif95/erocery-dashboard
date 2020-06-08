@@ -126,12 +126,12 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
               description="e-mail or full name"
             />
           </TableCell>
-          <TableCell padding="dense" className={classes.colPayment}>
+          {/* <TableCell padding="dense" className={classes.colPayment}>
             <FormattedMessage
               defaultMessage="Payment"
               description="payment status"
             />
-          </TableCell>
+          </TableCell> */}
           <TableCell padding="dense" className={classes.colFulfillment}>
             <FormattedMessage defaultMessage="Fulfillment status" />
           </TableCell>
@@ -207,7 +207,7 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
                       <Skeleton />
                     )}
                   </TableCell>
-                  <TableCell padding="dense" className={classes.colPayment}>
+                  {/* <TableCell padding="dense" className={classes.colPayment}>
                     {maybe(() => order.paymentStatus.status) !== undefined ? (
                       order.paymentStatus.status === null ? null : (
                         <StatusLabel
@@ -218,7 +218,7 @@ export const OrderList = withStyles(styles, { name: "OrderList" })(
                     ) : (
                       <Skeleton />
                     )}
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell padding="dense" className={classes.colFulfillment}>
                     {maybe(() => order.status) ? (
                       <StatusLabel
