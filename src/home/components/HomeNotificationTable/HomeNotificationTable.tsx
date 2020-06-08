@@ -22,6 +22,7 @@ import { PermissionEnum } from "@saleor/types/globalTypes";
 const styles = (theme: Theme) =>
   createStyles({
     arrowIcon: {
+      textAlign: "right",
       width: theme.spacing.unit * 4
     },
     tableRow: {

@@ -17,7 +17,7 @@ const home = gql`
     ordersToFulfill: orders(status: READY_TO_FULFILL) {
       totalCount
     }
-    ordersToCapture: orders(status: READY_TO_CAPTURE) {
+    ordersToCapture: orders(filter: {status:ASSIGNED}) {
       totalCount
     }
     productsOutOfStock: products(stockAvailability: OUT_OF_STOCK) {

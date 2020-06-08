@@ -32,8 +32,7 @@ const VoucherLimits = ({
   onChange
 }: VoucherLimitsProps) => {
   const intl = useIntl();
-  const classes = useStyles({});  
-
+  const classes = useStyles({});
   return (
     <Card>
       <CardTitle
@@ -55,7 +54,7 @@ const VoucherLimits = ({
           name={"hasUsageLimit" as keyof FormData}
           onChange={onChange}
         /> */}
-        {/* {data.hasUsageLimit && ( */}
+        {data.hasUsageLimit && (
           <TextField
             disabled={disabled}
             error={!!errors.usageLimit}
@@ -73,7 +72,7 @@ const VoucherLimits = ({
             }}
             fullWidth
           />
-        {/* )} */}
+        )}
         <ControlledCheckbox
           checked={data.applyOncePerCustomer}
           label={intl.formatMessage({
