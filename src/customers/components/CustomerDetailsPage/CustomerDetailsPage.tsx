@@ -52,7 +52,7 @@ const CustomerDetailsPage: React.StatelessComponent<
   onViewAllOrdersClick,
   onRowClick,
   onAddressManageClick,
-  onDelete
+  // onDelete
 }: CustomerDetailsPageProps) => {
   const intl = useIntl();
 
@@ -109,7 +109,7 @@ const CustomerDetailsPage: React.StatelessComponent<
             state={saveButtonBar}
             onSave={submit}
             onCancel={onBack}
-            onDelete={onDelete}
+            // onDelete={onDelete}
           />
         </Container>
       )}
