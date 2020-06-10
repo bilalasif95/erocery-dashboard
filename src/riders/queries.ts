@@ -168,6 +168,10 @@ ${fragmentOrderLine}
             id
             number
             created
+            shippingAddress{
+              streetAddress1
+              countryArea
+            }
             totalBalance {
               amount
               currency

@@ -133,7 +133,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                 Recipient:
             </Text>
               <Text style={{ fontSize: "8" }}>
-                {data.riderInfo[0].name},{data.riderInfo[0].city}
+                {data.riderInfo[0].name} (Tel: {data.riderInfo[0].phone}). {data.info.node.shippingAddress.streetAddress1},{data.riderInfo[0].city},Pakistan.
               </Text>
             </View>
             <View style={{ backgroundColor: 'white',  marginBottom: 1, padding: 5}}>
