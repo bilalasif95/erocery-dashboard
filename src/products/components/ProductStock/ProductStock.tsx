@@ -57,7 +57,6 @@ const ProductStock = withStyles(styles, { name: "ProductStock" })(
         <CardContent>
           <div className={classes.root}>
             <TextField
-              autoFocus
               disabled={disabled}
               name="sku"
               label={intl.formatMessage({
@@ -69,7 +68,6 @@ const ProductStock = withStyles(styles, { name: "ProductStock" })(
               helperText={errors.sku}
             />
             <TextField
-              autoFocus
               disabled={disabled}
               name="stockQuantity"
               label={intl.formatMessage({

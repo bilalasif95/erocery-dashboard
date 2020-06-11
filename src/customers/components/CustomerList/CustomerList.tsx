@@ -12,7 +12,7 @@ import TableRow from "@material-ui/core/TableRow";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
-import Checkbox from "@saleor/components/Checkbox";
+// import Checkbox from "@saleor/components/Checkbox";
 import Skeleton from "@saleor/components/Skeleton";
 import TableHead from "@saleor/components/TableHead";
 import TablePagination from "@saleor/components/TablePagination";
@@ -53,7 +53,7 @@ export interface CustomerListProps
   customers: ListCustomers_customers_edges_node[];
 }
 
-const numberOfColumns = 4;
+const numberOfColumns = 3;
 
 const CustomerList = withStyles(styles, { name: "CustomerList" })(
   ({
@@ -67,7 +67,7 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
     onUpdateListSettings,
     onRowClick,
     toolbar,
-    toggle,
+    // toggle,
     toggleAll,
     selected,
     isChecked
@@ -78,7 +78,7 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
         colSpan={numberOfColumns}
         selected={selected}
         disabled={disabled}
-        items={customers}
+        items={[]}
         toggleAll={toggleAll}
         toolbar={toolbar}
       >
@@ -121,14 +121,14 @@ const CustomerList = withStyles(styles, { name: "CustomerList" })(
                 selected={isSelected}
                 onClick={customer ? onRowClick(customer.id) : undefined}
               >
-                <TableCell padding="checkbox">
+                {/* <TableCell padding="checkbox">
                   <Checkbox
                     checked={isSelected}
                     disabled={disabled}
                     disableClickPropagation
                     onChange={() => toggle(customer.id)}
                   />
-                </TableCell>
+                </TableCell> */}
                 <TableCell className={classes.colName}>
                   {getUserName(customer)}
                 </TableCell>
