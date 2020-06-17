@@ -12,7 +12,7 @@ import {
 } from "@react-pdf/renderer";
 
 import logo from "@assets/images/invoice/erocery-black-logo.png";
-import codeBar from "@assets/images/invoice/QR-code.jpg";
+// import codeBar from "@assets/images/invoice/QR-code.jpg";
 
 import Money from "@saleor/components/Money";
 import Skeleton from "@saleor/components/Skeleton";
@@ -61,6 +61,11 @@ interface InvoiceDataProps {
   data: any;
 }
 export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
+  // <View style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+  //               <View style={{ width: '200px', margin: 'auto', padding: 10 }}>
+  //                 <Image src={codeBar} />
+  //               </View>
+  //             </View>
   return (
     <Document>
       <Page size="A6" style={styles.pageContainer}>
@@ -81,11 +86,6 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
               >
                 Delivery Slip
               </Text>
-              <View style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                <View style={{ width: '200px', margin: 'auto', padding: 10 }}>
-                  <Image src={codeBar} />
-                </View>
-              </View>
               <View style={{
                 alignItems: 'center',
                 display: 'flex',
@@ -106,7 +106,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                     width: '50%'
                   }}
                 >
-                  <Text style={{ fontWeight: 'bold', marginRight: 2 }}>Order P.O. No:</Text>
+                  <Text style={{ fontWeight: 'bold', marginRight: 2 }}>Order #</Text>
                   <Text>{data.info.node.id}</Text>
                 </View>
                 <View
@@ -133,16 +133,139 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                 Recipient:
             </Text>
               <Text style={{ fontSize: "8" }}>
-                {data.riderInfo[0].name} (Tel: {data.riderInfo[0].phone}). {data.info.node.shippingAddress.streetAddress1},{data.riderInfo[0].city},Pakistan.
+                {data.info.node.shippingAddress.firstName} {data.info.node.shippingAddress.lastName} (Tel: {data.info.node.shippingAddress.phone}). {data.info.node.shippingAddress.streetAddress1},{data.info.node.shippingAddress.city},{data.info.node.shippingAddress.country.country}.
               </Text>
             </View>
-            <View style={{ backgroundColor: 'white',  marginBottom: 1, padding: 5}}>
-              <Text style={{ fontWeight: "bold", fontSize: "10" }}>Seller:</Text>
-              <Text style={{ fontSize: "8" }}>
-              3rd Floor, Al-Rahim Arcade, National Market, Satellite Town, Rawalpindi, Pakistan. 
-                {/* {data.riderInfo[0].name} City:{data.riderInfo[0].city} */}
-              </Text>
+            <View style={{ 
+              alignItems: 'center',
+              backgroundColor: 'white',
+              display: 'flex',
+              flexDirection: 'row',
+              fontSize: "8",
+              justifyContent: 'space-between',
+              marginBottom: 1,
+              padding: 5,
+              textTransform: 'uppercase',
+              width: '100%'
+            }}>
+              <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    width: '40%'
+                  }}
+                >
+                  <Text>Product Name</Text>
+                </View>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    width: '20%'
+                  }}
+                >
+                  <Text>Price</Text>
+                </View>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    width: '20%'
+                  }}
+                >
+                  <Text>Qty</Text>
+                </View>
+                <View
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                    width: '20%'
+                  }}
+                >
+                  <Text>Subtotal</Text>
+                </View>
             </View>
+            {data.info.node.lines.map(product => (
+              <View style={{ 
+                alignItems: 'center',
+                backgroundColor: 'white',
+                display: 'flex',
+                flexDirection: 'row',
+                fontSize: "8",
+                justifyContent: 'space-between',
+                padding: 5,
+                textTransform: 'uppercase',
+                width: '100%'
+              }}>
+                <View
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                      width: '40%'
+                    }}
+                  >
+                    <Text style={{
+                      width: '90%'
+                    }}>{maybe(() => product.productName) || <Skeleton />}</Text>
+                  </View>
+                  <View
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                      width: '20%'
+                    }}
+                  >
+                    <Text>{maybe(() => product.unitPrice.gross) ? (
+                  <Money money={product.unitPrice.gross} />
+                ) : (
+                  <Skeleton />
+                )}</Text>
+                  </View>
+                  <View
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'flex-start',
+                      width: '20%'
+                    }}
+                  >
+                    <Text>{maybe(() => product.quantity - product.quantityFulfilled) || (
+                  <Skeleton />
+                )}</Text>
+                  </View>
+                  <View
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'flex-end',
+                      width: '20%'
+                    }}
+                  >
+                    <Text>{maybe(
+                  () =>
+                    (product.quantity - product.quantityFulfilled) *
+                    product.unitPrice.gross.amount
+                ) ? (
+                  <Money
+                    money={{
+                      amount:
+                        (product.quantity - product.quantityFulfilled) *
+                        product.unitPrice.gross.amount,
+                      currency: product.unitPrice.gross.currency
+                    }}
+                  />
+                ) : (
+                  <Skeleton />
+                )}</Text>
+                  </View>
+              </View>
+            ))}
             <View style={{
                 alignItems: 'center',
                 backgroundColor: 'white',
@@ -150,6 +273,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                 flexDirection: 'row',
                 fontSize: "8",
                 justifyContent: 'space-between',
+                marginTop: 1,
                 padding: 5,
                 textTransform: 'uppercase',
                 width: '100%'
