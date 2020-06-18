@@ -68,7 +68,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
   //             </View>
   return (
     <Document>
-      <Page size="A6" style={styles.pageContainer}>
+      <Page size="A4" style={styles.pageContainer}>
         <View style={styles.page}>
           <View style={styles.innerContainer}>
             <View style={{ backgroundColor: 'white', display: 'flex', justifyContent: 'center', width: '100%', padding: 2 }}>
