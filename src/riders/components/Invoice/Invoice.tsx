@@ -15,7 +15,7 @@ import logo from "@assets/images/invoice/erocery-black-logo.png";
 // import codeBar from "@assets/images/invoice/QR-code.jpg";
 
 import Money from "@saleor/components/Money";
-import Skeleton from "@saleor/components/Skeleton";
+// import Skeleton from "@saleor/components/Skeleton";
 import { maybe } from "../../../misc";
 
 const styles = StyleSheet.create({
@@ -211,7 +211,9 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   >
                     <Text style={{
                       width: '90%'
-                    }}>{maybe(() => product.productName) || <Skeleton />}</Text>
+                    }}>{maybe(() => product.productName) || ""
+                    // <Skeleton />
+                    }</Text>
                   </View>
                   <View
                     style={{
@@ -224,7 +226,8 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                     <Text>{maybe(() => product.unitPrice.gross) ? (
                   <Money money={product.unitPrice.gross} />
                 ) : (
-                  <Skeleton />
+                  ""
+                  // <Skeleton />
                 )}</Text>
                   </View>
                   <View
@@ -235,8 +238,9 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                       width: '20%'
                     }}
                   >
-                    <Text>{maybe(() => product.quantity - product.quantityFulfilled) || (
-                  <Skeleton />
+                    {/* <Text>{maybe(() => product.quantity - product.quantityFulfilled) || ( "" */}
+                    <Text>{maybe(() => product.quantity
+                  // <Skeleton />
                 )}</Text>
                   </View>
                   <View
@@ -249,19 +253,26 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   >
                     <Text>{maybe(
                   () =>
-                    (product.quantity - product.quantityFulfilled) *
-                    product.unitPrice.gross.amount
+                    // (product.quantity - product.quantityFulfilled) *
+                    product.quantity * product.unitPrice.gross.amount
                 ) ? (
+                  // <Money
+                  //   money={{
+                  //     amount:
+                  //       (product.quantity - product.quantityFulfilled) *
+                  //       product.unitPrice.gross.amount,
+                  //     currency: product.unitPrice.gross.currency
+                  //   }}
+                  // />
                   <Money
                     money={{
-                      amount:
-                        (product.quantity - product.quantityFulfilled) *
-                        product.unitPrice.gross.amount,
+                      amount: product.quantity * product.unitPrice.gross.amount,
                       currency: product.unitPrice.gross.currency
                     }}
                   />
                 ) : (
-                  <Skeleton />
+                  ""
+                  // <Skeleton />
                 )}</Text>
                   </View>
               </View>
@@ -298,7 +309,8 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                 >
                   <Text>
                   {maybe(() => data.info.node.lines) === undefined ? (
-                    <Skeleton />
+                    ""
+                    // <Skeleton />
                   ) : (
                     <FormattedMessage
                       defaultMessage="{quantity} items"
@@ -321,7 +333,8 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   }}
                 >
                   <Text>{maybe(() => data.info.node.subtotal.gross) === undefined ? (
-                    <Skeleton />
+                    ""
+                    // <Skeleton />
                   ) : (
                     <Money money={data.info.node.subtotal.gross} />
                   )}</Text>
@@ -359,7 +372,8 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   <Text>
                   {maybe(() => data.info.node.shippingMethodName) === undefined &&
                   maybe(() => data.info.node.shippingPrice) === undefined ? (
-                    <Skeleton />
+                    ""
+                    // <Skeleton />
                   ) : data.info.node.shippingMethodName === null ? (
                     <>
                     <FormattedMessage
@@ -382,7 +396,8 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   }}
                 >
                   <Text>{maybe(() => data.info.node.shippingPrice.gross) === undefined ? (
-                    <Skeleton />
+                    ""
+                    // <Skeleton />
                   ) : (
                     <Money money={data.info.node.shippingPrice.gross} />
                   )}</Text>
@@ -418,7 +433,8 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   }}
                 >
                   <Text style={{fontWeight: "bold"}}>{maybe(() => data.info.node.total.gross) === undefined ? (
-                    <Skeleton />
+                    ""
+                    // <Skeleton />
                   ) : (
                     <Money money={data.info.node.total.gross} />
                   )}</Text>
