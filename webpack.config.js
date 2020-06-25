@@ -5,6 +5,10 @@ const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 require('dotenv').config();
 
+if (!process.env.API_URI) {
+  throw new Error("Environment variable API_URI not set");
+}
+
 const resolve = path.resolve.bind(path, __dirname);
 
 const pathsPlugin = new TsconfigPathsPlugin({
