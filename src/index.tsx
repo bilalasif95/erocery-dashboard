@@ -18,6 +18,7 @@ import AuthProvider from "./auth/AuthProvider";
 import LoginLoading from "./auth/components/LoginLoading";
 import SectionRoute from "./auth/components/SectionRoute";
 import { hasPermission } from "./auth/misc";
+import Banner from "./banner";
 import CategorySection from "./categories";
 import CollectionSection from "./collections";
 import { AppProgressProvider } from "./components/AppProgress";
@@ -235,6 +236,11 @@ const Routes: React.FC = () => {
                 permissions={[PermissionEnum.MANAGE_WEBHOOKS]}
                 path="/webhooks"
                 component={WebhooksSection}
+              />
+               <SectionRoute
+                permissions={[PermissionEnum.MANAGE_WEBHOOKS]}
+                path="/banner"
+                component={Banner}
               />
               <SectionRoute
                 permissions={[PermissionEnum.MANAGE_MENUS]}
