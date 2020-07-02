@@ -239,6 +239,7 @@ export interface OrderDetails_order {
   billingAddress: OrderDetails_order_billingAddress | null;
   canFinalize: boolean;
   created: any;
+  deliveryDate: string;
   customerNote: string;
   events: (OrderDetails_order_events | null)[] | null;
   fulfillments: (OrderDetails_order_fulfillments | null)[];

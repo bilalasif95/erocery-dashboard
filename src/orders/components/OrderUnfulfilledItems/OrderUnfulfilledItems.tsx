@@ -7,6 +7,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import moment from "moment-timezone";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
@@ -54,14 +55,14 @@ const styles = createStyles({
 interface OrderUnfulfilledItemsProps extends WithStyles<typeof styles> {
   canFulfill: boolean;
   lines: OrderDetails_order_lines[];
+  deliveryDate: string;
   onFulfill: () => void;
 }
 
 const OrderUnfulfilledItems = withStyles(styles, {
   name: "OrderUnfulfilledItems"
-})(({ canFulfill, classes, lines, onFulfill }: OrderUnfulfilledItemsProps) => {
+})(({ canFulfill, classes, deliveryDate, lines, onFulfill }: OrderUnfulfilledItemsProps) => {
   const intl = useIntl();
-
   return (
     <Card>
       <CardTitle
@@ -99,6 +100,14 @@ const OrderUnfulfilledItems = withStyles(styles, {
                 description="ordered products"
               />
             </TableCell>
+            {deliveryDate && (
+              <TableCell className={classes.colQuantity}>
+              <FormattedMessage
+                defaultMessage="Delivery Date"
+                description="ordered products"
+              />
+            </TableCell>
+            )}
             <TableCell className={classes.colPrice}>
               <FormattedMessage
                 defaultMessage="Price"
@@ -131,6 +140,11 @@ const OrderUnfulfilledItems = withStyles(styles, {
                   <Skeleton />
                 )}
               </TableCell>
+              {deliveryDate && (
+                <TableCell className={classes.colPrice}>
+                  {moment(deliveryDate).format("YYYY-MM-DD")}
+                </TableCell>
+              )}
               <TableCell className={classes.colPrice}>
                 {maybe(() => line.unitPrice.gross) ? (
                   <Money money={line.unitPrice.gross} />

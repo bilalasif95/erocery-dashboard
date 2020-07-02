@@ -84,6 +84,7 @@ export const fragmentOrderDetails = gql`
     }
     canFinalize
     created
+    deliveryDate
     customerNote
     events {
       ...OrderEventFragment

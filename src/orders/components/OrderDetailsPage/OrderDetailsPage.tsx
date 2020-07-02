@@ -139,6 +139,7 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
                 canFulfill={canFulfill}
                 lines={unfulfilled}
                 onFulfill={onOrderFulfill}
+                deliveryDate={order && order.deliveryDate}
               />
             )}
             {renderCollection(
@@ -157,6 +158,7 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
                     onTrackingCodeAdd={() =>
                       onFulfillmentTrackingNumberUpdate(fulfillment.id)
                     }
+                    deliveryDate={order && order.deliveryDate}
                   />
                 </React.Fragment>
               )
