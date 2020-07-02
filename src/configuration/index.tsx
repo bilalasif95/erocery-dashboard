@@ -2,6 +2,7 @@ import React from "react";
 import { IntlShape, useIntl } from "react-intl";
 
 import { attributeListUrl } from "@saleor/attributes/urls";
+import {webhooksListUrl1} from "@saleor/banner/urls";
 import { WindowTitle } from "@saleor/components/WindowTitle";
 import useNavigator from "@saleor/hooks/useNavigator";
 import useUser from "@saleor/hooks/useUser";
@@ -172,6 +173,15 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           permission: PermissionEnum.MANAGE_WEBHOOKS,
           title: intl.formatMessage(sectionNames.webhooks),
           url: webhooksListUrl()
+        },
+        {
+          description: intl.formatMessage({
+            defaultMessage: "Banner images"
+          }),
+          icon: <Webhooks fontSize="inherit" viewBox="0 0 44 44" />,
+          permission: PermissionEnum.MANAGE_WEBHOOKS,
+          title: intl.formatMessage(sectionNames.imagesBanner),
+          url: webhooksListUrl1()
         }
       ]
     }
