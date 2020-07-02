@@ -6,7 +6,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import AppHeader from "@saleor/components/AppHeader";
 import Container from "@saleor/components/Container";
 import PageHeader from "@saleor/components/PageHeader";
-
+// import DeleteImage from "../../../../assets/images/delete.svg"
 import { sectionNames } from "@saleor/intl";
 
 import { TypeImagesDelete, TypeImagesUpload } from "../../mutations"
@@ -16,7 +16,7 @@ export interface WebhooksListPageProps {
   onBack: () => void;
 
 }
-const fileObj = [];
+let fileObj = [];
 let fileArray = [];
 let totalFinal = [];
 
@@ -77,102 +77,124 @@ const WebhooksListPage: React.StatelessComponent<WebhooksListPageProps> = ({
 
   const showUpdateData = () => {
 
-    alert("You have successfully deleted image")
-    window.location.reload()
+    // alert("You have successfully deleted image")
+    // window.location.reload()
     setName("tttt")
 
   }
   return (
     <>
-      <TypeImagesUpload onCompleted={async ({ shopBannerCreate: { errors } }) => {
 
-        if (errors.length) {
-          alert("Error occure try again.")
-        }
 
-      }}>
-        {(imageUpload) => {
-
-          const handleSubmit = () => {
-            filterFinalImageFile().then((data) => {
-              imageUpload({
-                variables: {
-                  images: data
-                }
-              })
-            })
+      <TypedBannerImagesQuery>
+        {({ data, loading, refetch }) => {
+          if (loading) {
+            return (<h3>loding..</h3>)
           }
-          return (
-            <Container>
-              <AppHeader onBack={onBack}>
-                {intl.formatMessage(sectionNames.configuration)}
-              </AppHeader>
-              <PageHeader title={intl.formatMessage(sectionNames.imagesBanner)}>
-                <Button onClick={() => handleSubmit()} variant="contained" color="primary">
-                  <FormattedMessage
-                    defaultMessage="Save"
-                    description="button"
-                  />
-                </Button>
-              </PageHeader>
-              <Card>
-                <form>
-                
-                  <div className="form-group">
-                    <input type="file" className="form-control" onChange={(e) => uploadMultipleFiles(e)} multiple accept="image/*" />
-                  </div>
-                  {/* {fileArray.length > 0 ? <button type="button" className="btn btn-danger btn-block" onClick={(e) => uploadFiles(e)}>Save.</button> : ""} */}
-                  <div className="form-group multi-preview">
-                    {(fileArray || []).map(url => (
-                      <img src={url} alt="..." height="200px" width="200px" onClick={() => removeImage(url)} style={{ margin: "10px" }} />
-                    ))}
-                  </div>
-                </form >
+          else {
 
-                <TypeImagesDelete onCompleted={async ({ shopBannerDelete: { shopErrors } }) => {
 
-                  if (shopErrors.length) {
-                    alert("Error occure try again.")
-                  }
-                  else {
+            return (
+              <TypeImagesUpload onCompleted={async ({ shopBannerCreate: { errors } }) => {
 
-                    showUpdateData()
-                  }
+                if (errors.length) {
+                  alert("Error occure try again.")
+                }
+                else {
+                  refetch()
+                  fileObj = [];
+                  fileArray = [];
+                  totalFinal = [];
+                }
 
-                }}>
-                  {(imageDelete) => {
+              }}>
+                {(imageUpload) => {
 
-                    const handleSubmitDelete = (id) => {
-                      imageDelete({
+                  const handleSubmit = () => {
+                    filterFinalImageFile().then((data) => {
+                      imageUpload({
                         variables: {
-                          ids: id
+                          images: data
                         }
                       })
-                    }
-                    return (
-                      <TypedBannerImagesQuery>
-                        {({ data, loading }) => {
-                          if (loading) {
-                            return (<h3>loding..</h3>)
+                    })
+                  }
+                  return (
+                    <Container>
+                      <AppHeader onBack={onBack}>
+                        {intl.formatMessage(sectionNames.configuration)}
+                      </AppHeader>
+                      <PageHeader title={intl.formatMessage(sectionNames.imagesBanner)}>
+                        <Button onClick={() => handleSubmit()} variant="contained" color="primary">
+                          <FormattedMessage
+                            defaultMessage="Save"
+                            description="button"
+                          />
+                        </Button>
+                      </PageHeader>
+                      <Card>
+                        <form>
+
+                          <div className="form-group">
+                            <input type="file" className="form-control" onChange={(e) => uploadMultipleFiles(e)} multiple accept="image/*" />
+                          </div>
+                          {/* {fileArray.length > 0 ? <button type="button" className="btn btn-danger btn-block" onClick={(e) => uploadFiles(e)}>Save.</button> : ""} */}
+                          <div className="form-group multi-preview">
+                            {(fileArray || []).map(url => (
+                              <img src={url} alt="..." height="200px" width="200px" onClick={() => removeImage(url)} style={{ margin: "10px" }} />
+                            ))}
+                          </div>
+                        </form >
+
+                        <TypeImagesDelete onCompleted={async ({ shopBannerDelete: { shopErrors } }) => {
+
+                          if (shopErrors.length) {
+                            alert("Error occure try again.")
                           }
                           else {
-                            return data.shop.banners && data.shop.banners.map(url =>
-
-                              <img src={url.image} alt="..." height="200px" width="200px" onClick={() => handleSubmitDelete(url.id)} style={{ margin: "10px" }} />
-                            )
-
+                            refetch()
+                            showUpdateData()
                           }
-                        }}
-                      </TypedBannerImagesQuery>
-                    )
-                  }}
 
-                </TypeImagesDelete>
+                        }}>
+                          {(imageDelete) => {
 
-              </Card>
-            </Container>);
+                            const handleSubmitDelete = (id) => {
+                              imageDelete({
+                                variables: {
+                                  ids: id
+                                }
+                              })
+                            }
+                            return (
+                              data.shop.banners && data.shop.banners.map(url =>
+                                <div className="bannerImg">
+                                  {/* <img src={DeleteImage} className="delIcon"/> */}
+                                  <img src={url.image} alt="..." height="200px" width="200px" onClick={() => handleSubmitDelete(url.id)} style={{ margin: "10px" }} />
+                                </div>
+
+                              )
+                            )
+                          }}
+
+                        </TypeImagesDelete>
+
+                      </Card>
+                    </Container>);
+                }}
+              </TypeImagesUpload>
+
+            )
+
+
+
+          }
         }}
-      </TypeImagesUpload>
+      </TypedBannerImagesQuery>
+
+
+
+
 
 
     </>
