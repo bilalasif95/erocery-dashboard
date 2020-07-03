@@ -30,22 +30,17 @@ const WebhooksListPage: React.StatelessComponent<WebhooksListPageProps> = ({
   const uploadMultipleFiles = (e) => {
 
     fileObj.push(e.target.files)
-    for (let i = 0; i < fileObj[0].length; i++) {
-      const url = URL.createObjectURL(fileObj[0][i])
-      fileArray.push(url)
-      totalFinal.push({ file: fileObj[0][i], url })
-    }
-
-    // console.log("singleeeeeeeee", fileObj)
-    // fileObj.forEach((value, index) => {
-    //   console.log("valueeeeeeeeee33", value[index], "indddddddeex",index)
-    //   const url = URL.createObjectURL(value[index])
+    // for (let i = 0; i < fileObj[0].length; i++) {
+    //   const url = URL.createObjectURL(fileObj[0][i])
     //   fileArray.push(url)
-    //   totalFinal.push({ file: value[index], url })
-    // });
-    // Array.from(fileObj).forEach((file,index) => 
-    //   console.log("fileeeeeeeeeeee",file[index])
-    // );
+    //   totalFinal.push({ file: fileObj[0][i], url })
+    // }
+
+    fileObj[0].forEach((value) => {
+      const url = URL.createObjectURL(value)
+      fileArray.push(url)
+      totalFinal.push({ file: value, url })
+    });
     setFile(fileArray)
   }
 
@@ -84,8 +79,6 @@ const WebhooksListPage: React.StatelessComponent<WebhooksListPageProps> = ({
   }
   return (
     <>
-
-
       <TypedBannerImagesQuery>
         {({ data, loading, refetch }) => {
           if (loading) {
