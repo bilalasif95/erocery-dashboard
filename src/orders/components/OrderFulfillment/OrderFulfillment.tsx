@@ -13,6 +13,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
+import moment from "moment-timezone";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
@@ -67,6 +68,7 @@ const styles = (theme: Theme) =>
 interface OrderFulfillmentProps extends WithStyles<typeof styles> {
   fulfillment: OrderDetails_order_fulfillments;
   orderNumber: string;
+  deliveryDate: string;
   onOrderFulfillmentCancel: () => void;
   onTrackingCodeAdd: () => void;
 }
@@ -76,6 +78,7 @@ const numberOfColumns = 3;
 const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
   ({
     classes,
+    deliveryDate,
     fulfillment,
     orderNumber,
     onOrderFulfillmentCancel,
@@ -88,7 +91,6 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
     const quantity = lines
       ? lines.map(line => line.quantity).reduce((prev, curr) => prev + curr, 0)
       : "...";
-
     return (
       <Card>
         <CardTitle
@@ -164,6 +166,14 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
                   description="ordered product quantity"
                 />
               </TableCell>
+              {deliveryDate && (
+                <TableCell className={classes.colQuantity}>
+                <FormattedMessage
+                  defaultMessage="Delivery Date"
+                  description="product price"
+                />
+              </TableCell>
+              )}
               <TableCell className={classes.colPrice}>
                 <FormattedMessage
                   defaultMessage="Price"
@@ -194,6 +204,11 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
                 <TableCell className={classes.colQuantity}>
                   {maybe(() => line.quantity) || <Skeleton />}
                 </TableCell>
+                {deliveryDate && (
+                <TableCell className={classes.colQuantity}>
+                  {moment(deliveryDate).format("YYYY-MM-DD")}
+                </TableCell>
+                )}
                 <TableCell className={classes.colPrice}>
                   {maybe(() => line.orderLine.unitPrice.gross) ? (
                     <Money money={line.orderLine.unitPrice.gross} />
