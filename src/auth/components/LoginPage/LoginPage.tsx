@@ -56,7 +56,7 @@ const LoginCard = withStyles(styles, { name: "LoginCard" })(
     classes,
     error,
     disableLoginButton,
-    onPasswordRecovery,
+    // onPasswordRecovery,
     onSubmit
   }: LoginCardProps) => {
     const intl = useIntl();
@@ -114,12 +114,12 @@ const LoginCard = withStyles(styles, { name: "LoginCard" })(
               </Button>
             </div>
             <FormSpacer />
-            <Typography className={classes.link} onClick={onPasswordRecovery}>
+            {/* <Typography className={classes.link} onClick={onPasswordRecovery}>
               <FormattedMessage
                 defaultMessage="Reset your password"
                 description="button"
               />
-            </Typography>
+            </Typography> */}
           </>
         )}
       </Form>
