@@ -84,6 +84,9 @@ export const fragmentOrderDetails = gql`
     }
     canFinalize
     created
+    payments {
+      gateway
+    }
     deliveryDate
     customerNote
     events {

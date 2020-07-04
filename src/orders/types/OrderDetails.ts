@@ -233,6 +233,10 @@ export interface OrderDetails_order_availableShippingMethods {
   price: OrderDetails_order_availableShippingMethods_price | null;
 }
 
+export interface OrderDetails_order_payments {
+  gateway: string;
+}
+
 export interface OrderDetails_order {
   __typename: "Order";
   id: string;
@@ -240,6 +244,7 @@ export interface OrderDetails_order {
   canFinalize: boolean;
   created: any;
   deliveryDate: string;
+  payments: OrderDetails_order_payments[];
   customerNote: string;
   events: (OrderDetails_order_events | null)[] | null;
   fulfillments: (OrderDetails_order_fulfillments | null)[];

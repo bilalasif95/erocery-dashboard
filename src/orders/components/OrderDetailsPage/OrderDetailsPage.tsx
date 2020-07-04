@@ -140,6 +140,7 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
                 lines={unfulfilled}
                 onFulfill={onOrderFulfill}
                 deliveryDate={order && order.deliveryDate}
+                paymentMethod={order && order.payments && order.payments[0] && order.payments[0].gateway}
               />
             )}
             {renderCollection(
@@ -159,6 +160,7 @@ const OrderDetailsPage = withStyles(styles, { name: "OrderDetailsPage" })(
                       onFulfillmentTrackingNumberUpdate(fulfillment.id)
                     }
                     deliveryDate={order && order.deliveryDate}
+                    paymentMethod={order && order.payments && order.payments[0] && order.payments[0].gateway}
                   />
                 </React.Fragment>
               )

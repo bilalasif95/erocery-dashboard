@@ -56,12 +56,13 @@ interface OrderUnfulfilledItemsProps extends WithStyles<typeof styles> {
   canFulfill: boolean;
   lines: OrderDetails_order_lines[];
   deliveryDate: string;
+  paymentMethod: string;
   onFulfill: () => void;
 }
 
 const OrderUnfulfilledItems = withStyles(styles, {
   name: "OrderUnfulfilledItems"
-})(({ canFulfill, classes, deliveryDate, lines, onFulfill }: OrderUnfulfilledItemsProps) => {
+})(({ canFulfill, classes, deliveryDate, lines, onFulfill,paymentMethod }: OrderUnfulfilledItemsProps) => {
   const intl = useIntl();
   return (
     <Card>
@@ -101,9 +102,17 @@ const OrderUnfulfilledItems = withStyles(styles, {
               />
             </TableCell>
             {deliveryDate && (
-              <TableCell className={classes.colQuantity}>
+              <TableCell className={classes.colPrice}>
               <FormattedMessage
                 defaultMessage="Delivery Date"
+                description="ordered products"
+              />
+            </TableCell>
+            )}
+            {paymentMethod && (
+              <TableCell className={classes.colPrice}>
+              <FormattedMessage
+                defaultMessage="Payment"
                 description="ordered products"
               />
             </TableCell>
@@ -143,6 +152,11 @@ const OrderUnfulfilledItems = withStyles(styles, {
               {deliveryDate && (
                 <TableCell className={classes.colPrice}>
                   {moment(deliveryDate).format("YYYY-MM-DD")}
+                </TableCell>
+              )}
+              {paymentMethod && (
+                <TableCell className={classes.colPrice}>
+                  {paymentMethod}
                 </TableCell>
               )}
               <TableCell className={classes.colPrice}>

@@ -69,6 +69,7 @@ interface OrderFulfillmentProps extends WithStyles<typeof styles> {
   fulfillment: OrderDetails_order_fulfillments;
   orderNumber: string;
   deliveryDate: string;
+  paymentMethod: string;
   onOrderFulfillmentCancel: () => void;
   onTrackingCodeAdd: () => void;
 }
@@ -82,7 +83,8 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
     fulfillment,
     orderNumber,
     onOrderFulfillmentCancel,
-    onTrackingCodeAdd
+    onTrackingCodeAdd,
+    paymentMethod,
   }: OrderFulfillmentProps) => {
     const intl = useIntl();
 
@@ -167,9 +169,17 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
                 />
               </TableCell>
               {deliveryDate && (
-                <TableCell className={classes.colQuantity}>
+                <TableCell className={classes.colPrice}>
                 <FormattedMessage
                   defaultMessage="Delivery Date"
+                  description="product price"
+                />
+              </TableCell>
+              )}
+              {paymentMethod && (
+                <TableCell className={classes.colPrice}>
+                <FormattedMessage
+                  defaultMessage="Payment"
                   description="product price"
                 />
               </TableCell>
@@ -205,9 +215,14 @@ const OrderFulfillment = withStyles(styles, { name: "OrderFulfillment" })(
                   {maybe(() => line.quantity) || <Skeleton />}
                 </TableCell>
                 {deliveryDate && (
-                <TableCell className={classes.colQuantity}>
-                  {moment(deliveryDate).format("YYYY-MM-DD")}
-                </TableCell>
+                  <TableCell className={classes.colQuantity}>
+                    {moment(deliveryDate).format("YYYY-MM-DD")}
+                  </TableCell>
+                )}
+                {paymentMethod && (
+                  <TableCell className={classes.colQuantity}>
+                    {paymentMethod}
+                  </TableCell>
                 )}
                 <TableCell className={classes.colPrice}>
                   {maybe(() => line.orderLine.unitPrice.gross) ? (

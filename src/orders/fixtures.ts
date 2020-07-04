@@ -1017,6 +1017,7 @@ export const order = (placeholder: string): OrderDetails_order => ({
   ],
   number: "9",
   paymentStatus: PaymentChargeStatusEnum.NOT_CHARGED,
+  payments: [],
   rider: {
     name: "",
   },
@@ -1152,6 +1153,7 @@ export const draftOrder = (placeholder: string): OrderDetails_order => ({
   ],
   number: "24",
   paymentStatus: null,
+  payments: [],
   rider: {
     name: "",
   },
