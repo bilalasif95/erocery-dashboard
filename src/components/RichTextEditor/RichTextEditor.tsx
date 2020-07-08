@@ -26,6 +26,7 @@ import LinkIcon from "../../icons/LinkIcon";
 import OrderedListIcon from "../../icons/OrderedListIcon";
 import QuotationIcon from "../../icons/QuotationIcon";
 import StrikethroughIcon from "../../icons/StrikethroughIcon";
+import UnderlineIcon from "../../icons/UnderlineIcon";
 import UnorderedListIcon from "../../icons/UnorderedListIcon";
 
 // import ImageEntity from "./ImageEntity";
@@ -196,7 +197,11 @@ const styles = (theme: Theme) =>
     },
     smallIcon: {
       marginLeft: 10
-    }
+    },
+    smallUIcon: {
+      marginBottom: "6px",
+      marginLeft: 0,
+    },
   });
 
 function handleSave(
@@ -261,6 +266,10 @@ const RichTextEditor = withStyles(styles, { name: "RichTextEditor" })(
             {
               icon: <BoldIcon className={classes.smallIcon} />,
               type: INLINE_STYLE.BOLD
+            },
+            {
+              icon: <UnderlineIcon className={classes.smallUIcon} />,
+              type: INLINE_STYLE.UNDERLINE
             },
             {
               icon: <ItalicIcon className={classes.smallIcon} />,
