@@ -203,10 +203,10 @@ const StaffDetails = withStyles(styles, { name: "StaffList" })(
           title={intl.formatMessage(sectionNames.ordersList)}
         ></PageHeader>
         <TypedStaffMemberDetailsQuery displayLoader variables={{ id }}>
-          {({ data }) => {
-            // if (loading) {
-            //   return <h1>Loading...</h1>;
-            // }
+          {({ loading, data }) => {
+            if (loading) {
+              return <h1>Loading...</h1>;
+            }
             riderInfo = data.riders.filter((item: any) => {
               return item.id === id;
             });
@@ -220,7 +220,7 @@ const StaffDetails = withStyles(styles, { name: "StaffList" })(
                 <TableCell padding="dense">
                   <Money money={info.node.total.gross} />
                 </TableCell>
-                <TableCell padding="dense">{moment.utc(info.node.created,"YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}</TableCell>
+                <TableCell padding="dense">{moment.utc(info.node.created, "YYYY-MM-DD hh:mm:ss A").local().format("YYYY-MM-DD hh:mm:ss A")}</TableCell>
                 <TableCell padding="dense">
                   <button className={classes.btnPending}>
                     {info.node.status}
@@ -250,29 +250,29 @@ const StaffDetails = withStyles(styles, { name: "StaffList" })(
                     <Invoice data={invoiceInfo} />
                   </PDFViewer>
                 ) : (
-                  <Card>
-                    <div className={classes.tableContainer}>
-                      <Table>
-                        <TableHead>
-                          <TableCell padding="dense">Rider Name</TableCell>
-                          <TableCell padding="dense">Rider ID</TableCell>
-                          <TableCell padding="dense">Order #</TableCell>
-                          <TableCell padding="dense">Order Total</TableCell>
-                          <TableCell padding="dense">Date</TableCell>
-                          <TableCell padding="dense">Status</TableCell>
-                          <TableCell padding="dense">Action</TableCell>
-                        </TableHead>
-                        <TableBody>
-                          {orderInfo.length === 0 ? (
-                            <TableRow>No Data</TableRow>
-                          ) : (
-                            orderInfo
-                          )}
-                        </TableBody>
-                      </Table>
-                    </div>
-                  </Card>
-                )}
+                    <Card>
+                      <div className={classes.tableContainer}>
+                        <Table>
+                          <TableHead>
+                            <TableCell padding="dense">Rider Name</TableCell>
+                            <TableCell padding="dense">Rider ID</TableCell>
+                            <TableCell padding="dense">Order #</TableCell>
+                            <TableCell padding="dense">Order Total</TableCell>
+                            <TableCell padding="dense">Date</TableCell>
+                            <TableCell padding="dense">Status</TableCell>
+                            <TableCell padding="dense">Action</TableCell>
+                          </TableHead>
+                          <TableBody>
+                            {orderInfo.length === 0 ? (
+                              <TableRow>No Data</TableRow>
+                            ) : (
+                                orderInfo
+                              )}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </Card>
+                  )}
               </>
             );
           }}
