@@ -17,8 +17,9 @@ import DeleteImage from "../../../../assets/images/delete.svg";
 
 import { sectionNames } from "@saleor/intl";
 
-import { TypeImagesDelete, TypeImagesUpload } from "../../mutations"
+import { TypeImagesDelete, TypeImagesUpload, TypeNotificationPush } from "../../mutations"
 import { TypedBannerImagesQuery } from "../../queries"
+
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -44,6 +45,7 @@ const styles = (theme: Theme) =>
       right: "0",
       top: "0",
     },
+
     imgBox: {
       height: "200px",
       margin: "0 0 2rem",
@@ -55,13 +57,46 @@ const styles = (theme: Theme) =>
 
       },
       width: "48%",
+    },
+    inputField: {
+
+      height: "46px",
+      margin: "0 0 1rem",
+      padding: "0.5rem 1rem",
+      width: "100%",
+
+    },
+    inputFieldL: {
 
 
+      height: "100px",
+      margin: "0 0 1rem",
+      padding: "0.5rem 1rem",
+      width: "100%",
+    },
+    notification: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "flex-start",
+      padding: "0 2rem",
+      width: "300px",
+
+    },
+    sendBtn: {
+      marginBottom: "20px",
+      width: "100%",
 
     },
     textFieldGrid: {
       padding: "2rem 0 0 1.5rem"
-    }
+    },
+
+    title: {
+      width: "100%",
+    },
+
+
+
   });
 
 interface WebhooksListPageProps extends WithStyles<typeof styles> {
@@ -86,6 +121,9 @@ const WebhooksListPage = withStyles(styles, {
     // {
     const intl = useIntl();
     const notify = useNotifier();
+
+    const [title, setTitle] = React.useState("")
+    const [descripation, setDescripation] = React.useState("")
     const [, setFile] = useState([null]);
     // const [total, setTotal] = useState([null]);
     const [, setName] = useState("");
@@ -139,8 +177,12 @@ const WebhooksListPage = withStyles(styles, {
       setName("tttt")
 
     }
+
+
+
     return (
       <>
+
         <TypedBannerImagesQuery>
           {({ data, loading, refetch }) => {
             if (loading) {
@@ -253,12 +295,51 @@ const WebhooksListPage = withStyles(styles, {
             }
           }}
         </TypedBannerImagesQuery>
+        <Container>
+          <Card>
 
+            <TypeNotificationPush onCompleted={async ({ sendPormotion: { errors } }) => {
 
+              if (errors.length) {
 
+                notify({ text: "" + errors[0].message });
 
+              }
+              else {
+                setTitle("")
+                setDescripation("")
+                notify({ text: "Successfully push." });
+              }
 
+            }}>
+              {(sendNotification) => {
 
+                const handleSubmit = () => {
+                  sendNotification({
+                    variables: {
+                      description: descripation,
+                      title
+
+                    }
+                  })
+                }
+                return <div className={classes.notification}>
+                  <h2>Push Notification</h2>
+                  {/* onKeyDown={(evt) => title.length > 10 ? evt.preventDefault() : ""}
+                  onKeyDown={(evt) => descripation.length > 20 ? evt.preventDefault() : ""} */}
+                  <input type="text" className={classes.inputField} value={title} placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
+                  <textarea className={classes.inputFieldL} onChange={(e) => setDescripation(e.target.value)} value={descripation} placeholder="Descripation" />
+                  <Button onClick={() => handleSubmit()} variant="contained" color="primary" className={classes.sendBtn} disabled={descripation.length > 0 && title.length > 0 ? false : true}>
+                    <FormattedMessage
+                      defaultMessage="Send Notification"
+                      description="button"
+                    />
+                  </Button>
+                </div>
+              }}
+            </TypeNotificationPush>
+          </Card>
+        </Container>
       </>
     );
   }

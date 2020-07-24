@@ -176,7 +176,7 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
         },
         {
           description: intl.formatMessage({
-            defaultMessage: "Banner images"
+            defaultMessage: "Images banner/Push Notification"
           }),
           icon: <Webhooks fontSize="inherit" viewBox="0 0 44 44" />,
           permission: PermissionEnum.MANAGE_WEBHOOKS,

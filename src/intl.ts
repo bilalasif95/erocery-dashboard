@@ -158,7 +158,7 @@ export const sectionNames = defineMessages({
     description: "home section name"
   },
   imagesBanner: {
-    defaultMessage: "Images banner",
+    defaultMessage: "Images Banner/Notification",
     description: "Images section name"
   },
   navigation: {

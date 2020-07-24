@@ -24,3 +24,30 @@ export interface WebhookDelete1 {
 export interface WebhookDeleteVariables1 {
   images: any;
 }
+
+
+
+
+
+export interface WebhookDelete_WebhookDelete_Errors22 {
+  __typename: "Error";
+  field: string | null;
+  message: string | null;
+}
+
+export interface WebhookDelete_WebhookDelete22 {
+  __typename: "sendPormotion";
+  errors: WebhookDelete_WebhookDelete_Errors22[] | null;
+}
+
+export interface Notification {
+  sendPormotion: WebhookDelete_WebhookDelete22 | null;
+}
+
+
+export interface NotificationVariables {
+
+  title: string,
+  description: string
+
+}

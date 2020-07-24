@@ -2,10 +2,12 @@ import gql from "graphql-tag";
 
 import { TypedMutation } from "../mutations";
 
-import { WebhookDelete1, WebhookDeleteVariables1 } from "./types/WebhookDelete";
+import {Notification,NotificationVariables, WebhookDelete1, WebhookDeleteVariables1 } from "./types/WebhookDelete";
 
 import { ImagesDelete, ImagesDeleteVariables } from "./types/deleteImages";
 // new banner imagess
+
+
 
 const ImagesUpload = gql`
   mutation($images:[Upload]){
@@ -22,6 +24,7 @@ export const TypeImagesUpload = TypedMutation<
   WebhookDelete1,
   WebhookDeleteVariables1
 >(ImagesUpload);
+
 
 
 // Delete images...
@@ -44,3 +47,19 @@ export const TypeImagesDelete = TypedMutation<
 
 
 
+// notification push
+const PushNotification = gql`
+  mutation sendPormotion($description:String!,$title:String!){
+  sendPormotion(input:{description:$description,title:$title}){
+    message
+    errors{
+      field
+      message
+    }
+  }
+}
+`;
+export const TypeNotificationPush = TypedMutation<
+  Notification,
+  NotificationVariables
+>(PushNotification);

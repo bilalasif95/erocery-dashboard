@@ -16,3 +16,5 @@ const bannerImagesGet = gql`
 export const TypedBannerImagesQuery = TypedQuery<BannerImagesGet,{}>(
     bannerImagesGet
 );
+
+
