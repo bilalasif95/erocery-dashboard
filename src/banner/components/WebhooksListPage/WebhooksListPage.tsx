@@ -308,7 +308,7 @@ const WebhooksListPage = withStyles(styles, {
               else {
                 setTitle("")
                 setDescripation("")
-                notify({ text: "Successfully push." });
+                notify({ text: "Successfully pushed." });
               }
 
             }}>
@@ -328,7 +328,7 @@ const WebhooksListPage = withStyles(styles, {
                   {/* onKeyDown={(evt) => title.length > 10 ? evt.preventDefault() : ""}
                   onKeyDown={(evt) => descripation.length > 20 ? evt.preventDefault() : ""} */}
                   <input type="text" className={classes.inputField} value={title} placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
-                  <textarea className={classes.inputFieldL} onChange={(e) => setDescripation(e.target.value)} value={descripation} placeholder="Descripation" />
+                  <textarea className={classes.inputFieldL} onChange={(e) => setDescripation(e.target.value)} value={descripation} placeholder="Description" />
                   <Button onClick={() => handleSubmit()} variant="contained" color="primary" className={classes.sendBtn} disabled={descripation.length > 0 && title.length > 0 ? false : true}>
                     <FormattedMessage
                       defaultMessage="Send Notification"
