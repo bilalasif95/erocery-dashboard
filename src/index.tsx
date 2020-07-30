@@ -37,6 +37,7 @@ import { commonMessages } from "./intl";
 import NavigationSection from "./navigation";
 import { navigationSection } from "./navigation/urls";
 import { NotFound } from "./NotFound";
+import Notification from "./notification";
 import OrdersSection from "./orders";
 import PageSection from "./pages";
 import PluginsSection from "./plugins";
@@ -241,6 +242,11 @@ const Routes: React.FC = () => {
                 permissions={[PermissionEnum.MANAGE_WEBHOOKS]}
                 path="/banner"
                 component={Banner}
+              />
+               <SectionRoute
+                permissions={[PermissionEnum.MANAGE_WEBHOOKS]}
+                path="/notification"
+                component={Notification}
               />
               <SectionRoute
                 permissions={[PermissionEnum.MANAGE_MENUS]}

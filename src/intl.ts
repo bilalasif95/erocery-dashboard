@@ -158,12 +158,16 @@ export const sectionNames = defineMessages({
     description: "home section name"
   },
   imagesBanner: {
-    defaultMessage: "Images Banner/Notification",
+    defaultMessage: "Images Banner",
     description: "Images section name"
   },
   navigation: {
     defaultMessage: "Navigation",
     description: "navigation section name"
+  },
+  notification: {
+    defaultMessage: "Push Notification",
+    description: "Notification section name"
   },
   orders: {
     defaultMessage: "Orders",
@@ -236,7 +240,7 @@ export const sectionNames = defineMessages({
   webhooks: {
     defaultMessage: "Webhooks",
     description: "webhooks section name"
-  }, 
+  },
 });
 
 export function translateBoolean(value: boolean, intl: IntlShape): string {

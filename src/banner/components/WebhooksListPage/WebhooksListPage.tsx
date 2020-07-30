@@ -17,7 +17,7 @@ import DeleteImage from "../../../../assets/images/delete.svg";
 
 import { sectionNames } from "@saleor/intl";
 
-import { TypeImagesDelete, TypeImagesUpload, TypeNotificationPush } from "../../mutations"
+import { TypeImagesDelete, TypeImagesUpload } from "../../mutations"
 import { TypedBannerImagesQuery } from "../../queries"
 
 
@@ -122,8 +122,7 @@ const WebhooksListPage = withStyles(styles, {
     const intl = useIntl();
     const notify = useNotifier();
 
-    const [title, setTitle] = React.useState("")
-    const [descripation, setDescripation] = React.useState("")
+   
     const [, setFile] = useState([null]);
     // const [total, setTotal] = useState([null]);
     const [, setName] = useState("");
@@ -289,57 +288,10 @@ const WebhooksListPage = withStyles(styles, {
                 </TypeImagesUpload>
 
               )
-
-
-
             }
           }}
         </TypedBannerImagesQuery>
-        <Container>
-          <Card>
-
-            <TypeNotificationPush onCompleted={async ({ sendPormotion: { errors } }) => {
-
-              if (errors.length) {
-
-                notify({ text: "" + errors[0].message });
-
-              }
-              else {
-                setTitle("")
-                setDescripation("")
-                notify({ text: "Successfully pushed." });
-              }
-
-            }}>
-              {(sendNotification) => {
-
-                const handleSubmit = () => {
-                  sendNotification({
-                    variables: {
-                      description: descripation,
-                      title
-
-                    }
-                  })
-                }
-                return <div className={classes.notification}>
-                  <h2>Push Notification</h2>
-                  {/* onKeyDown={(evt) => title.length > 10 ? evt.preventDefault() : ""}
-                  onKeyDown={(evt) => descripation.length > 20 ? evt.preventDefault() : ""} */}
-                  <input type="text" className={classes.inputField} value={title} placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
-                  <textarea className={classes.inputFieldL} onChange={(e) => setDescripation(e.target.value)} value={descripation} placeholder="Description" />
-                  <Button onClick={() => handleSubmit()} variant="contained" color="primary" className={classes.sendBtn} disabled={descripation.length > 0 && title.length > 0 ? false : true}>
-                    <FormattedMessage
-                      defaultMessage="Send Notification"
-                      description="button"
-                    />
-                  </Button>
-                </div>
-              }}
-            </TypeNotificationPush>
-          </Card>
-        </Container>
+       
       </>
     );
   }
