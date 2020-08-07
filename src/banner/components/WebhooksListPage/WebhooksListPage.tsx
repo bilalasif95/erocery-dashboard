@@ -212,7 +212,8 @@ const WebhooksListPage = withStyles(styles, {
                       filterFinalImageFile().then((data) => {
                         imageUpload({
                           variables: {
-                            images: data
+                            alt: "",
+                            images: data,
                           }
                         })
                       })

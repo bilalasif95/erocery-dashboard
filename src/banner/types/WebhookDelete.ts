@@ -23,6 +23,7 @@ export interface WebhookDelete1 {
 
 export interface WebhookDeleteVariables1 {
   images: any;
+  alt: string;
 }
 
 

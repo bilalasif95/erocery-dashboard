@@ -10,8 +10,8 @@ import { ImagesDelete, ImagesDeleteVariables } from "./types/deleteImages";
 
 
 const ImagesUpload = gql`
-  mutation($images:[Upload]){
-  shopBannerCreate(input:{images:$images}){
+  mutation($images:[Upload],$alt: String){
+  shopBannerCreate(input:{images:$images,alt:$alt}){
     message
     errors{
       field
