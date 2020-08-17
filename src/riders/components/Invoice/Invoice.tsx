@@ -107,7 +107,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
                   }}
                 >
                   <Text style={{ fontWeight: 'bold', marginRight: 2 }}>Order #</Text>
-                  <Text>{data.info.node.id}</Text>
+                  <Text>{data.info.node.number}</Text>
                 </View>
                 <View
                   style={{
