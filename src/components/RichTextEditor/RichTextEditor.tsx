@@ -6,6 +6,7 @@ import {
 } from "@material-ui/core/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 import Typography from "@material-ui/core/Typography";
+import { ChangeEvent } from "@saleor/hooks/useForm";
 import classNames from "classnames";
 import { RawDraftContentState } from "draft-js";
 import {
@@ -21,6 +22,7 @@ import BoldIcon from "../../icons/BoldIcon";
 import HeaderOne from "../../icons/HeaderOne";
 import HeaderThree from "../../icons/HeaderThree";
 import HeaderTwo from "../../icons/HeaderTwo";
+import ImageIcon from "../../icons/Image";
 import ItalicIcon from "../../icons/ItalicIcon";
 import LinkIcon from "../../icons/LinkIcon";
 import OrderedListIcon from "../../icons/OrderedListIcon";
@@ -29,9 +31,8 @@ import StrikethroughIcon from "../../icons/StrikethroughIcon";
 import UnderlineIcon from "../../icons/UnderlineIcon";
 import UnorderedListIcon from "../../icons/UnorderedListIcon";
 
-// import ImageEntity from "./ImageEntity";
-// import ImageSource from "./ImageSource";
-import { ChangeEvent } from "@saleor/hooks/useForm";
+import ImageEntity from "./ImageEntity";
+import ImageSource from "./ImageSource";
 import LinkEntity from "./LinkEntity";
 import LinkSource from "./LinkSource";
 
@@ -54,6 +55,11 @@ const styles = (theme: Theme) =>
     helperText: {
       marginTop: theme.spacing.unit * 0.75
     },
+    imageIcon: {
+      "& path": {
+        fill: "black"
+      }
+    },
     input: {
       position: "relative"
     },
@@ -64,7 +70,7 @@ const styles = (theme: Theme) =>
       top: 9
     },
     linkIcon: {
-      marginTop: 2
+      marginTop: 7
     },
     root: {
       "& .DraftEditor": {
@@ -288,14 +294,14 @@ const RichTextEditor = withStyles(styles, { name: "RichTextEditor" })(
               icon: <LinkIcon className={classes.linkIcon} />,
               source: LinkSource,
               type: ENTITY_TYPE.LINK
+            },
+            {
+              attributes: ["href","alt"],
+              decorator: ImageEntity,
+              icon: <ImageIcon className={classes.imageIcon} />,
+              source: ImageSource,
+              type: ENTITY_TYPE.IMAGE
             }
-            // {
-            //   attributes: ["href"],
-            //   decorator: ImageEntity,
-            //   icon: <ImageIcon />,
-            //   source: ImageSource,
-            //   type: ENTITY_TYPE.IMAGE
-            // }
           ]}
         />
       </div>

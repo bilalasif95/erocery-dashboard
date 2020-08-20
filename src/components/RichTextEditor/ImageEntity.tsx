@@ -105,6 +105,7 @@ const ImageEntity = withStyles(styles, {
         <img
           className={classes.image}
           src={contentState.getEntity(entityKey).getData().href}
+          alt={contentState.getEntity(entityKey).getData().alt}
           onClick={toggle}
         />
       </>

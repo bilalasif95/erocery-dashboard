@@ -33,12 +33,13 @@ const ImageSource: React.FC<ImageSourceProps> = ({
   const intl = useIntl();
 
   const initial = entity ? entity.getData().href : "";
+  const altInitial = entity ? entity.getData().alt : "";
 
-  const handleSubmit = (href: string) => {
+  const handleSubmit = (href: string,alt: string) => {
     if (href) {
       const content = editorState.getCurrentContent();
       if (entity) {
-        const nextContent = content.mergeEntityData(entityKey, { href });
+        const nextContent = content.mergeEntityData(entityKey, { href,alt });
         const nextState = EditorState.push(
           editorState,
           nextContent,
@@ -49,7 +50,7 @@ const ImageSource: React.FC<ImageSourceProps> = ({
         const contentWithEntity = content.createEntity(
           entityType.type,
           "IMMUTABLE",
-          { href }
+          { href,alt}
         );
         const nextState = AtomicBlockUtils.insertAtomicBlock(
           editorState,
@@ -67,8 +68,8 @@ const ImageSource: React.FC<ImageSourceProps> = ({
   return (
     <Dialog onClose={onClose} open={true} fullWidth maxWidth="sm">
       <Form
-        initial={{ href: initial }}
-        onSubmit={({ href }) => handleSubmit(href)}
+        initial={{ href: initial,alt: altInitial }}
+        onSubmit={({ href,alt }) => handleSubmit(href,alt)}
       >
         {({ data, change, submit }) => (
           <>
@@ -86,6 +87,17 @@ const ImageSource: React.FC<ImageSourceProps> = ({
                   defaultMessage: "Image URL"
                 })}
                 value={data.href}
+                onChange={change}
+              />
+            </DialogContent>
+            <DialogContent>
+              <TextField
+                name="alt"
+                fullWidth
+                label={intl.formatMessage({
+                  defaultMessage: "Alt Tag"
+                })}
+                value={data.alt}
                 onChange={change}
               />
             </DialogContent>
