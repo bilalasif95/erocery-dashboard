@@ -19,6 +19,7 @@ import LoginLoading from "./auth/components/LoginLoading";
 import SectionRoute from "./auth/components/SectionRoute";
 import { hasPermission } from "./auth/misc";
 import Banner from "./banner";
+import BlogSection from "./blogs";
 import CategorySection from "./categories";
 import CollectionSection from "./collections";
 import { AppProgressProvider } from "./components/AppProgress";
@@ -177,6 +178,11 @@ const Routes: React.FC = () => {
                 permissions={[PermissionEnum.MANAGE_PAGES]}
                 path="/pages"
                 component={PageSection}
+              />
+              <SectionRoute
+                permissions={[PermissionEnum.MANAGE_PAGES]}
+                path="/blogs"
+                component={BlogSection}
               />
               <SectionRoute
                 permissions={[PermissionEnum.MANAGE_PLUGINS]}

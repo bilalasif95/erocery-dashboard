@@ -862,6 +862,20 @@ export interface PageInput {
   seo?: SeoInput | null;
 }
 
+export interface BlogInput {
+  slug?: string | null;
+  title?: string | null;
+  image?: any | null;
+  imageAlt?: string | null;
+  content?: string | null;
+  authorName?: string | null;
+  description?: string | null;
+  contentJson?: any | null;
+  isPublished?: boolean | null;
+  publicationDate?: string | null;
+  seo?: SeoInput | null;
+}
+
 export interface PageTranslationInput {
   seoTitle?: string | null;
   seoDescription?: string | null;

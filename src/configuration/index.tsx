@@ -2,6 +2,9 @@ import React from "react";
 import { IntlShape, useIntl } from "react-intl";
 
 import { attributeListUrl } from "@saleor/attributes/urls";
+
+import { blogListUrl } from "@saleor/blogs/urls";
+
 import {webhooksListUrl1} from "@saleor/banner/urls";
 
 import {webhooksListUrl2} from "@saleor/notification/urls";
@@ -142,6 +145,15 @@ export function createConfigurationMenu(intl: IntlShape): MenuSection[] {
           permission: PermissionEnum.MANAGE_PAGES,
           title: intl.formatMessage(sectionNames.pages),
           url: pageListUrl()
+        },
+        {
+          description: intl.formatMessage({
+            defaultMessage: "Manage and add blogs",
+          }),
+          icon: <Pages fontSize="inherit" viewBox="0 0 44 44" />,
+          permission: PermissionEnum.MANAGE_PAGES,
+          title: intl.formatMessage(sectionNames.blogs),
+          url: blogListUrl()
         },
         {
           description: intl.formatMessage({
