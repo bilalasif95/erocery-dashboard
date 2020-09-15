@@ -4,7 +4,7 @@
       "name": "erocery-admin",
       "script": "npx",
       "interpreter": "none",
-      "args": "serve -s build -l 3060"
+      "args": "serve -s build/dashboard -l 3060"
     }
   ]
 }
