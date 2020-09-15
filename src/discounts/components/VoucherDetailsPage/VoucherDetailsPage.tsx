@@ -42,8 +42,8 @@ export function voucherDetailsPageTab(tab: string): VoucherDetailsPageTab {
   return tab === VoucherDetailsPageTab.products
     ? VoucherDetailsPageTab.products
     : tab === VoucherDetailsPageTab.collections
-    ? VoucherDetailsPageTab.collections
-    : VoucherDetailsPageTab.categories;
+      ? VoucherDetailsPageTab.collections
+      : VoucherDetailsPageTab.categories;
 }
 
 export interface FormData {
@@ -67,9 +67,9 @@ export interface FormData {
 
 export interface VoucherDetailsPageProps
   extends Pick<ListProps, Exclude<keyof ListProps, "onRowClick">>,
-    TabListActions<
-      "categoryListToolbar" | "collectionListToolbar" | "productListToolbar"
-    > {
+  TabListActions<
+  "categoryListToolbar" | "collectionListToolbar" | "productListToolbar"
+  > {
   activeTab: VoucherDetailsPageTab;
   defaultCurrency: string;
   errors: UserError[];
@@ -145,7 +145,7 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
     applyOncePerOrder: maybe(() => voucher.applyOncePerOrder, false),
     code: maybe(() => voucher.code, ""),
     discountType: maybe(
-      () => voucher.discountValueType,
+      () => voucher.type === "SHIPPING" ? DiscountValueTypeEnum.SHIPPING : voucher.discountValueType,
       DiscountValueTypeEnum.FIXED
     ),
     endDate: splitDateTime(maybe(() => voucher.endDate, "")).date,
@@ -202,113 +202,113 @@ const VoucherDetailsPage: React.StatelessComponent<VoucherDetailsPageProps> = ({
               ) : null}
               <CardSpacer />
               {data.type === VoucherTypeEnum.SPECIFIC_PRODUCT &&
-              data.discountType.toString() !== "SHIPPING" ? (
-                <>
-                  <TabContainer>
-                    <CategoriesTab
-                      isActive={activeTab === VoucherDetailsPageTab.categories}
-                      changeTab={onTabClick}
-                    >
-                      {intl.formatMessage(
-                        {
-                          defaultMessage: "Categories ({quantity})",
-                          description: "number of categories"
-                        },
-                        {
-                          quantity: maybe(
-                            () => voucher.categories.totalCount.toString(),
-                            "…"
-                          )
-                        }
-                      )}
-                    </CategoriesTab>
-                    <CollectionsTab
-                      isActive={activeTab === VoucherDetailsPageTab.collections}
-                      changeTab={onTabClick}
-                    >
-                      {intl.formatMessage(
-                        {
-                          defaultMessage: "Collections ({quantity})",
-                          description: "number of collections"
-                        },
-                        {
-                          quantity: maybe(
-                            () => voucher.collections.totalCount.toString(),
-                            "…"
-                          )
-                        }
-                      )}
-                    </CollectionsTab>
-                    <ProductsTab
-                      isActive={activeTab === VoucherDetailsPageTab.products}
-                      changeTab={onTabClick}
-                    >
-                      {intl.formatMessage(
-                        {
-                          defaultMessage: "Products ({quantity})",
-                          description: "number of products"
-                        },
-                        {
-                          quantity: maybe(
-                            () => voucher.products.totalCount.toString(),
-                            "…"
-                          )
-                        }
-                      )}
-                    </ProductsTab>
-                  </TabContainer>
-                  <CardSpacer />
-                  {activeTab === VoucherDetailsPageTab.categories ? (
-                    <DiscountCategories
-                      disabled={disabled}
-                      onCategoryAssign={onCategoryAssign}
-                      onCategoryUnassign={onCategoryUnassign}
-                      onNextPage={onNextPage}
-                      onPreviousPage={onPreviousPage}
-                      onRowClick={onCategoryClick}
-                      pageInfo={pageInfo}
-                      discount={voucher}
-                      isChecked={isChecked}
-                      selected={selected}
-                      toggle={toggle}
-                      toggleAll={toggleAll}
-                      toolbar={categoryListToolbar}
-                    />
-                  ) : activeTab === VoucherDetailsPageTab.collections ? (
-                    <DiscountCollections
-                      disabled={disabled}
-                      onCollectionAssign={onCollectionAssign}
-                      onCollectionUnassign={onCollectionUnassign}
-                      onNextPage={onNextPage}
-                      onPreviousPage={onPreviousPage}
-                      onRowClick={onCollectionClick}
-                      pageInfo={pageInfo}
-                      discount={voucher}
-                      isChecked={isChecked}
-                      selected={selected}
-                      toggle={toggle}
-                      toggleAll={toggleAll}
-                      toolbar={collectionListToolbar}
-                    />
-                  ) : (
-                    <DiscountProducts
-                      disabled={disabled}
-                      onNextPage={onNextPage}
-                      onPreviousPage={onPreviousPage}
-                      onProductAssign={onProductAssign}
-                      onProductUnassign={onProductUnassign}
-                      onRowClick={onProductClick}
-                      pageInfo={pageInfo}
-                      discount={voucher}
-                      isChecked={isChecked}
-                      selected={selected}
-                      toggle={toggle}
-                      toggleAll={toggleAll}
-                      toolbar={productListToolbar}
-                    />
-                  )}
-                </>
-              ) : null}
+                data.discountType.toString() !== "SHIPPING" ? (
+                  <>
+                    <TabContainer>
+                      <CategoriesTab
+                        isActive={activeTab === VoucherDetailsPageTab.categories}
+                        changeTab={onTabClick}
+                      >
+                        {intl.formatMessage(
+                          {
+                            defaultMessage: "Categories ({quantity})",
+                            description: "number of categories"
+                          },
+                          {
+                            quantity: maybe(
+                              () => voucher.categories.totalCount.toString(),
+                              "…"
+                            )
+                          }
+                        )}
+                      </CategoriesTab>
+                      <CollectionsTab
+                        isActive={activeTab === VoucherDetailsPageTab.collections}
+                        changeTab={onTabClick}
+                      >
+                        {intl.formatMessage(
+                          {
+                            defaultMessage: "Collections ({quantity})",
+                            description: "number of collections"
+                          },
+                          {
+                            quantity: maybe(
+                              () => voucher.collections.totalCount.toString(),
+                              "…"
+                            )
+                          }
+                        )}
+                      </CollectionsTab>
+                      <ProductsTab
+                        isActive={activeTab === VoucherDetailsPageTab.products}
+                        changeTab={onTabClick}
+                      >
+                        {intl.formatMessage(
+                          {
+                            defaultMessage: "Products ({quantity})",
+                            description: "number of products"
+                          },
+                          {
+                            quantity: maybe(
+                              () => voucher.products.totalCount.toString(),
+                              "…"
+                            )
+                          }
+                        )}
+                      </ProductsTab>
+                    </TabContainer>
+                    <CardSpacer />
+                    {activeTab === VoucherDetailsPageTab.categories ? (
+                      <DiscountCategories
+                        disabled={disabled}
+                        onCategoryAssign={onCategoryAssign}
+                        onCategoryUnassign={onCategoryUnassign}
+                        onNextPage={onNextPage}
+                        onPreviousPage={onPreviousPage}
+                        onRowClick={onCategoryClick}
+                        pageInfo={pageInfo}
+                        discount={voucher}
+                        isChecked={isChecked}
+                        selected={selected}
+                        toggle={toggle}
+                        toggleAll={toggleAll}
+                        toolbar={categoryListToolbar}
+                      />
+                    ) : activeTab === VoucherDetailsPageTab.collections ? (
+                      <DiscountCollections
+                        disabled={disabled}
+                        onCollectionAssign={onCollectionAssign}
+                        onCollectionUnassign={onCollectionUnassign}
+                        onNextPage={onNextPage}
+                        onPreviousPage={onPreviousPage}
+                        onRowClick={onCollectionClick}
+                        pageInfo={pageInfo}
+                        discount={voucher}
+                        isChecked={isChecked}
+                        selected={selected}
+                        toggle={toggle}
+                        toggleAll={toggleAll}
+                        toolbar={collectionListToolbar}
+                      />
+                    ) : (
+                          <DiscountProducts
+                            disabled={disabled}
+                            onNextPage={onNextPage}
+                            onPreviousPage={onPreviousPage}
+                            onProductAssign={onProductAssign}
+                            onProductUnassign={onProductUnassign}
+                            onRowClick={onProductClick}
+                            pageInfo={pageInfo}
+                            discount={voucher}
+                            isChecked={isChecked}
+                            selected={selected}
+                            toggle={toggle}
+                            toggleAll={toggleAll}
+                            toolbar={productListToolbar}
+                          />
+                        )}
+                  </>
+                ) : null}
               <CardSpacer />
               {data.discountType.toString() === "SHIPPING" ? (
                 <CountryList

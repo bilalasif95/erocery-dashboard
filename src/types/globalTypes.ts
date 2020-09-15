@@ -316,6 +316,7 @@ export enum DiscountStatusEnum {
 export enum DiscountValueTypeEnum {
   FIXED = "FIXED",
   PERCENTAGE = "PERCENTAGE",
+  SHIPPING = "SHIPPING",
 }
 
 export enum FulfillmentStatus {
