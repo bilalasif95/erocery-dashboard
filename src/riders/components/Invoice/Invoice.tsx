@@ -78,7 +78,7 @@ export const Invoice: React.FC<InvoiceDataProps> = ({ data }) => {
             </View>
             <View style={{ backgroundColor: 'white', paddingBottom: 5 }}>
               <Text style={{ fontSize: 8, textAlign: 'center', lineHeight: '30px', width: '100%' }}>3rd Floor, Al-Rahim Arcade, National Market, Satellite Town, Rawalpindi, Pakistan.</Text>
-              <Text style={{ fontSize: 8, textAlign: 'center', lineHeight: '30px', width: '100%' }}>info@erocery.com | www.erocery.com</Text>
+              <Text style={{ fontSize: 8, textAlign: 'center', lineHeight: '30px', width: '100%' }}>contact@erocery.com | www.erocery.com</Text>
             </View>
             <View style={{ backgroundColor: "white", display: 'flex', justifyContent: 'center', width: '100%', marginTop: 1, marginBottom: 1 }}>
               <Text
