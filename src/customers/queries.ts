@@ -60,6 +60,7 @@ export const customerAddressesFragment = gql`
 
 const customerList = gql`
   ${customerFragment}
+  ${fragmentAddress}
   query ListCustomers(
     $after: String
     $before: String
@@ -77,6 +78,9 @@ const customerList = gql`
       edges {
         node {
           ...CustomerFragment
+          defaultShippingAddress {
+            ...AddressFragment
+          }
           orders {
             totalCount
           }

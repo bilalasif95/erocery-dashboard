@@ -27,7 +27,7 @@ export type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<
 > &
   {
     [K in Keys]-?: Required<Pick<T, K>> &
-      Partial<Record<Exclude<Keys, K>, undefined>>;
+    Partial<Record<Exclude<Keys, K>, undefined>>;
   }[Keys];
 
 export function renderCollection<T>(
@@ -246,6 +246,7 @@ interface User {
   email: string;
   firstName?: string;
   lastName?: string;
+  defaultShippingAddress?: any;
 }
 
 export function getUserName(user?: User, returnEmail?: boolean) {
@@ -253,17 +254,27 @@ export function getUserName(user?: User, returnEmail?: boolean) {
     ? user.firstName && user.lastName
       ? [user.firstName, user.lastName].join(" ")
       : returnEmail
-      ? user.email
-      : user.email.split("@")[0]
+        ? user.email
+        : user.email.split("@")[0]
+    : undefined;
+}
+
+export function getSpecialUserName(user?: User, returnEmail?: boolean) {
+  return user && (user.email || (user.defaultShippingAddress && user.defaultShippingAddress.firstName && user.defaultShippingAddress.lastName))
+    ? user.defaultShippingAddress && user.defaultShippingAddress.firstName && user.defaultShippingAddress.lastName
+      ? [user.defaultShippingAddress.firstName, user.defaultShippingAddress.lastName].join(" ")
+      : returnEmail
+        ? user.email
+        : user.email.split("@")[0]
     : undefined;
 }
 
 export function getUserInitials(user?: User) {
   return user && (user.email || (user.firstName && user.lastName))
     ? (user.firstName && user.lastName
-        ? user.firstName[0] + user.lastName[0]
-        : user.email.slice(0, 2)
-      ).toUpperCase()
+      ? user.firstName[0] + user.lastName[0]
+      : user.email.slice(0, 2)
+    ).toUpperCase()
     : undefined;
 }
 
@@ -344,6 +355,6 @@ export function transformFormToAddress(
 ): AddressInput {
   return {
     ...address,
-    country: findInEnum("PK", {PK:"PK"})
+    country: findInEnum("PK", { PK: "PK" })
   };
 }

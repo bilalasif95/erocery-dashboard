@@ -20,6 +20,7 @@ export interface ListCustomers_customers_edges_node {
   firstName: string;
   lastName: string;
   phone: string;
+  defaultShippingAddress?: any;
   orders: ListCustomers_customers_edges_node_orders | null;
 }
 
